@@ -1,4 +1,8 @@
+import { BouquetType } from "src/bouquet-type/models/bouquet-type.entity";
+import { Bouquet } from "src/bouquet/models/bouquet.entity";
 import { City } from "src/city/models/city.entity";
+import { Store } from "src/store/models/store.entity";
+import { User } from "src/user/models/user.entity";
 import { DataSourceOptions } from "typeorm";
 
 export const typeOrmConfig: DataSourceOptions = {
@@ -8,6 +12,6 @@ export const typeOrmConfig: DataSourceOptions = {
     username: 'bouquet',
     password: 'mysecretpassword',
     database: 'bouquet',
-    entities: [City],
+    entities: [City, Bouquet, BouquetType, Store, User],
     synchronize: true,
   };

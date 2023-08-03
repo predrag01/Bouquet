@@ -16,7 +16,7 @@ export class Bouquet {
     @Column({type: 'text', nullable: false })
     description: string;
 
-    @Column({type: 'number', nullable: false })
+    @Column({nullable: false })
     price: number;
 
     @ManyToOne(()=> BouquetType, (type:BouquetType) => type.bouquets, {onDelete: 'SET NULL'})
