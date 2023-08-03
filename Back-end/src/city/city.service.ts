@@ -19,4 +19,8 @@ export class CityService {
         const city = this.cityRepository.create(cityDto);
         return await this.cityRepository.save(city);
     }
+
+    public async delete(id: number) {
+        return await this.cityRepository.delete(id);
+    }
 }
