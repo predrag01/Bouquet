@@ -29,9 +29,10 @@ export class UserService {
         user.name=userDto.name;
         user.lastName=userDto.lastName;
         user.email=userDto.email;
-        user.password=userDto.password;
+        user.password=hashedPassword;
         user.phone=userDto.phone;
         user.address=userDto.address;
+        user.city=userDto.city;
 
         return this.userRepository.save(user);
     }

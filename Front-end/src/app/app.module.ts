@@ -35,6 +35,8 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { DialogModule } from '@angular/cdk/dialog';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatListModule} from '@angular/material/list';
+import { cityReducer } from './store/city/city.reducer';
+import { CityEffects } from './store/city/city.effects';
 
 @NgModule({
   declarations: [
@@ -50,9 +52,11 @@ import {MatListModule} from '@angular/material/list';
     BrowserAnimationsModule,
     StoreModule.forRoot<AppState>({
       user: userReducer,
+      cities: cityReducer,
     }),
     EffectsModule.forRoot([
       UserEffects,
+      CityEffects
     ]),
 
     HttpClientModule,

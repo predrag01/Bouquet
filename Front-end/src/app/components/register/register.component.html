@@ -1,1 +1,71 @@
-<p>register works!</p>
+<div class="register-cont">
+    <mat-card class="example-card mat-elevation-z10 margin-class">
+        <mat-card-header>
+            <mat-card-title class="title">Registration</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form class="form">
+                <mat-form-field appearance="outline">
+                    <mat-label>Username</mat-label>
+                    <input type="text" name="username" matInput required [formControl]="username" />
+                    <mat-error *ngIf="username.invalid">Fill username!</mat-error>
+                </mat-form-field>
+                <div clas="name-lastName">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Name</mat-label>
+                        <input type="text" name="name" matInput required [formControl]="name"/>
+                        <mat-error>Fill name!</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="row-item">
+                        <mat-label>Last name</mat-label>
+                        <input type="text" name="lastname" matInput required [formControl]="lastname"/>
+                        <mat-error>Fill last name!</mat-error>
+                    </mat-form-field>
+                </div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input type="text" name="email" matInput required [formControl]="email"/>
+                    <mat-error>Fill email!</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Phone</mat-label>
+                    <input type="text" name="phone" matInput required [formControl]="phone"/>
+                    <mat-error>Fill phone!</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline"> 
+                    <mat-label>City</mat-label>
+                    <mat-select (selectionChange)="onCitySelectionChange($event)">
+                      <mat-option>None</mat-option>
+                      <mat-option *ngFor="let city of cities$ |async" [value]="city">{{city.city}}</mat-option>
+                    </mat-select>
+                    <mat-error>Choose city!</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Address</mat-label>
+                    <input type="text" name="Address" matInput required [formControl]="address"/>
+                    <mat-error>Fill address!</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput [type]="hidePassword ? 'password' : 'text'" [formControl]="password" required/>
+                    <button mat-icon-button matSuffix (click)="togglePassword1()">
+                      <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                    </button>
+                    <mat-error>Fill password!</mat-error>
+                </mat-form-field>
+                <!-- <mat-form-field appearance="outline">
+                    <mat-label>Confirm password</mat-label>
+                    <input matInput [type]="hideConfirmPassword ? 'password' : 'text'" required />
+                    <button mat-icon-button matSuffix (click)="togglePassword2()">
+                        <mat-icon>{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                      </button>
+                      <mat-error>Fill confirm password!</mat-error>
+                </mat-form-field> -->
+                <button mat-raised-button color="primary" (click)="register()">Register</button>
+            </form>
+        </mat-card-content>
+        <mat-card-footer>
+            <span class="text" (click)="navigate('login')">Already have an account?</span>
+        </mat-card-footer>
+    </mat-card>
+</div>
