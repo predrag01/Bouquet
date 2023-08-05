@@ -24,15 +24,15 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
-  }
+  };
 
   togglePassword1() {
     this.hidePassword= !this.hidePassword;
-  }
+  };
 
   navigate(path: string) {
     this.router.navigate([path]);
-  }
+  };
 
   login() {
     if(!this.email.value || !this.password.value) {
@@ -41,5 +41,5 @@ export class LoginComponent implements OnInit {
 
     this.store.dispatch(loginUser({ email: this.email.value, password: this.password.value }));
     
-  }
+  };
 }

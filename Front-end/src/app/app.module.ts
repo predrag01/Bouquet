@@ -37,6 +37,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatListModule} from '@angular/material/list';
 import { cityReducer } from './store/city/city.reducer';
 import { CityEffects } from './store/city/city.effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 
 @NgModule({
   declarations: [
@@ -63,6 +64,10 @@ import { CityEffects } from './store/city/city.effects';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      autoPause: true,
+    }),
 
     MatCardModule,
     MatFormFieldModule,

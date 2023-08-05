@@ -40,6 +40,8 @@ export class UserEffects {
             ofType(UserActions.loginUser),
             mergeMap(({email, password}) => this.userService.login(email, password).pipe(
                 map((user: LoginUser) => {
+                    console.log("Login user - effect, pre setovanje tokena, stanje tokena:"+ user.accessToken);
+                    console.log("Login user - effect, pre setovanje usera, stanje usera:"+ user.user.username);
                     setToken(user.accessToken);
                     setUser(user.user);
                     this.router.navigate(['home'], {replaceUrl: true});
@@ -53,5 +55,18 @@ export class UserEffects {
                 })
             ))
         )
-    )
+    );
+
+    logout$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(UserActions.logout),
+            mergeMap(() => {
+                
+                setToken(null);
+                setUser(null);
+                console.log("odjavio se");
+                this.router.navigate(['home'], {replaceUrl: true});
+                return of({type: 'loggedout'});
+            })
+        ))
 };

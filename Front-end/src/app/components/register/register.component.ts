@@ -36,25 +36,25 @@ export class RegisterComponent implements OnInit {
   constructor(private router: Router, private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.store.dispatch(loadCities())
-    this.cities$=this.store.select(loadCityList)
-  }
+    this.store.dispatch(loadCities());
+    this.cities$=this.store.select(loadCityList);
+  };
 
   togglePassword1() {
     this.hidePassword= !this.hidePassword;
-  }
+  };
 
   togglePassword2() {
     this.hideConfirmPassword= !this.hideConfirmPassword;
-  }
+  };
 
   navigate(path: string) {
     this.router.navigate([path]);
-  }
+  };
 
   onCitySelectionChange(event: any): void {
     this.selectedCity = event.value;
-  }
+  };
 
   register() {
     if(!this.username.value || !this.name.value || !this.lastname.value || !this.email.value || !this.phone.value || !this.address.value || !this.password.value || !this.selectedCity) {
@@ -74,5 +74,5 @@ export class RegisterComponent implements OnInit {
 
     this.store.dispatch(registerUser({ user }));
     
-  }
+  };
 }

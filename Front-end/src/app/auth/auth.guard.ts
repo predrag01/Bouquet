@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  Router,
-  UrlTree,
-} from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate, Router, UrlTree} from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { AppState } from '../app.state';
@@ -25,24 +20,19 @@ export class AuthGuard implements CanActivate {
     this.jwtHelper = new JwtHelperService();
   }
 
-  getUserFromStore(): User | null {
-    let user: User | null = null;
+  getUserFromStore(): User | undefined {
+    let user: User | undefined;
 
     this.store.subscribe((state) => {
-      user = state.user.user;
+      user = state.user.entities[state.user.ids.toString()];
     });
+
     return user;
   }
 
-  canActivate(
-    route: ActivatedRouteSnapshot
-  ):
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree>
-    | boolean
-    | UrlTree {
+  canActivate(route: ActivatedRouteSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const token: string | null = getToken();
-    const user: User | null = this.getUserFromStore();
+    const user: User | undefined = this.getUserFromStore();
 
     const authorizedRole = route.data['role'];
 

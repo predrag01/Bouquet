@@ -1,8 +1,14 @@
 <mat-toolbar color="primary" class="navbar">
     <span class="title" (click)="navigate('home')">Bouquet</span>
     <div class="login-div">
-        <span class="logged-text" (click)="navigate('login')">Login</span>
-        <span class="logged-text"> / </span>
-        <span class="logged-text" (click)="navigate('register')">Register</span>
+        <span class="logged-text" (click)="navigate('login')" *ngIf="!this.user">Login</span>
+        <span class="logged-text" *ngIf="!this.user"> / </span>
+        <span class="logged-text" (click)="navigate('register')" *ngIf="!this.user">Register</span>
+        <!-- <img style="margin-top: 5px;" *ngIf="this.user" mat-card-avatar src="../../../../../assets/common/defaultUser.png"/> -->
+        <span class="logged-text" *ngIf="this.user"> {{this.user.username}} </span>
+        <button *ngIf="this.user" mat-raised-button color="accent" style="margin-left: 20px" (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            Log out
+        </button>
     </div>
 </mat-toolbar>
