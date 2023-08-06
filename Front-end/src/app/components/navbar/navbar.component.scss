@@ -12,6 +12,7 @@
 .title {
     font-weight: 600;
     cursor: pointer;
+    margin-right: 10px;
 }
 .navbar {
     position: sticky;
@@ -22,4 +23,13 @@
 .login-register {
     display: flex;
     flex-direction: row;
+}
+
+.nav-links {
+    font-size: 18px;
+    margin-left: 5px;
+}
+
+.items {
+    font-size: 10px;
 }

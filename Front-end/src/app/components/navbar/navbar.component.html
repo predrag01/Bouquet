@@ -1,5 +1,9 @@
 <mat-toolbar color="primary" class="navbar">
     <span class="title" (click)="navigate('home')">Bouquet</span>
+    <button mat-button [matMenuTriggerFor]="aboveMenu" class="nav-links">Admin</button>
+    <mat-menu #aboveMenu="matMenu" yPosition="above">
+    <button mat-menu-item class="items" (click)="navigate('city-list')">City</button>
+    </mat-menu>
     <div class="login-div">
         <span class="logged-text" (click)="navigate('login')" *ngIf="!this.user">Login</span>
         <span class="logged-text" *ngIf="!this.user"> / </span>
@@ -8,7 +12,6 @@
         <span class="logged-text" *ngIf="this.user"> {{this.user.username}} </span>
         <button *ngIf="this.user" mat-raised-button color="accent" style="margin-left: 20px" (click)="logout()">
             <mat-icon>logout</mat-icon>
-            Log out
         </button>
     </div>
 </mat-toolbar>

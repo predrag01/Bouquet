@@ -1,0 +1,29 @@
+<div class="register-cont">
+    <mat-card class="example-card mat-elevation-z10 card">
+        <mat-card-header class="header">
+            <mat-card-title class="title">City list</mat-card-title>
+            <button mat-raised-button color="accent"><mat-icon>add</mat-icon></button>
+        </mat-card-header>
+        <mat-card-content style="margin-bottom: 15px;">
+            <div class="text1">
+                <p class="item">Id</p>
+                <p class="item">City</p>
+            </div>
+            <div *ngFor="let city of cities$ | async">
+                <div class="list-item">
+                    <div class="text">
+                        <p class="item">{{city.id}}</p>
+                        <p class="item">{{city.city}}</p>
+                    </div>
+                    <div class="buttons">
+                        <button mat-raised-button color="primary" class="item"><mat-icon>edit</mat-icon></button>
+                        <button mat-raised-button color="warn" class="item"><mat-icon>delete</mat-icon></button>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+            </div>
+        </mat-card-content>
+        <mat-card-footer>
+        </mat-card-footer>
+    </mat-card>
+</div>

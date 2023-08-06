@@ -37,7 +37,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatListModule} from '@angular/material/list';
 import { cityReducer } from './store/city/city.reducer';
 import { CityEffects } from './store/city/city.effects';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { CityListComponent } from './components/city-list/city-list.component'
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools'
     NavbarComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    CityListComponent
   ],
   imports: [
     BrowserModule,
