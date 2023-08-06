@@ -20,12 +20,12 @@ export const cityReducer = createReducer(
     on(Actions.deleteCitySuccess, (state, { id }) => adapter.removeOne(id, state)),
     on(Actions.selectCity, (state, { id }) => ({ ...state, selectedCity:id })),
     on(Actions.deselectCity, (state) => ({ ...state, selectedCity:0 })),
-    // on(Actions.updateCitySuccess, (state, { id }) => adapter.updateOne({
-    //     id: id,
-    //     changes: {
-    //         ...state.entities[id]
-    //     },
-    // },
-    // state
-    // ))
+    on(Actions.updateCitySuccess, (state, { id, name }) => adapter.updateOne({
+        id: id,
+        changes: {
+            city: name
+        },
+    },
+    state
+    ))
 );

@@ -51,7 +51,7 @@ export class CityEffects {
     this.actions$.pipe(
         ofType(CityActions.updateCity),
         mergeMap(({ city }) => this.cityService.updateCity(city).pipe(
-            map(() => CityActions.updateCitySuccess()),
+            map(() => CityActions.updateCitySuccess({ id: city.id, name: city.city})),
             catchError( ({error}) => {
                 this.snackbar.open(error, 'Close', { duration: 3000});
                 return  of({type: 'Load error'});

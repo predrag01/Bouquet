@@ -41,7 +41,7 @@ export const updateCity =createAction(
 
 export const updateCitySuccess =createAction(
     'Update city success',
-    // props<{id: number}>()
+    props<{id: number, name: string}>()
 );
 
 

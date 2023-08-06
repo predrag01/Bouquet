@@ -23,6 +23,6 @@ export class CityService {
   };
 
   updateCity(city: City) {
-    return this.httpClient.put<City>(environment.api + "/city", {city});
+    return this.httpClient.put<City>(environment.api + "/city", {...city});
   };
 }

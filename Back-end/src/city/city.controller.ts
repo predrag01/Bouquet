@@ -22,8 +22,8 @@ export class CityController {
         return this.cityService.delete(id);
     }
 
-    // @Put()
-    // public updateCity(@Body() city: City) {
-    //     return this.cityService.update(city);
-    // }
+    @Put()
+    public updateCity(@Body() city: City) {
+        return this.cityService.update(city);
+    }
 }
