@@ -38,7 +38,8 @@ import {MatListModule} from '@angular/material/list';
 import { cityReducer } from './store/city/city.reducer';
 import { CityEffects } from './store/city/city.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { CityListComponent } from './components/city-list/city-list.component'
+import { CityListComponent } from './components/city-list/city-list.component';
+import { AddCityComponent } from './components/add-city/add-city.component'
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { CityListComponent } from './components/city-list/city-list.component'
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    CityListComponent
+    CityListComponent,
+    AddCityComponent
   ],
   imports: [
     BrowserModule,

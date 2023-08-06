@@ -15,5 +15,17 @@ export const initialSate: CityState = adapter.getInitialState({
 
 export const cityReducer = createReducer(
     initialSate,
-    on(Actions.loadCitiesSuccess, (state, {cities}) => adapter.setAll(cities, state)),
+    on(Actions.loadCitiesSuccess, (state, { cities }) => adapter.setAll(cities, state)),
+    on(Actions.addCitySuccessfully, (state, { city }) => adapter.addOne(city, state)),
+    on(Actions.deleteCitySuccess, (state, { id }) => adapter.removeOne(id, state)),
+    on(Actions.selectCity, (state, { id }) => ({ ...state, selectedCity:id })),
+    on(Actions.deselectCity, (state) => ({ ...state, selectedCity:0 })),
+    // on(Actions.updateCitySuccess, (state, { id }) => adapter.updateOne({
+    //     id: id,
+    //     changes: {
+    //         ...state.entities[id]
+    //     },
+    // },
+    // state
+    // ))
 );

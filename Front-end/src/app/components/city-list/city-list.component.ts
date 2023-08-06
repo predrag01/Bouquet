@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { AppState } from 'src/app/app.state';
 import { City } from 'src/app/models/city';
-import { loadCities } from 'src/app/store/city/city.actions';
+import { deleteCity, loadCities, selectCity } from 'src/app/store/city/city.actions';
 import { loadCityList } from 'src/app/store/city/city.selector';
+import { AddCityComponent } from '../add-city/add-city.component';
 
 @Component({
   selector: 'app-city-list',
@@ -16,7 +18,7 @@ export class CityListComponent implements OnInit {
 
   cities$: Observable<City[]> = of([]);
 
-  constructor(private router: Router, private store: Store<AppState>) {}
+  constructor(private router: Router, private store: Store<AppState>, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.store.dispatch(loadCities());
@@ -25,6 +27,25 @@ export class CityListComponent implements OnInit {
 
   navigate(path: string){
     this.router.navigate([path]);
-  }
+  };
+
+  addCity() {
+    this.dialog.open(AddCityComponent, {
+      minWidth: '400px',
+      minHeight: '200px'
+    });
+  };
+
+  delete(id: number) {
+    this.store.dispatch(deleteCity({ id }));
+  };
+
+  edit(id: number) {
+    this.store.dispatch(selectCity({ id }));
+    this.dialog.open(AddCityComponent, {
+      minWidth: '400px',
+      minHeight: '200px'
+    });
+  };
 
 }

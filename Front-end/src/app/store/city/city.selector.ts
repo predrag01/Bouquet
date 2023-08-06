@@ -13,4 +13,15 @@ export const loadCityList = createSelector(
     .map( id => cities.entities[id])
     .filter(city => city !== null)
     .map((city) => <City>city)
+);
+
+export const selectCityId = createSelector(
+    selectCityFeature,
+    (cities) => cities.selectedCity
+);
+
+export const selectCity = createSelector(
+    selectCityFeature,
+    selectCityId,
+    (cities, cityId) => cities.entities[cityId]
 )

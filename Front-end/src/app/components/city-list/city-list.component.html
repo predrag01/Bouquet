@@ -1,8 +1,8 @@
-<div class="register-cont">
+<div class="city-list-cont">
     <mat-card class="example-card mat-elevation-z10 card">
         <mat-card-header class="header">
             <mat-card-title class="title">City list</mat-card-title>
-            <button mat-raised-button color="accent"><mat-icon>add</mat-icon></button>
+            <button mat-raised-button color="accent" (click)="addCity()"><mat-icon>add</mat-icon></button>
         </mat-card-header>
         <mat-card-content style="margin-bottom: 15px;">
             <div class="text1">
@@ -16,8 +16,8 @@
                         <p class="item">{{city.city}}</p>
                     </div>
                     <div class="buttons">
-                        <button mat-raised-button color="primary" class="item"><mat-icon>edit</mat-icon></button>
-                        <button mat-raised-button color="warn" class="item"><mat-icon>delete</mat-icon></button>
+                        <button mat-raised-button color="primary" class="item" (click)="edit(city.id)"><mat-icon>edit</mat-icon></button>
+                        <button mat-raised-button color="warn" class="item" (click)="delete(city.id)"><mat-icon>delete</mat-icon></button>
                     </div>
                 </div>
                 <mat-divider></mat-divider>
