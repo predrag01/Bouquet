@@ -33,3 +33,14 @@
 .items {
     font-size: 10px;
 }
+
+.img {
+    width: 45px;
+    cursor: pointer;
+}
+
+.user-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

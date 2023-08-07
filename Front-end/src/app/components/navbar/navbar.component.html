@@ -9,10 +9,13 @@
         <span class="logged-text" (click)="navigate('login')" *ngIf="!this.user">Login</span>
         <span class="logged-text" *ngIf="!this.user"> / </span>
         <span class="logged-text" (click)="navigate('register')" *ngIf="!this.user">Register</span>
-        <!-- <img style="margin-top: 5px;" *ngIf="this.user" mat-card-avatar src="../../../../../assets/common/defaultUser.png"/> -->
-        <span class="logged-text" *ngIf="this.user"> {{this.user.username}} </span>
-        <button *ngIf="this.user" mat-raised-button color="accent" style="margin-left: 20px" (click)="logout()">
-            <mat-icon>logout</mat-icon>
-        </button>
+        <div class="user-div" *ngIf="this.user" mat-button [matMenuTriggerFor]="userMenu">
+            <img class="img" mat-card-avatar src="../../../../../assets/common/defaultUser.png"/>
+            <span class="logged-text" > @{{this.user.username}} </span>
+        </div>
+        <mat-menu #userMenu="matMenu" yPosition="above">
+            <button mat-menu-item class="items" (click)="navigate('edit-profile')">Account</button>
+            <button mat-menu-item (click)="logout()">Log out</button>
+        </mat-menu>
     </div>
 </mat-toolbar>

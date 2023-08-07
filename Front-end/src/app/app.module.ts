@@ -44,6 +44,7 @@ import { BouquetTypeListComponent } from './components/bouquet-type-list/bouquet
 import { AddBouquetTypeComponent } from './components/add-bouquet-type/add-bouquet-type.component'
 import { bouquetTypeReducer } from './store/bouquet-type/bouquet-type.reducer';
 import { BouquetEffects } from './store/bouquet-type/bouquet-type.effects';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { BouquetEffects } from './store/bouquet-type/bouquet-type.effects';
     CityListComponent,
     AddCityComponent,
     BouquetTypeListComponent,
-    AddBouquetTypeComponent
+    AddBouquetTypeComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,
