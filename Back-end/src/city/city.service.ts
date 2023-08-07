@@ -31,6 +31,6 @@ export class CityService {
             throw new BadRequestException('InvalidCity');
         }
 
-        return await this.cityRepository.update(city.id, city)
-    }
+        return await this.cityRepository.update(city.id, city);
+    };
 }
