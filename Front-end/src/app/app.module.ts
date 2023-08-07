@@ -39,7 +39,11 @@ import { cityReducer } from './store/city/city.reducer';
 import { CityEffects } from './store/city/city.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CityListComponent } from './components/city-list/city-list.component';
-import { AddCityComponent } from './components/add-city/add-city.component'
+import { AddCityComponent } from './components/add-city/add-city.component';
+import { BouquetTypeListComponent } from './components/bouquet-type-list/bouquet-type-list.component';
+import { AddBouquetTypeComponent } from './components/add-bouquet-type/add-bouquet-type.component'
+import { bouquetTypeReducer } from './store/bouquet-type/bouquet-type.reducer';
+import { BouquetEffects } from './store/bouquet-type/bouquet-type.effects';
 
 @NgModule({
   declarations: [
@@ -49,7 +53,9 @@ import { AddCityComponent } from './components/add-city/add-city.component'
     LoginComponent,
     RegisterComponent,
     CityListComponent,
-    AddCityComponent
+    AddCityComponent,
+    BouquetTypeListComponent,
+    AddBouquetTypeComponent
   ],
   imports: [
     BrowserModule,
@@ -58,10 +64,12 @@ import { AddCityComponent } from './components/add-city/add-city.component'
     StoreModule.forRoot<AppState>({
       user: userReducer,
       cities: cityReducer,
+      types: bouquetTypeReducer
     }),
     EffectsModule.forRoot([
       UserEffects,
-      CityEffects
+      CityEffects,
+      BouquetEffects
     ]),
 
     HttpClientModule,

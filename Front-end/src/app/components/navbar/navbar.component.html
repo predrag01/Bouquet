@@ -3,6 +3,7 @@
     <button mat-button [matMenuTriggerFor]="aboveMenu" class="nav-links">Admin</button>
     <mat-menu #aboveMenu="matMenu" yPosition="above">
     <button mat-menu-item class="items" (click)="navigate('city-list')">City</button>
+    <button mat-menu-item class="items" (click)="navigate('bouquet-type-list')">Bouquet type</button>
     </mat-menu>
     <div class="login-div">
         <span class="logged-text" (click)="navigate('login')" *ngIf="!this.user">Login</span>

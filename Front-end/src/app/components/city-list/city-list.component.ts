@@ -18,15 +18,11 @@ export class CityListComponent implements OnInit {
 
   cities$: Observable<City[]> = of([]);
 
-  constructor(private router: Router, private store: Store<AppState>, private dialog: MatDialog) {}
+  constructor(private store: Store<AppState>, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.store.dispatch(loadCities());
     this.cities$= this.store.select(loadCityList);  
-  }
-
-  navigate(path: string){
-    this.router.navigate([path]);
   };
 
   addCity() {

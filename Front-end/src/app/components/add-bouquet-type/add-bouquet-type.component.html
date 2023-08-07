@@ -1,0 +1,16 @@
+<mat-card class="example-card mat-elevation-z10 card">
+    <mat-card-header class="header">
+        <mat-card-title class="title">{{this.type ? "Update bouquet type" : "Add new bouquet type"}}</mat-card-title>
+        <span (click)="close()" style="cursor: pointer;"><mat-icon>close</mat-icon></span>
+    </mat-card-header>
+    <mat-card-content>
+        <form class="form">
+            <mat-form-field appearance="outline">
+                <mat-label>City</mat-label>
+                <input type="text" name="cityName" matInput required [formControl]="typeName"/>
+                <mat-error>Fill address!</mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="add()" class="button">{{this.type ? "Update" : "Add"}}</button>
+        </form>
+    </mat-card-content>
+</mat-card>

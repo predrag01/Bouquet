@@ -1,0 +1,29 @@
+<div class="city-list-cont">
+    <mat-card class="example-card mat-elevation-z10 card">
+        <mat-card-header class="header">
+            <mat-card-title class="title">Bouquet type list</mat-card-title>
+            <button mat-raised-button color="accent" (click)="addtype()"><mat-icon>add</mat-icon></button>
+        </mat-card-header>
+        <mat-card-content style="margin-bottom: 15px;">
+            <div class="text1">
+                <p class="item">Id</p>
+                <p class="item">Type</p>
+            </div>
+            <div *ngFor="let ty of types$ | async">
+                <div class="list-item">
+                    <div class="text">
+                        <p class="item">{{ty.id}}</p>
+                        <p class="item">{{ty.type}}</p>
+                    </div>
+                    <div class="buttons">
+                        <button mat-raised-button color="primary" class="item" (click)="edit(ty.id)"><mat-icon>edit</mat-icon></button>
+                        <button mat-raised-button color="warn" class="item" (click)="delete(ty.id)"><mat-icon>delete</mat-icon></button>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+            </div>
+        </mat-card-content>
+        <mat-card-footer>
+        </mat-card-footer>
+    </mat-card>
+</div>

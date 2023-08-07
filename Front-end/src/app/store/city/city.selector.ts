@@ -24,4 +24,4 @@ export const selectCity = createSelector(
     selectCityFeature,
     selectCityId,
     (cities, cityId) => cities.entities[cityId]
-)
+);
