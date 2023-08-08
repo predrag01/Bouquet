@@ -20,4 +20,8 @@ export class UserService {
       password
     });
   };
+
+  update(user: User) {
+    return this.httpClient.put<User>(environment.api + "/user", user);
+  };
 }

@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { LoginUser, RegisterUser } from "src/app/models/user";
+import { LoginUser, RegisterUser, User } from "src/app/models/user";
 
 export const registerUser = createAction(
     'Register user',
@@ -22,3 +22,13 @@ export const loginUserFailuer = createAction(
 );
 
 export const logout = createAction('Log out');
+
+export const updateProfile = createAction(
+    'Update profile',
+    props<{user: User}>()
+);
+
+export const updateProfileSuccess = createAction(
+    'Update profile succes',
+    props<{user: User}>()
+);

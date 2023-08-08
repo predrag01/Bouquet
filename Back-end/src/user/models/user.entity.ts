@@ -1,7 +1,7 @@
 import { City } from "src/city/models/city.entity";
 import { Role } from "src/enums/role.enum";
 import { Store } from "src/store/models/store.entity";
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class User{

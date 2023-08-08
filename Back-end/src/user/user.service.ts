@@ -39,8 +39,21 @@ export class UserService {
 
 
     public async findOne(email: string) : Promise<User | undefined> {
-        return this.userRepository.findOneBy({ email: email});
+        // return this.userRepository.findOneBy({ email: email});
+        return this.userRepository.findOne({where: { email: email}, relations: {city: true} });
     }
 
-    
+    public async findUser(id: number){
+        return this.userRepository.findOne({where: {id: id}, relations: {city:true} });
+    }
+
+    public async updateUser(user: User) {
+        const pom = await this.findUser(user.id);
+
+        if(!pom) {
+            throw new BadRequestException('InvalidUser');
+        }
+
+        return await this.userRepository.update(user.id, user);
+    }
 }

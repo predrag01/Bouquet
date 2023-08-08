@@ -30,4 +30,8 @@ export const initialState: UserState = adapter.getInitialState({
       user: null,
       access_token: null
     })),
+    on(UserActions.updateProfileSuccess, (state, {user}) => ({
+      ...state,
+      user:user,
+    })),
   );

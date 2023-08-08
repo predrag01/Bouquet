@@ -20,11 +20,11 @@ export class AuthGuard implements CanActivate {
     this.jwtHelper = new JwtHelperService();
   }
 
-  getUserFromStore(): User | undefined {
-    let user: User | undefined;
+  getUserFromStore(): User | null {
+    let user: User | null = null;
 
     this.store.subscribe((state) => {
-      user = state.user.entities[state.user.ids.toString()];
+      user = state.user.user;
     });
 
     return user;
@@ -32,7 +32,7 @@ export class AuthGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const token: string | null = getToken();
-    const user: User | undefined = this.getUserFromStore();
+    const user: User | null = this.getUserFromStore();
 
     const authorizedRole = route.data['role'];
 

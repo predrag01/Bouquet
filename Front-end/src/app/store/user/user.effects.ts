@@ -40,11 +40,11 @@ export class UserEffects {
             ofType(UserActions.loginUser),
             mergeMap(({email, password}) => this.userService.login(email, password).pipe(
                 map((user: LoginUser) => {
-                    console.log("Login user - effect, pre setovanje tokena, stanje tokena:"+ user.accessToken);
-                    console.log("Login user - effect, pre setovanje usera, stanje usera:"+ user.user.username);
                     setToken(user.accessToken);
                     setUser(user.user);
                     this.router.navigate(['home'], {replaceUrl: true});
+
+                    // console.log("effects: "+user.user.username);
                     return UserActions.loginUserSuccess({ user });
                 }),
                 catchError(({error}) => {
@@ -68,5 +68,22 @@ export class UserEffects {
                 this.router.navigate(['home'], {replaceUrl: true});
                 return of({type: 'loggedout'});
             })
+    ));
+
+    updateProfile$ = createEffect(() =>
+    this.actions$.pipe(
+        ofType(UserActions.updateProfile),
+        mergeMap(({ user }) => this.userService.update(user).pipe(
+            map(() => {
+            setUser(null),
+            setUser(user),
+            this.snackBar.open("Profile successfully updated", "Ok", {duration: 3000});
+            return UserActions.updateProfileSuccess({ user });
+            }),
+            catchError( ({error}) => {
+                this.snackBar.open(error.message, 'Close', { duration: 3000});
+                return  of({type: 'Load error'});
+            })
         ))
+    ))
 };
