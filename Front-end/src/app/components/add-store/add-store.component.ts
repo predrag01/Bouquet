@@ -74,18 +74,6 @@ export class AddStoreComponent implements OnInit{
       ownerId: <number>this.user?.id
     };
 
-    // storeCreated.append('name', this.storeNameFormGroup.controls['storeNameCtrl'].value!);
-    // storeCreated.append('address', this.storeInfoFormGroup.controls['addresCtrl'].value!);
-    // storeCreated.append('email', this.storeInfoFormGroup.controls['emailCtrl'].value!);
-    // storeCreated.append('phone', this.storeInfoFormGroup.controls['phoneCtrl'].value!);
-    // storeCreated.append('picture', "");
-    // storeCreated.append('pib', this.storeInfoFormGroup.controls['pibCtrl'].value!);
-    // storeCreated.append('monFri', this.storeWorkingTimeFormGroup.controls['mondFriCtrl'].value!);
-    // storeCreated.append('saturdy', this.storeWorkingTimeFormGroup.controls['saturdayCtrl'].value!);
-    // storeCreated.append('sunday', this.storeWorkingTimeFormGroup.controls['sundayCtrl'].value!);
-    // storeCreated.append('cityId', <string>this.selectedCity?.id.toString());
-    //storeCreated.append('ownerId', <string>this.user?.id.toString());
-
     this.store.dispatch(createShop({ formData: param }));
   };
 }

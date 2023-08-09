@@ -31,5 +31,9 @@ export class StoreService {
         shop.owner=user;
 
         return await this.shopReposistory.save(shop);
-    }
+    };
+
+    public async getMyStores(id: number) {
+        return await this.shopReposistory.find({where: { owner: {id: id}}, relations: {city: true}});
+    };
 }

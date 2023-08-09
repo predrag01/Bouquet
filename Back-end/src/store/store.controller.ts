@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Request } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Request } from '@nestjs/common';
 import { StoreService } from './store.service';
 import { FloverShopDto } from './models/store.dto';
 
@@ -11,4 +11,9 @@ export class StoreController {
     public create(@Body() shop: FloverShopDto) {
         return this.storeService.create(shop);
     };
+
+    @Get(':id')
+    public getMyStores(@Param("id", ParseIntPipe) id: number) {
+        return this.storeService.getMyStores(id);
+    }
 }

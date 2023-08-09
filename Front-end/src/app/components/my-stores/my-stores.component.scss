@@ -22,3 +22,38 @@
     margin-bottom: 15px;
     font-size: 25px;
 }
+
+.content {
+    display: flex;
+    flex-direction: column;
+}
+
+.content-item {
+    display: flex;
+    flex-direction: row;
+    margin-top: 25px;
+    width: 100%;
+}
+
+.img {
+    width: 150px;
+    height: auto;
+}
+
+.content-item-info {
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.title-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.button {
+    cursor: pointer;
+    margin-right: 10px;
+}

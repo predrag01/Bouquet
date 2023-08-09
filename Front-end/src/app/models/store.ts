@@ -10,8 +10,8 @@ export interface FloverShop {
     phone: string;
     picture: string;
     pib: string;
-    monFir: string;
-    saturady: string;
+    monFri: string;
+    saturday: string;
     sunday: string;
     owner: User;
 }

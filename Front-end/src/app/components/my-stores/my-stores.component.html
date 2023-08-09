@@ -2,10 +2,22 @@
     <mat-card class="example-card mat-elevation-z10 card">
         <mat-card-header class="header">
             <mat-card-title class="title">My stores</mat-card-title>
-            <button mat-raised-button color="accent" (click)="addStore()"><mat-icon>add</mat-icon></button>
+            <button mat-raised-button color="accent" (click)="addShop()"><mat-icon>add</mat-icon></button>
         </mat-card-header>
-        <mat-card-content>
-
+        <mat-card-content *ngFor="let shop of this.stores$ | async" class="content">
+            <div class="content-item">
+                <img class="img" src="../../../assets/common/noImage.png" />
+                <div class="content-item-info">
+                    <div class="title-div">
+                        <mat-card-title style="display: flex;">{{shop.name}}</mat-card-title>
+                        <div>
+                            <span class="button"><mat-icon>edit</mat-icon></span>
+                            <span class="button" (click)="deleteShop(shop.id)"><mat-icon>delete</mat-icon></span>
+                        </div>
+                    </div>
+                    <mat-label style="font-size: 15px;">{{shop.address + ", " + shop.city.city}}</mat-label>
+                </div>
+            </div>
         </mat-card-content>
     </mat-card>
 </div>

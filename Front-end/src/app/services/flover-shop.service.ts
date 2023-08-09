@@ -14,4 +14,8 @@ export class FloverShopService {
     console.log(formData.name);
     return this.httpClient.post<FloverShop>(environment.api + "/store", formData);
   };
+
+  getMyStores( id: number) {
+    return this.httpClient.get<FloverShop[]>(environment.api + "/store/" + id);
+  };
 }
