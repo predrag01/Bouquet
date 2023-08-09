@@ -1,0 +1,71 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.nextButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: end;
+}
+
+.title {
+    font-size: 25px;
+}
+
+.form {
+    margin-top: 25px;
+    height: 100%;
+}
+
+.img {
+    width: 200px;
+    height: auto;
+}
+
+.storeInfo {
+    display: flex;
+    flex-direction: column;
+    margin-right: 15px;
+}
+
+.parent {
+    display: flex;
+    flex-direction: row;
+}
+
+.working-time {
+    margin-right: 15px;
+}
+
+.title {
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+}
+
+.contentDiv {
+    display: flex;
+    flex-direction: row;
+}
+
+.contentItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.contentItem1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

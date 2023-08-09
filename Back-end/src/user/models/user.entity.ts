@@ -1,6 +1,6 @@
 import { City } from "src/city/models/city.entity";
 import { Role } from "src/enums/role.enum";
-import { Store } from "src/store/models/store.entity";
+import { FloverShop } from "src/store/models/store.entity";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
@@ -35,9 +35,9 @@ export class User{
     @ManyToOne(() => City, (city: City) => city.users, { onDelete: 'SET NULL'})
     city: City;
 
-    @OneToMany(() => Store, (store: Store) => store.owner)
-    stores: Store[]
+    @OneToMany(() => FloverShop, (store: FloverShop) => store.owner)
+    stores: FloverShop[]
 
-    @ManyToOne(()=> Store, (store: Store) => store.employees, {onDelete: 'SET NULL'})
-    employeed: Store;
+    @ManyToOne(()=> FloverShop, (store: FloverShop) => store.employees, {onDelete: 'SET NULL'})
+    employeed: FloverShop;
 }

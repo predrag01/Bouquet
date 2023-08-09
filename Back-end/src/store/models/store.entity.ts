@@ -4,7 +4,7 @@ import { User } from "src/user/models/user.entity";
 import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class Store {
+export class FloverShop {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -25,6 +25,15 @@ export class Store {
     
     @Column({type: 'text', nullable: false})
     pib: string;
+
+    @Column({type: 'text', nullable: false})
+    monFri: string;
+
+    @Column({type: 'text', nullable: false})
+    saturday: string;
+
+    @Column({type: 'text', nullable: false})
+    sunday: string;
 
     @ManyToOne(() => City, (city: City) => city.stores, {onDelete: 'SET NULL'})
     city: City;

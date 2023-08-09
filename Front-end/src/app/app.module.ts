@@ -45,6 +45,10 @@ import { AddBouquetTypeComponent } from './components/add-bouquet-type/add-bouqu
 import { bouquetTypeReducer } from './store/bouquet-type/bouquet-type.reducer';
 import { BouquetEffects } from './store/bouquet-type/bouquet-type.effects';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { MyStoresComponent } from './components/my-stores/my-stores.component';
+import { AddStoreComponent } from './components/add-store/add-store.component';
+import { FloverShopEffects } from './store/flover-shop/flover-shop.effects';
+import { shopReducer } from './store/flover-shop/flover-shop.reducer';
 
 @NgModule({
   declarations: [
@@ -57,7 +61,9 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
     AddCityComponent,
     BouquetTypeListComponent,
     AddBouquetTypeComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    MyStoresComponent,
+    AddStoreComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,12 +72,14 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
     StoreModule.forRoot<AppState>({
       user: userReducer,
       cities: cityReducer,
-      types: bouquetTypeReducer
+      types: bouquetTypeReducer,
+      shop: shopReducer,
     }),
     EffectsModule.forRoot([
       UserEffects,
       CityEffects,
-      BouquetEffects
+      BouquetEffects,
+      FloverShopEffects
     ]),
 
     HttpClientModule,

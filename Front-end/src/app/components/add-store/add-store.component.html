@@ -1,0 +1,117 @@
+<div class="header">
+    <mat-card-title class="title">Crate store</mat-card-title>
+    <span style="cursor: pointer;" (click)="close()"><mat-icon>close</mat-icon></span>
+</div>
+  
+  <mat-stepper linear #stepper style="height: 200px;">
+    <mat-step [stepControl]="storeNameFormGroup" [editable]="isEditable">
+      <form [formGroup]="storeNameFormGroup" class="form">
+        <ng-template matStepLabel>Store name</ng-template>
+        <mat-form-field appearance="outline">
+          <mat-label>Store name</mat-label>
+          <input matInput formControlName="storeNameCtrl" required>
+        </mat-form-field>
+        <div class="nextButton">
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <!-- <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Choose store image</ng-template>
+        <img class="img" mat-card-avatar src="../../../../../assets/common/noImage.png"/>
+        <mat-form-field>
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                 required>
+        </mat-form-field>
+        <div class="nextButton">
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step> -->
+    <mat-step [stepControl]="storeInfoFormGroup" [editable]="isEditable">
+        <form [formGroup]="storeInfoFormGroup" class="form">
+          <ng-template matStepLabel>Fill out store informations</ng-template>
+          <div class="parent">
+            <div class="storeInfo">
+              <mat-form-field appearance="outline"> 
+                <mat-label>City</mat-label>
+                <mat-select (selectionChange)="onCitySelectionChange($event)">
+                  <mat-option *ngFor="let city of cities$ |async" [value]="city">{{city.city}}</mat-option>
+                </mat-select>
+                <mat-error>Choose city!</mat-error>
+            </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Address</mat-label>
+                <input matInput formControlName="addresCtrl" required>
+              </mat-form-field>
+            </div>
+            <div class="storeInfo">
+              <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="emailCtrl" required>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Phone</mat-label>
+                <input matInput formControlName="phoneCtrl" required>
+              </mat-form-field>
+            </div>
+            <div class="storeInfo">
+              <mat-form-field appearance="outline">
+                <mat-label>PIB</mat-label>
+                <input matInput formControlName="pibCtrl" required>
+              </mat-form-field>
+            </div>
+          </div>
+            <div class="nextButton">
+              <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="storeWorkingTimeFormGroup" [editable]="isEditable">
+        <form [formGroup]="storeWorkingTimeFormGroup" class="form">
+          <ng-template matStepLabel>Fill out store working time</ng-template>
+          <mat-form-field appearance="outline" class="working-time">
+            <mat-label>Monday-Friday</mat-label>
+            <input matInput formControlName="mondFriCtrl" placeholder="10:00 - 20:00" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="working-time">
+            <mat-label>Saturday</mat-label>
+            <input matInput formControlName="saturdayCtrl" placeholder="10:00 - 20:00" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="working-time">
+            <mat-label>Sunday</mat-label>
+            <input matInput formControlName="sundayCtrl" placeholder="Closed" required>
+          </mat-form-field>
+          <div class="nextButton">
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+    <mat-step> 
+      <ng-template matStepLabel>Done</ng-template>
+      <mat-card-title class="title">Overview</mat-card-title>
+      <h3><strong>{{this.storeNameFormGroup.controls['storeNameCtrl'].value}}</strong></h3>  
+      <div class="contentDiv">
+        <div class="content">
+          <mat-label class="contentItem"><mat-icon>address</mat-icon>{{this.storeInfoFormGroup.controls['addresCtrl'].value + ", " + this.selectedCity?.city}}</mat-label>
+          <mat-label class="contentItem"><mat-icon>email</mat-icon>{{this.storeInfoFormGroup.controls['emailCtrl'].value}}</mat-label>
+          <mat-label class="contentItem"><mat-icon>phone</mat-icon>{{this.storeInfoFormGroup.controls['phoneCtrl'].value}}</mat-label>
+          <mat-label class="contentItem">{{"PIB: " + this.storeInfoFormGroup.controls['pibCtrl'].value}}</mat-label>
+        </div>
+        <div class="content">
+          <mat-label class="contentItem1" style="font-weight: bold;">Moday - Friday</mat-label>
+          <mat-label class="contentItem1">{{this.storeWorkingTimeFormGroup.controls['mondFriCtrl'].value}}</mat-label>
+          <mat-label class="contentItem1" style="font-weight: bold;">Saturday</mat-label>
+          <mat-label class="contentItem1">{{this.storeWorkingTimeFormGroup.controls['saturdayCtrl'].value}}</mat-label>
+          <mat-label class="contentItem1" style="font-weight: bold;">Sunday</mat-label>
+          <mat-label class="contentItem1">{{this.storeWorkingTimeFormGroup.controls['sundayCtrl'].value}}</mat-label>
+        </div>
+      </div>
+      <div class="nextButton">
+        <button mat-button (click)="createStore()">Create</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+  

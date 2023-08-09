@@ -1,0 +1,24 @@
+.my-stores-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.card {
+    min-width: 800px;
+    margin-top: 50px;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    margin-bottom: 15px;
+    font-size: 25px;
+}

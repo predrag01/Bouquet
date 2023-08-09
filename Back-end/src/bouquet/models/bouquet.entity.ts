@@ -1,5 +1,5 @@
 import { BouquetType } from "src/bouquet-type/models/bouquet-type.entity";
-import { Store } from "src/store/models/store.entity";
+import { FloverShop } from "src/store/models/store.entity";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
@@ -22,6 +22,6 @@ export class Bouquet {
     @ManyToOne(()=> BouquetType, (type:BouquetType) => type.bouquets, {onDelete: 'SET NULL'})
     bouquetType: BouquetType;
 
-    @ManyToOne(() => Store, (store: Store) => store.bouquets, {onDelete: 'CASCADE'})
-    store: Store;
+    @ManyToOne(() => FloverShop, (store: FloverShop) => store.bouquets, {onDelete: 'CASCADE'})
+    store: FloverShop;
 }
