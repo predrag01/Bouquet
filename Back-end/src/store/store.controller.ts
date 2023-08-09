@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post, Request } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Request } from '@nestjs/common';
 import { StoreService } from './store.service';
 import { FloverShopDto } from './models/store.dto';
 
@@ -15,5 +15,10 @@ export class StoreController {
     @Get(':id')
     public getMyStores(@Param("id", ParseIntPipe) id: number) {
         return this.storeService.getMyStores(id);
-    }
+    };
+
+    @Delete(':id')
+    public deleteStore(@Param("id", ParseIntPipe) id: number) {
+        return this.storeService.deleteStore(id);
+    };
 }

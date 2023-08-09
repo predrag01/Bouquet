@@ -15,4 +15,5 @@ export const shopReducer = createReducer(
     initialState,
     on(Actions.createShopSuccess, ( state, { shop }) => adapter.addOne(shop, state)),
     on(Actions.loadMyStoreListSuccess, (state, {shops}) => adapter.addMany(shops, state)),
+    on(Actions.deleteStoreSuccess, (state , { id }) => adapter.removeOne(id, state)),
 );

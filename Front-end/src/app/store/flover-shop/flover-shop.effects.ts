@@ -35,5 +35,20 @@ export class FloverShopEffects {
                 return  of({type: 'Load error'});
             })
         ))
+    ));
+
+    deleteStore$ = createEffect(() =>
+    this.actions$.pipe(
+        ofType(ShopActions.deleteStore),
+        mergeMap(({ id }) => this.shopService.deleteStore(id).pipe(
+            map(() => {
+                this.snackBar.open("Store successfully deleted", "Ok", { duration: 3000 })
+                return ShopActions.deleteStoreSuccess({ id: id })
+            }),
+            catchError( ({error}) => {
+                this.snackBar.open(error, 'Close', { duration: 3000});
+                return  of({type: 'Load error'});
+            })
+        ))
     ))
 }

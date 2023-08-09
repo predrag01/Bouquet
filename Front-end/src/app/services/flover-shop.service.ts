@@ -18,4 +18,8 @@ export class FloverShopService {
   getMyStores( id: number) {
     return this.httpClient.get<FloverShop[]>(environment.api + "/store/" + id);
   };
+
+  deleteStore(id : number) {
+    return this.httpClient.delete<any>(environment.api + "/store/" + id);
+  };
 }

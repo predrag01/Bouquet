@@ -4,7 +4,7 @@ import { AddStoreComponent } from '../add-store/add-store.component';
 import { User } from 'src/app/models/user';
 import { AppState } from 'src/app/app.state';
 import { Store } from '@ngrx/store';
-import { loadMyStoreList } from 'src/app/store/flover-shop/flover-shop.actions';
+import { deleteStore, loadMyStoreList } from 'src/app/store/flover-shop/flover-shop.actions';
 import { loadMyStores } from 'src/app/store/flover-shop/flover-shop.selector';
 import { FloverShop } from 'src/app/models/store';
 import { Observable, of } from 'rxjs';
@@ -35,7 +35,7 @@ export class MyStoresComponent implements OnInit{
   };
 
   deleteShop(id : number) {
-    
-  }
+    this.store.dispatch(deleteStore({ id }));
+  };
 
 }

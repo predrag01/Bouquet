@@ -19,3 +19,13 @@ export const loadMyStoreListSuccess = createAction(
     'Load list of my stores success',
     props<{shops: FloverShop[]}>()
 );
+
+export const deleteStore = createAction(
+    'Delete store',
+    props<{id: number}>()
+);
+
+export const deleteStoreSuccess = createAction(
+    'Delete store success',
+    props<{id: number}>()
+);

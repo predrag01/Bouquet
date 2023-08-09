@@ -36,4 +36,8 @@ export class StoreService {
     public async getMyStores(id: number) {
         return await this.shopReposistory.find({where: { owner: {id: id}}, relations: {city: true}});
     };
+
+    public async deleteStore(id: number) {
+        return await this.shopReposistory.delete(id);
+    }
 }
