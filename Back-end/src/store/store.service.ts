@@ -40,4 +40,14 @@ export class StoreService {
     public async deleteStore(id: number) {
         return await this.shopReposistory.delete(id);
     }
+
+    public async updateStore(shop: FloverShop) {
+        const check: FloverShop= await this.shopReposistory.findOne({where: {id: shop.id}});
+
+        if(!check) {
+            throw new BadRequestException('InvalidFloverShop');
+        }
+
+        return await this.shopReposistory.update(shop.id, shop);
+    }
 }

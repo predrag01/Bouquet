@@ -1,0 +1,72 @@
+<div class="edit-store-cont">
+    <mat-card class="example-card mat-elevation-z10 card">
+        <mat-card-header class="header">
+            <mat-card-title class="title">Edit flover shop</mat-card-title>
+            <span style="cursor: pointer;" (click)="close()"><mat-icon>close</mat-icon></span>
+        </mat-card-header>
+        <mat-card-content>
+            <form class="form">
+                <div class="div-img div">
+                    <img class="img" mat-card-avatar src="../../../../../assets/common/noImage.png"/>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Flover shop name</mat-label>
+                        <input type="text" name="name" matInput required [formControl]="name" />
+                        <mat-error>Fill name!</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="div">
+                    <mat-form-field appearance="outline"> 
+                        <mat-label *ngIf="this.selectedCity">{{this.selectedCity.city}}</mat-label>
+                        <mat-select (selectionChange)="onCitySelectionChange($event)">
+                          <mat-option *ngFor="let city of cities$ |async" [value]="city">{{city.city}}</mat-option>
+                        </mat-select>
+                        <mat-error>Choose city!</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Address</mat-label>
+                        <input type="text" name="address" matInput required [formControl]="address"/>
+                        <mat-error>Fill address!</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="div">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input type="text" name="email" matInput required [formControl]="email"/>
+                        <mat-error>Fill email!</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Phone</mat-label>
+                        <input type="text" name="phone" matInput required [formControl]="phone"/>
+                        <mat-error>Fill phone!</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>PIB</mat-label>
+                        <input type="text" name="pib" matInput required [formControl]="pib"/>
+                        <mat-error>Fill PIB!</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="div">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Monday-Friday</mat-label>
+                        <input type="text" name="monFri" matInput required [formControl]="monFri"/>
+                        <mat-error>Fill working time!</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Saturday</mat-label>
+                        <input type="text" name="saturday" matInput required [formControl]="saturday"/>
+                        <mat-error>Fill working time!</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Sunday</mat-label>
+                        <input type="text" name="sunday" matInput required [formControl]="sunday"/>
+                        <mat-error>Fill working time!</mat-error>
+                    </mat-form-field>
+                </div>
+            </form>
+            <mat-divider style="margin-bottom: 10px;"></mat-divider>
+        </mat-card-content>
+        <mat-card-footer class="button">
+            <button mat-raised-button color="primary" class="button" (click)="save()">Save</button>
+        </mat-card-footer>
+    </mat-card>
+</div>

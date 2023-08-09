@@ -29,3 +29,22 @@ export const deleteStoreSuccess = createAction(
     'Delete store success',
     props<{id: number}>()
 );
+
+export const selectStore = createAction(
+    'Select flover shop',
+    props<{id: number}>()
+);
+
+export const deselectStore = createAction(
+    'Deselect flover shop',
+);
+
+export const updateShop = createAction(
+    'Update flover shop',
+    props<{ shop: FloverShop}>()
+);
+
+export const updateShopSuccess = createAction(
+    'Update flover shop success',
+    props<{ shop: FloverShop}>()
+); 

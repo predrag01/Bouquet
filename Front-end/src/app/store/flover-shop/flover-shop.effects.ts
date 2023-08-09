@@ -50,5 +50,20 @@ export class FloverShopEffects {
                 return  of({type: 'Load error'});
             })
         ))
-    ))
+    ));
+
+    updateShop$ =createEffect(() =>
+    this.actions$.pipe(
+        ofType(ShopActions.updateShop),
+        mergeMap(({ shop }) => this.shopService.updateShop(shop).pipe(
+            map(() => {
+                this.snackBar.open("Store successfully updated", "Ok", { duration: 3000 })
+                return ShopActions.updateShopSuccess({ shop: shop });
+            }),
+            catchError( ({error}) => {
+                this.snackBar.open(error, 'Close', { duration: 3000});
+                return  of({type: 'Load error'});
+            })
+        ))
+    ));
 }

@@ -11,7 +11,7 @@
                     <div class="title-div">
                         <mat-card-title style="display: flex;">{{shop.name}}</mat-card-title>
                         <div>
-                            <span class="button"><mat-icon>edit</mat-icon></span>
+                            <span class="button" (click)="editShop(shop.id)"><mat-icon>edit</mat-icon></span>
                             <span class="button" (click)="deleteShop(shop.id)"><mat-icon>delete</mat-icon></span>
                         </div>
                     </div>

@@ -79,6 +79,6 @@ export class EditProfileComponent implements OnInit{
 
           this.store.dispatch(updateProfile({ user: <User>updatedUser }));
     }
-  }
+  };
 
 }

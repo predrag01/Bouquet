@@ -4,10 +4,11 @@ import { AddStoreComponent } from '../add-store/add-store.component';
 import { User } from 'src/app/models/user';
 import { AppState } from 'src/app/app.state';
 import { Store } from '@ngrx/store';
-import { deleteStore, loadMyStoreList } from 'src/app/store/flover-shop/flover-shop.actions';
+import { deleteStore, loadMyStoreList, selectStore } from 'src/app/store/flover-shop/flover-shop.actions';
 import { loadMyStores } from 'src/app/store/flover-shop/flover-shop.selector';
 import { FloverShop } from 'src/app/models/store';
 import { Observable, of } from 'rxjs';
+import { EditStoreComponent } from '../edit-store/edit-store.component';
 
 @Component({
   selector: 'app-my-stores',
@@ -33,6 +34,14 @@ export class MyStoresComponent implements OnInit{
       minHeight: ' 400px'
     });
   };
+
+  editShop(id: number) {
+    this.store.dispatch(selectStore({ id }));
+    this.dialog.open(EditStoreComponent, {
+      minWidth: '400px',
+      minHeight: ' 400px'
+    })
+  }
 
   deleteShop(id : number) {
     this.store.dispatch(deleteStore({ id }));

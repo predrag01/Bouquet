@@ -15,3 +15,14 @@ export const loadMyStores = createSelector(
     .filter(shop => shop !== null)
     .map(shop => <FloverShop>shop)
 );
+
+export const selectStoreId = createSelector(
+    selectShopFeature,
+    (shops) => shops.selectedStore
+);
+
+export const selectStore = createSelector(
+    selectShopFeature,
+    selectStoreId,
+    (shops, storeId) => shops.entities[storeId]
+);

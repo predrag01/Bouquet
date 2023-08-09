@@ -75,5 +75,6 @@ export class AddStoreComponent implements OnInit{
     };
 
     this.store.dispatch(createShop({ formData: param }));
+    this.close();
   };
 }
