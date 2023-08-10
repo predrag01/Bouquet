@@ -21,22 +21,27 @@
                             <input type="text" name="email" matInput placeholder="email@gmail.com" [formControl]="email" />
                             <mat-error>Fill username!</mat-error>
                         </mat-form-field>
-                        <button class="button" mat-raised-button color="primary"><mat-icon class="icon">add</mat-icon></button>
+                        <button class="button" mat-raised-button color="primary" (click)="addEmployee()"><mat-icon class="icon">add</mat-icon></button>
                     </div>
-                    <div>
+                    <div *ngFor="let employee of shop?.employees">
                         <div class="employee-list-item">
-                            <mat-label>predrag@gmail.com</mat-label>
-                            <span style="cursor: pointer;">X</span>
-                        </div>
-                        <div class="employee-list-item">
-                            <mat-label>predrag@gmail.com</mat-label>
-                            <span style="cursor: pointer;">X</span>
+                            <mat-label>{{employee.email}}</mat-label>
+                            <span style="cursor: pointer;" (click)="removeEmployee(employee.id)">X</span>
                         </div>
                     </div>
                 </div>
             </div>
             <div>
-                <p>BOUQUET LIST</p>
+                <div class="title-buttons">
+                    <mat-card-title style="font-size: 22px;">Bouquet offer</mat-card-title>
+                    <div> 
+                        <button style="margin-right: 15px;" mat-raised-button color="accent">Add bouquet</button>
+                        <button mat-raised-button color="primary">Orders</button>
+                    </div>
+                </div>
+                <div>
+
+                </div>
             </div>
         </mat-card-content>
     </mat-card>

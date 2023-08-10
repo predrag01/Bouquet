@@ -31,5 +31,15 @@ export class StoreController {
     @Get('/getStore/:id')
     public getOneShop(@Param("id", ParseIntPipe) id: number) {
         return this.storeService.getStore(id);
-    }
+    };
+
+    @Put('/addEmployee/:id')
+    public addEmployee(@Param("id", ParseIntPipe) id: number, @Body("email") email: string) {
+        return this.storeService.addEmployee(email, id);
+    };
+
+    @Put('/removeEmployee/:id')
+    public removeEmployee(@Param("id", ParseIntPipe) id: number, @Body("userId") userId: number) {
+        return this.storeService.removeEmployee(userId, id);
+    };
 }

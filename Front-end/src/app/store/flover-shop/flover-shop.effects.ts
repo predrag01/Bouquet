@@ -77,5 +77,35 @@ export class FloverShopEffects {
             this.snackBar.open(error, 'Close', { duration: 3000});
             return  of({type: 'Load error'});
         })
-    ))
+    ));
+
+    addEmployee$ = createEffect(() =>
+    this.actions$.pipe(
+        ofType(ShopActions.addEmployee),
+        mergeMap(({ email, shopId }) =>this.shopService.addEmployee(email, shopId).pipe(
+            map((shop) => {
+                this.snackBar.open("Successfully added employee", "Ok", { duration: 3000 })
+                return ShopActions.addEmployeeSuccess({ shop: shop });
+            }),
+            catchError( ({error}) => {
+                this.snackBar.open(error, 'Close', { duration: 3000});
+                return  of({type: 'Load error'});
+            })
+        ))
+    ));
+
+    removeEmployee$ = createEffect(() =>
+    this.actions$.pipe(
+        ofType(ShopActions.removeEmployee),
+        mergeMap(({ userId, shopId }) =>this.shopService.removeEmployee(userId, shopId).pipe(
+            map((shop) => {
+                this.snackBar.open("Successfully removed employee", "Ok", { duration: 3000 })
+                return ShopActions.removeEmployeeSuccess({ shop: shop });
+            }),
+            catchError( ({error}) => {
+                this.snackBar.open(error, 'Close', { duration: 3000});
+                return  of({type: 'Load error'});
+            })
+        ))
+    ));
 }

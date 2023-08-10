@@ -28,5 +28,15 @@ export class FloverShopService {
 
   loadOneShop(id: number) {
     return this.httpClient.get<FloverShop>(environment.api + "/store/getStore/" + id);
-  }
+  };
+
+  addEmployee(email: string, shopId: number) {
+    const data = { email: email };
+    return this.httpClient.put<any>(environment.api + "/store/addEmployee/" + shopId, data);
+  };
+
+  removeEmployee(userId: number, shopId: number) {
+    const data = { userId: userId };
+    return this.httpClient.put<FloverShop>(environment.api + "/store/removeEmployee/" + shopId, data);
+  };
 }

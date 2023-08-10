@@ -1,3 +1,4 @@
+import { Bouquet } from "./bouquet";
 import { City } from "./city";
 import { User } from "./user";
 
@@ -14,6 +15,8 @@ export interface FloverShop {
     saturday: string;
     sunday: string;
     owner: User;
+    employees: User[];
+    bouquets: Bouquet[];
 }
 
 export interface FloverShopDto {

@@ -58,3 +58,23 @@ export const loadOneStoreSuccess = createAction(
     'Load one flover shop success',
     props<{ shop: FloverShop}>()
 ); 
+
+export const addEmployee = createAction(
+    'Add employee',
+    props<{email: string, shopId: number }>()
+);
+
+export const addEmployeeSuccess = createAction(
+    'Add employee success',
+    props<{shop: FloverShop}>()
+);
+
+export const removeEmployee = createAction(
+    'Remove employee',
+    props<{userId: number, shopId: number }>()
+);
+
+export const removeEmployeeSuccess = createAction(
+    'Add employee success',
+    props<{shop: FloverShop}>()
+);

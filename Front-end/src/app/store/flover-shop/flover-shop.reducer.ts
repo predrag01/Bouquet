@@ -24,4 +24,6 @@ export const shopReducer = createReducer(
     on(Actions.deselectStore, ( state ) => ({...state, selectedStore:0 })),
     on(Actions.updateShopSuccess, (state, { shop} ) => adapter.updateOne({id: shop.id, changes: shop}, state)),
     on(Actions.loadOneStoreSuccess, (state, { shop })=> ({...state, oneShop: shop})),
+    on(Actions.addEmployeeSuccess, (state , { shop }) => ({...state, oneShop: shop})),
+    on(Actions.removeEmployeeSuccess, (state , { shop }) => ({...state, oneShop: shop})),
 );
