@@ -58,8 +58,6 @@ export class AddStoreComponent implements OnInit{
   };
 
   createStore() {
-    const storeCreated= new FormData();
-
     const param: FloverShopDto = {
       name: this.storeNameFormGroup.controls['storeNameCtrl'].value!,
       address: this.storeInfoFormGroup.controls['addresCtrl'].value!,

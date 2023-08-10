@@ -1,0 +1,79 @@
+<div style="height: 100%;">
+    <div class="header">
+        <mat-card-title class="title">Crate store</mat-card-title>
+        <span style="cursor: pointer;" (click)="close()"><mat-icon>close</mat-icon></span>
+    </div>
+      
+      <mat-stepper linear #stepper style="height: 100%;">
+        <mat-step [stepControl]="infoFormGroup" [editable]="isEditable">
+          <form [formGroup]="infoFormGroup" class="form">
+            <ng-template matStepLabel>Bouqut informations</ng-template>
+            <div class="parent">
+                <div class="bouquetInfo">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Title</mat-label>
+                        <input matInput formControlName="titleCtrl" required>
+                        <mat-error>Fill out bouquet title!</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline"> 
+                        <mat-label>Bouquet type</mat-label>
+                        <mat-select (selectionChange)="onCitySelectionChange($event)">
+                        <mat-option *ngFor="let type of this.types$ | async" [value]="type">{{type.type}}</mat-option>
+                        </mat-select>
+                        <mat-error>Choose bouquet type!</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="bouquetInfo">
+                    <mat-form-field appearance="outline" style="width: 300px;">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput formControlName="descriptionCtrl" required matTextareaAutosize [rows]="4" ></textarea>
+                        <mat-error>Fill out bouquet description!</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="bouquetInfo">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Price</mat-label>
+                        <input type="number" min="0" matInput formControlName="priceCtrl" required>
+                        <mat-error>Fill out bouquet price!</mat-error>
+                    </mat-form-field>
+                </div>
+          </div>
+            <div class="nextButton">
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <!-- <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+          <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Choose store image</ng-template>
+            <img class="img" mat-card-avatar src="../../../../../assets/common/noImage.png"/>
+            <mat-form-field>
+              <mat-label>Address</mat-label>
+              <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                     required>
+            </mat-form-field>
+            <div class="nextButton">
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step> -->
+        <mat-step> 
+          <ng-template matStepLabel>Done</ng-template>
+          <mat-card-title class="title">Overview</mat-card-title>
+          <div class="contentDiv">
+            <img class="img" mat-card-avatar src="../../../../../assets/common/noImage.png"/>
+            <div class="content">
+              <h3><strong>{{this.infoFormGroup.controls['titleCtrl'].value}}</strong></h3> 
+              <mat-label class="contentItem">{{this.infoFormGroup.controls['descriptionCtrl'].value}}</mat-label>
+              <mat-label class="contentItem">{{"Type: " + this.selectedType?.type}}</mat-label>
+              <mat-label class="contentItem">{{"Price: " + this.infoFormGroup.controls['priceCtrl'].value + "€"}}</mat-label>
+            </div>
+          </div>
+          <div class="nextButton">
+            <button mat-button (click)="createBouquet()">Create</button>
+          </div>
+        </mat-step>
+    </mat-stepper>
+</div>
+
+  

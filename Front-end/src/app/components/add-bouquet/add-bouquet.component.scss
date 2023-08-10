@@ -1,0 +1,59 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.nextButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: end;
+    height: 100%;
+}
+
+.title {
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.form {
+    margin-top: 25px;
+    height: 100%;
+}
+
+.img {
+    width: 200px;
+    height: auto;
+}
+
+.bouquetInfo {
+    display: flex;
+    flex-direction: column;
+    margin-right: 15px;
+}
+
+.parent {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.contentDiv {
+    display: flex;
+    flex-direction: row;
+}
+
+.contentItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 5px;
+}
