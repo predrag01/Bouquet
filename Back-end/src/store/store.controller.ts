@@ -27,4 +27,9 @@ export class StoreController {
     public update(@Body() shop: FloverShop) {
         return this.storeService.updateStore(shop);
     };
+
+    @Get('/getStore/:id')
+    public getOneShop(@Param("id", ParseIntPipe) id: number) {
+        return this.storeService.getStore(id);
+    }
 }

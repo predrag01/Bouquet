@@ -50,6 +50,7 @@ import { AddStoreComponent } from './components/add-store/add-store.component';
 import { FloverShopEffects } from './store/flover-shop/flover-shop.effects';
 import { shopReducer } from './store/flover-shop/flover-shop.reducer';
 import { EditStoreComponent } from './components/edit-store/edit-store.component';
+import { StoreDetailsComponent } from './components/store-details/store-details.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { EditStoreComponent } from './components/edit-store/edit-store.component
     MyStoresComponent,
     AddStoreComponent,
     EditStoreComponent,
+    StoreDetailsComponent,
   ],
   imports: [
     BrowserModule,

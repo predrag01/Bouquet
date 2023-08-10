@@ -66,4 +66,16 @@ export class FloverShopEffects {
             })
         ))
     ));
+
+    loadOneShop$ =createEffect(() =>
+    this.actions$.pipe(
+        ofType(ShopActions.loadOneStore),
+        mergeMap(({ id }) => this.shopService.loadOneShop(id).pipe(
+            map((shop) => ShopActions.loadOneStoreSuccess({ shop: shop }))
+        )),
+        catchError( ({error}) => {
+            this.snackBar.open(error, 'Close', { duration: 3000});
+            return  of({type: 'Load error'});
+        })
+    ))
 }

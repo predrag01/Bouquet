@@ -9,6 +9,7 @@ import { loadMyStores } from 'src/app/store/flover-shop/flover-shop.selector';
 import { FloverShop } from 'src/app/models/store';
 import { Observable, of } from 'rxjs';
 import { EditStoreComponent } from '../edit-store/edit-store.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-stores',
@@ -17,7 +18,7 @@ import { EditStoreComponent } from '../edit-store/edit-store.component';
 })
 export class MyStoresComponent implements OnInit{
 
-  constructor(private dialog: MatDialog, private store: Store<AppState>){}
+  constructor(private dialog: MatDialog, private store: Store<AppState>, private router: Router){}
 
   user: User | null= null;
   stores$: Observable<FloverShop[]> = of([]);
@@ -46,5 +47,9 @@ export class MyStoresComponent implements OnInit{
   deleteShop(id : number) {
     this.store.dispatch(deleteStore({ id }));
   };
+
+  navigate(path: string) {
+    this.router.navigate([ path ]);
+  }
 
 }

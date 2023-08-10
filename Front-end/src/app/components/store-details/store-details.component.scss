@@ -1,0 +1,80 @@
+.store-details-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.card {
+    min-width: 900px;
+    margin-top: 50px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.shop {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.img {
+    width: 200px;
+    height: auto;
+}
+
+.shop-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.details {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.employee-div {
+    display: flex;
+    flex-direction: column;
+    margin-right: 30px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.search {
+    margin-top: 10px;
+}
+
+.button {
+    height: calc(100% - 20px);
+    margin-left: 5px;
+}
+
+.icon {
+    font-size: 24px;
+}
+
+.employee-list-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 17px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 15px;
+}
+
+.info-div {
+    display: flex;
+    flex-direction: row;
+}

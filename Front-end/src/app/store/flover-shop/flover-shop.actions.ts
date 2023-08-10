@@ -48,3 +48,13 @@ export const updateShopSuccess = createAction(
     'Update flover shop success',
     props<{ shop: FloverShop}>()
 ); 
+
+export const loadOneStore = createAction(
+    'Load one flover shop',
+    props<{id: number}>()
+);
+
+export const loadOneStoreSuccess = createAction(
+    'Load one flover shop success',
+    props<{ shop: FloverShop}>()
+); 

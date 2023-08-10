@@ -25,4 +25,8 @@ export class FloverShopService {
   updateShop(shop: FloverShop) {
     return this.httpClient.put<FloverShop>(environment.api + "/store", {...shop});
   };
+
+  loadOneShop(id: number) {
+    return this.httpClient.get<FloverShop>(environment.api + "/store/getStore/" + id);
+  }
 }

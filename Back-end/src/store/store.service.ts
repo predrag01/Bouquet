@@ -39,7 +39,7 @@ export class StoreService {
 
     public async deleteStore(id: number) {
         return await this.shopReposistory.delete(id);
-    }
+    };
 
     public async updateStore(shop: FloverShop) {
         const check: FloverShop= await this.shopReposistory.findOne({where: {id: shop.id}});
@@ -49,5 +49,9 @@ export class StoreService {
         }
 
         return await this.shopReposistory.update(shop.id, shop);
-    }
+    };
+
+    public async getStore(id: number) {
+        return await this.shopReposistory.findOne({where: { id: id}, relations: {city: true}});
+    };
 }

@@ -6,16 +6,16 @@
         </mat-card-header>
         <mat-card-content *ngFor="let shop of this.stores$ | async" class="content">
             <div class="content-item">
-                <img class="img" src="../../../assets/common/noImage.png" />
+                <img class="img" (click)="navigate('store-details/' + shop.id)" src="../../../assets/common/noImage.png" />
                 <div class="content-item-info">
                     <div class="title-div">
-                        <mat-card-title style="display: flex;">{{shop.name}}</mat-card-title>
+                        <mat-card-title class="store-name" (click)="navigate('store-details/' + shop.id)">{{shop.name}}</mat-card-title>
                         <div>
                             <span class="button" (click)="editShop(shop.id)"><mat-icon>edit</mat-icon></span>
                             <span class="button" (click)="deleteShop(shop.id)"><mat-icon>delete</mat-icon></span>
                         </div>
                     </div>
-                    <mat-label style="font-size: 15px;">{{shop.address + ", " + shop.city.city}}</mat-label>
+                    <mat-label class="address" (click)="navigate('store-details/' + shop.id)">{{shop.address + ", " + shop.city.city}}</mat-label>
                 </div>
             </div>
         </mat-card-content>

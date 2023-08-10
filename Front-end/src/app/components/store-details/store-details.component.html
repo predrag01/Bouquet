@@ -1,0 +1,43 @@
+<div class="store-details-cont">
+    <mat-card class="example-card mat-elevation-z10 card">
+        <mat-card-content class="content">
+            <div class="shop">
+                <div class="info-div">
+                    <img class="img" src="../../../assets/common/noImage.png" />
+                    <div class="shop-info">
+                        <mat-card-title>{{this.shop?.name}}</mat-card-title>
+                        <mat-label class="details">{{this.shop?.address + ", " + this.shop?.city?.city}}</mat-label>
+                        <mat-label class="details"><mat-icon>email</mat-icon>{{this.shop?.email}}</mat-label>
+                        <mat-label class="details"><mat-icon>phone</mat-icon>{{this.shop?.phone}}</mat-label>
+                        <mat-label class="details">{{"Monday-Friday:  " + this.shop?.monFri}}</mat-label>
+                        <mat-label class="details">{{"Saturday:  " + this.shop?.saturday}}</mat-label>
+                        <mat-label class="details">{{"Sunday:  " + this.shop?.sunday}}</mat-label>
+                    </div>
+                </div>
+                <div class="employee-div">
+                    <mat-card-title style="margin-left: 10px;">Add employee</mat-card-title>
+                    <div class="search">
+                        <mat-form-field appearance="outline">
+                            <input type="text" name="email" matInput placeholder="email@gmail.com" [formControl]="email" />
+                            <mat-error>Fill username!</mat-error>
+                        </mat-form-field>
+                        <button class="button" mat-raised-button color="primary"><mat-icon class="icon">add</mat-icon></button>
+                    </div>
+                    <div>
+                        <div class="employee-list-item">
+                            <mat-label>predrag@gmail.com</mat-label>
+                            <span style="cursor: pointer;">X</span>
+                        </div>
+                        <div class="employee-list-item">
+                            <mat-label>predrag@gmail.com</mat-label>
+                            <span style="cursor: pointer;">X</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <p>BOUQUET LIST</p>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

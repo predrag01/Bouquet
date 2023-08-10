@@ -7,6 +7,7 @@ import { CityListComponent } from './components/city-list/city-list.component';
 import { BouquetTypeListComponent } from './components/bouquet-type-list/bouquet-type-list.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { MyStoresComponent } from './components/my-stores/my-stores.component';
+import { StoreDetailsComponent } from './components/store-details/store-details.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'bouquet-type-list', component: BouquetTypeListComponent},
   {path: 'edit-profile', component: EditProfileComponent},
   {path: 'my-stores', component: MyStoresComponent},
+  {path: 'store-details/:id', component: StoreDetailsComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: '**', component: HomeComponent},
 ];
