@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { FloverShopDto } from './models/store.dto';
 import { User } from 'src/user/models/user.entity';
 import { City } from 'src/city/models/city.entity';
+import { Bouquet } from 'src/bouquet/models/bouquet.entity';
 
 @Injectable()
 export class StoreService {
