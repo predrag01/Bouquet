@@ -9,3 +9,12 @@ export const addBouquetSuccess = createAction(
     'Add bouquet success',
     props<{ bouquet: Bouquet }>()
 );
+
+export const loadBouquetListByStoreId = createAction(
+    'Load bouquet list by store id',
+    props<{ shopId: number }>()
+);
+export const loadBouquetListByStoreIdSuccess = createAction(
+    'Load bouquet list by store id success',
+    props<{ bouquets: Bouquet[] }>()
+);

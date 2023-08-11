@@ -11,7 +11,11 @@ export class BouquetService {
   constructor(private httpClient: HttpClient) { }
 
   addBouquet(bouquet: BouquetDto) {
-    console.log(bouquet.title)
     return this.httpClient.post<Bouquet>(environment.api + "/bouquet", bouquet);
+  };
+
+  getBouquetListByStoreId(shopId: number) {
+    console.log(shopId)
+    return this.httpClient.get<Bouquet[]>(environment.api + "/bouquet/"+shopId);
   };
 }

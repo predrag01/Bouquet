@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <mat-divider style="margin-bottom: 20px; margin-right: 30px;"></mat-divider>
-                <div class="bouquet-list" *ngFor="let bouquet of this.shop?.bouquets">
+                <div class="bouquet-list" *ngFor="let bouquet of this.bouquets$ | async">
                     <app-bouquet [bouquet]="bouquet"></app-bouquet>
                 </div>
             </div>

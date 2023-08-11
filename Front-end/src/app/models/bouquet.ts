@@ -7,7 +7,7 @@ export interface Bouquet {
     image: string;
     description: string;
     price: number;
-    type: BouquetType;
+    bouquetType: BouquetType;
     store: FloverShop;
 }
 

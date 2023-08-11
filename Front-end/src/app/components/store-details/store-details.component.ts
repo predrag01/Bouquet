@@ -7,6 +7,10 @@ import { AppState } from 'src/app/app.state';
 import { FloverShop } from 'src/app/models/store';
 import { addEmployee, loadOneStore, removeEmployee } from 'src/app/store/flover-shop/flover-shop.actions';
 import { AddBouquetComponent } from '../add-bouquet/add-bouquet.component';
+import { Observable, of } from 'rxjs';
+import { Bouquet } from 'src/app/models/bouquet';
+import { loadBouquetList } from 'src/app/store/bouquet/bouquet.selector';
+import { loadBouquetListByStoreId } from 'src/app/store/bouquet/bouquet.actions';
 
 @Component({
   selector: 'app-store-details',
@@ -18,14 +22,19 @@ export class StoreDetailsComponent implements OnInit {
   shopId!: number;
   shop: FloverShop | null =null;
   email=new FormControl('', [Validators.required]);
+  bouquets$: Observable<Bouquet[]>= of([]);
 
 
   constructor(private route: ActivatedRoute, private router: Router, private store: Store<AppState>, private dialog: MatDialog) {}
   
   ngOnInit(): void {
-    this.route.params.subscribe((params) => (this.shopId=params['id']));
+    this.route.params.subscribe((params) => {
+      this.shopId=params['id'];
+      this.store.dispatch(loadBouquetListByStoreId({ shopId: this.shopId }))
+    });
     this.store.dispatch(loadOneStore({ id: this.shopId }));
-    this.store.subscribe((state) => this.shop=state.shop.oneShop)
+    this.store.subscribe((state) => this.shop=state.shop.oneShop);
+    this.bouquets$= this.store.select(loadBouquetList);
   };
 
   addEmployee() {

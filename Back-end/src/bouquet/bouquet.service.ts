@@ -32,4 +32,8 @@ export class BouquetService {
 
         return await this.bouquetReposistory.save(bouquet);
     };
+
+    public async getBouquetsByShopId( shopId: number) {
+        return await this.bouquetReposistory.find({ where:{ store: {id: shopId}}, relations: {bouquetType: true}})
+    };
 }

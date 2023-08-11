@@ -3,7 +3,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { BouquetService } from "src/app/services/bouquet.service";
 import * as BouquetActions from './bouquet.actions'
-import { catchError, map, mergeMap, of } from "rxjs";
+import { catchError, map, merge, mergeMap, of } from "rxjs";
 import { Bouquet } from "src/app/models/bouquet";
 
 @Injectable()
@@ -24,5 +24,16 @@ export class BouquetTypeEffects {
                 return  of({type: 'Load error'});
             })
         ))
-    ))    
+    ));
+
+    getBouquetList$ = createEffect(() =>
+    this.actions$.pipe(
+        ofType(BouquetActions.loadBouquetListByStoreId),
+        mergeMap(({ shopId }) => this.bouquetService.getBouquetListByStoreId(shopId).pipe(
+            map(( bouquets ) => BouquetActions.loadBouquetListByStoreIdSuccess({ bouquets })),
+            catchError( ({error}) => {
+                this.snackbar.open(error, 'Close', { duration: 3000});
+                return  of({type: 'Load error'});
+            })
+    ))))
 }

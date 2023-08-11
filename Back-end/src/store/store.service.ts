@@ -53,7 +53,7 @@ export class StoreService {
     };
 
     public async getStore(id: number): Promise<FloverShop | undefined> {
-        return await this.shopReposistory.findOne({where: { id: id}, relations: {city: true, employees:true, bouquets: true, owner: true}});
+        return await this.shopReposistory.findOne({where: { id: id}, relations: {city: true, employees:true, owner: true}});
     };
 
     public async addEmployee(email: string, shopId: number) {
@@ -62,7 +62,7 @@ export class StoreService {
             throw new BadRequestException('InvalidUser');
        }
 
-       const shop= await this.shopReposistory.findOne({where: {id: shopId}, relations: {employees: true, city: true, bouquets: true, owner:true}});
+       const shop= await this.shopReposistory.findOne({where: {id: shopId}, relations: {employees: true, city: true, owner:true}});
 
        if(!shop) {
         throw new BadRequestException('InvalidFloverShop');

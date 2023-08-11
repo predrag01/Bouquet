@@ -12,5 +12,5 @@ export const initialSate: BouquetState = adapter.getInitialState();
 export const bouquetReducer = createReducer(
     initialSate,
     on(BouquetActions.addBouquetSuccess, (state, { bouquet }) => adapter.addOne(bouquet, state)),
-    
+    on(BouquetActions.loadBouquetListByStoreIdSuccess, (state , { bouquets }) => adapter.addMany(bouquets, state)),
 );
