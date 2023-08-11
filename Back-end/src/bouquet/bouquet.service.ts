@@ -40,4 +40,14 @@ export class BouquetService {
     public async removeBouquet(id: number) {
         return await this.bouquetReposistory.delete(id);
     };
+
+    public async updateBouquet(bouquet: Bouquet) {
+        const update: Bouquet | null = await this.bouquetReposistory.findOne({ where: {id: bouquet.id}});
+
+        if(!update) {
+            throw new BadRequestException('InvalidBouquet');
+        }
+
+        return await this.bouquetReposistory.update(bouquet.id, bouquet);
+    };
 }

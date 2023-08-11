@@ -3,10 +3,6 @@
     <div class="info-div">
         <div class="title-div">
             <mat-label >{{this.bouquet?.title}}</mat-label>
-            <div>
-                <span class="button"><mat-icon>edit</mat-icon></span>
-                <span style="cursor: pointer;" (click)="clickDelete()"><mat-icon>delete</mat-icon></span>
-            </div>
         </div>
         <mat-label class="info">{{"Type: " + this.bouquet?.bouquetType?.type}}</mat-label>
         <mat-label class="info">{{this.bouquet?.description}}</mat-label>

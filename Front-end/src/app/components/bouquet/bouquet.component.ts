@@ -15,12 +15,6 @@ export class BouquetComponent implements OnInit{
 
   ngOnInit(): void {
     
-  }
-
-  clickDelete() {
-    if(this.bouquet) {
-      this.onClick.emit(this.bouquet.id);
-    }
   };
 
 }

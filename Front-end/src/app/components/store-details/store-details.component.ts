@@ -10,7 +10,8 @@ import { AddBouquetComponent } from '../add-bouquet/add-bouquet.component';
 import { Observable, of } from 'rxjs';
 import { Bouquet } from 'src/app/models/bouquet';
 import { loadBouquetList } from 'src/app/store/bouquet/bouquet.selector';
-import { deleteBouquet, loadBouquetListByStoreId } from 'src/app/store/bouquet/bouquet.actions';
+import { deleteBouquet, loadBouquetListByStoreId, selectBouquet } from 'src/app/store/bouquet/bouquet.actions';
+import { EditBouquetComponent } from '../edit-bouquet/edit-bouquet.component';
 
 @Component({
   selector: 'app-store-details',
@@ -56,4 +57,12 @@ export class StoreDetailsComponent implements OnInit {
   delete(id: number) {
     this.store.dispatch(deleteBouquet({ bouquetId: id }));
   };
+
+  edit(id: number) {
+    this.store.dispatch(selectBouquet({ bouquetId: id }))
+    this.dialog.open(EditBouquetComponent, {
+      minWidth: '600px',
+      minHeight: '400px'
+    });
+  }
 }

@@ -28,3 +28,21 @@ export const deleteBouquetSuccess = createAction(
     'Delete bouquet success',
     props<{ bouquetId: number }>()
 );
+
+export const selectBouquet = createAction(
+    'Select bouquet',
+    props<{ bouquetId: number }>()
+);
+
+export const deselectBouquet = createAction(
+    'Deselect bouquet'
+);
+
+export const updateBouquet = createAction(
+    'Update bouquet',
+    props<{bouquet: Bouquet}>()
+);
+export const updateBouquetSuccess = createAction(
+    'Update bouquet success',
+    props<{bouquet: Bouquet}>()
+)

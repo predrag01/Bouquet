@@ -1,0 +1,43 @@
+<div class="edit-bouquet-cont">
+    <mat-card class="example-card mat-elevation-z10 card">
+        <mat-card-header class="header">
+            <mat-card-title class="title">Edit bouquet</mat-card-title>
+            <span style="cursor: pointer;" (click)="close()"><mat-icon>close</mat-icon></span>
+        </mat-card-header>
+        <mat-card-content>
+            <form class="form">
+                <img class="img" mat-card-avatar src="../../../../../assets/common/noImage.png"/>
+                <div class="div">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Title</mat-label>
+                        <input type="text" name="title" matInput required [formControl]="title">
+                        <mat-error>Fill out bouquet title!</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline"> 
+                        <mat-label *ngIf="this.selectedType">{{this.selectedType.type}}</mat-label>
+                        <mat-select (selectionChange)="onCitySelectionChange($event)">
+                        <mat-option *ngFor="let type of this.types$ | async" [value]="type">{{type.type}}</mat-option>
+                        </mat-select>
+                        <mat-error>Choose bouquet type!</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Price</mat-label>
+                        <input type="number" min="0" matInput [formControl]="price" required>
+                        <mat-error>Fill out bouquet price!</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="div">
+                    <mat-form-field appearance="outline" style="width: 300px;">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput [formControl]="description" required matTextareaAutosize [rows]="4" ></textarea>
+                        <mat-error>Fill out bouquet description!</mat-error>
+                    </mat-form-field>
+                </div>
+            </form>
+            <mat-divider style="margin-bottom: 10px;"></mat-divider>
+        </mat-card-content>
+        <mat-card-footer class="button">
+            <button mat-raised-button color="primary" class="button" (click)="save()">Save</button>
+        </mat-card-footer>
+    </mat-card>
+</div>

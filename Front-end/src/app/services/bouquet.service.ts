@@ -19,7 +19,10 @@ export class BouquetService {
   };
 
   deleteBouquet(bouquetId: number) {
-    console.log(bouquetId)
     return this.httpClient.delete<any>(environment.api + "/bouquet/" + bouquetId);
+  };
+
+  updateBouquet(bouquet: Bouquet) {
+    return this.httpClient.put<Bouquet>(environment.api + "/bouquet", bouquet);
   };
 }

@@ -14,3 +14,14 @@ export const loadBouquetList = createSelector(
     .filter( bouqet => bouqet !== null)
     .map( bouquet => <Bouquet>bouquet)
 );
+
+export const selecetBouquetId = createSelector(
+    selectBouquetFeature,
+    (bouquet) => bouquet.selectedBouquet
+);
+
+export const selectBouquet = createSelector(
+    selectBouquetFeature,
+    selecetBouquetId,
+    (state, bouquetId) => state.entities[bouquetId]
+);

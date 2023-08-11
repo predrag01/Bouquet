@@ -55,6 +55,7 @@ import { AddBouquetComponent } from './components/add-bouquet/add-bouquet.compon
 import { BouquetComponent } from './components/bouquet/bouquet.component';
 import { bouquetReducer } from './store/bouquet/bouquet.reducer';
 import { BouquetTypeEffects } from './store/bouquet/bouquet.effects';
+import { EditBouquetComponent } from './components/edit-bouquet/edit-bouquet.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { BouquetTypeEffects } from './store/bouquet/bouquet.effects';
     StoreDetailsComponent,
     AddBouquetComponent,
     BouquetComponent,
+    EditBouquetComponent,
   ],
   imports: [
     BrowserModule,

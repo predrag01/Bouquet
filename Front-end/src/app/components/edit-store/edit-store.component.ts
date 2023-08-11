@@ -90,7 +90,7 @@ export class EditStoreComponent implements OnInit {
 
           this.store.dispatch(updateShop({ shop: <FloverShop>updatedShop }));
           this.close();
-    }
+     }
   };
 
   onCitySelectionChange(event: any) {

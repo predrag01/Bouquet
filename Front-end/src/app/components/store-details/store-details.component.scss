@@ -92,9 +92,23 @@
 .bouqet-list {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .bouquet-offer {
     display: flex;
     flex-direction: column;
+    width: 100%;
+}
+
+.one-item {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    justify-content: space-between;
+}
+
+.button {
+    margin-right: 10px;
+    cursor: pointer;
 }

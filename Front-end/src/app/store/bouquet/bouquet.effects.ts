@@ -50,5 +50,20 @@ export class BouquetTypeEffects {
                 return  of({type: 'Load error'});
             })
         ))
+    ));
+
+    updateBouquet$ = createEffect(() =>
+    this.actions$.pipe(
+        ofType(BouquetActions.updateBouquet),
+        mergeMap(({ bouquet }) => this.bouquetService.updateBouquet(bouquet).pipe(
+            map(() => {
+                this.snackbar.open("Successfuly updated bouquet", 'Ok', { duration: 3000})
+                return BouquetActions.updateBouquetSuccess({ bouquet: bouquet });
+            }),
+            catchError( ({error}) => {
+                this.snackbar.open(error, 'Close', { duration: 3000});
+                return  of({type: 'Load error'});
+            })
+        ))
     ))
 }
