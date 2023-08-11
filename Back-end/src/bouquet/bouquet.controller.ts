@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
 import { BouquetService } from './bouquet.service';
 import { BouquetDto } from './models/bouquet.dto';
 
@@ -15,5 +15,11 @@ export class BouquetController {
     @Get(":id")
     public getByShopId(@Param("id", ParseIntPipe) id: number) {
         return this.bouquetService.getBouquetsByShopId(id);
-    }
+    };
+
+    @Delete(":id")
+    public removeBouquet(@Param("id", ParseIntPipe) id: number) {
+        console.log(id)
+        return this.bouquetService.removeBouquet(id);
+    };
 }

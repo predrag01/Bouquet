@@ -36,4 +36,8 @@ export class BouquetService {
     public async getBouquetsByShopId( shopId: number) {
         return await this.bouquetReposistory.find({ where:{ store: {id: shopId}}, relations: {bouquetType: true}})
     };
+
+    public async removeBouquet(id: number) {
+        return await this.bouquetReposistory.delete(id);
+    };
 }

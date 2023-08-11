@@ -18,3 +18,13 @@ export const loadBouquetListByStoreIdSuccess = createAction(
     'Load bouquet list by store id success',
     props<{ bouquets: Bouquet[] }>()
 );
+
+export const deleteBouquet = createAction(
+    'Delete bouquet',
+    props<{ bouquetId: number }>()
+);
+
+export const deleteBouquetSuccess = createAction(
+    'Delete bouquet success',
+    props<{ bouquetId: number }>()
+);

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Bouquet } from 'src/app/models/bouquet';
 
 @Component({
@@ -9,11 +9,18 @@ import { Bouquet } from 'src/app/models/bouquet';
 export class BouquetComponent implements OnInit{
   
   @Input() bouquet: Bouquet | null= null;
+  @Output() onClick: EventEmitter<number> = new EventEmitter<number>
   
   constructor() {}
 
   ngOnInit(): void {
     
   }
+
+  clickDelete() {
+    if(this.bouquet) {
+      this.onClick.emit(this.bouquet.id);
+    }
+  };
 
 }

@@ -35,5 +35,20 @@ export class BouquetTypeEffects {
                 this.snackbar.open(error, 'Close', { duration: 3000});
                 return  of({type: 'Load error'});
             })
-    ))))
+    ))));
+
+    deleteBouquet$= createEffect(() =>
+    this.actions$.pipe(
+        ofType(BouquetActions.deleteBouquet),
+        mergeMap(({ bouquetId }) => this.bouquetService.deleteBouquet(bouquetId).pipe(
+            map(() => {
+                this.snackbar.open("Successfuly deleted bouquet", 'Ok', { duration: 3000})
+                return BouquetActions.deleteBouquetSuccess({ bouquetId: bouquetId });
+            }),
+            catchError( ({error}) => {
+                this.snackbar.open(error, 'Close', { duration: 3000});
+                return  of({type: 'Load error'});
+            })
+        ))
+    ))
 }

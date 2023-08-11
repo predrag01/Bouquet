@@ -15,7 +15,11 @@ export class BouquetService {
   };
 
   getBouquetListByStoreId(shopId: number) {
-    console.log(shopId)
     return this.httpClient.get<Bouquet[]>(environment.api + "/bouquet/"+shopId);
+  };
+
+  deleteBouquet(bouquetId: number) {
+    console.log(bouquetId)
+    return this.httpClient.delete<any>(environment.api + "/bouquet/" + bouquetId);
   };
 }
