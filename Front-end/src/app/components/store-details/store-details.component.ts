@@ -64,5 +64,5 @@ export class StoreDetailsComponent implements OnInit {
       minWidth: '600px',
       minHeight: '400px'
     });
-  }
+  };
 }

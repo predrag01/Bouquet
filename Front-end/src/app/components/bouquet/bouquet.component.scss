@@ -8,8 +8,8 @@
 }
 
 .img {
-    width: 150px;
-    height: auto;
+    height: 170px;
+    width: auto;
 }
 
 .info-div {
@@ -32,4 +32,21 @@
 .info {
     font-size: 16px;
     margin-bottom: 3px;
+}
+
+.order {
+    display: flex;
+    flex-direction: row;
+    margin-top:10px;
+    align-items: center;
+}
+
+.input {
+    width: 90px;
+}
+
+.button {
+    margin-left: 10px;
+    width: 80px;
+    height: 45px;
 }

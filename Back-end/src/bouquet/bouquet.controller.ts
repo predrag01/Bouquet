@@ -28,4 +28,9 @@ export class BouquetController {
         console.log(bouquet.title)
         return this.bouquetService.updateBouquet(bouquet);
     };
+
+    @Get("/getOne/:id")
+    public getOne(@Param("id", ParseIntPipe) id: number) {
+        return this.bouquetService.getOne(id);
+    };
 }

@@ -50,4 +50,8 @@ export class BouquetService {
 
         return await this.bouquetReposistory.update(bouquet.id, bouquet);
     };
+
+    public async getOne(id: number) {
+        return await this.bouquetReposistory.findOne({ where: {id: id }, relations:{ bouquetType: true}});
+    };
 }

@@ -9,6 +9,9 @@ import { UserModule } from './user/user.module';
 import { StoreModule } from './store/store.module';
 import { BouquetTypeModule } from './bouquet-type/bouquet-type.module';
 import { BouquetModule } from './bouquet/bouquet.module';
+import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
+import { ShoppingCartService } from './shopping-cart/shopping-cart.service';
+import { ShoppingCartController } from './shopping-cart/shopping-cart.controller';
 
 @Module({
   imports: [ 
@@ -18,7 +21,8 @@ import { BouquetModule } from './bouquet/bouquet.module';
      UserModule,
      StoreModule,
      BouquetTypeModule,
-     BouquetModule ],
+     BouquetModule,
+     ShoppingCartModule ],
   controllers: [AppController],
   providers: [AppService],
 })

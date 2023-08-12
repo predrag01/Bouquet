@@ -31,4 +31,6 @@ export class BouquetTypeService {
 
         return await this.typeRepository.update(bouquet.id, bouquet);
     };
+
+    
 }

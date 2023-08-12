@@ -45,4 +45,4 @@ export const updateBouquet = createAction(
 export const updateBouquetSuccess = createAction(
     'Update bouquet success',
     props<{bouquet: Bouquet}>()
-)
+);

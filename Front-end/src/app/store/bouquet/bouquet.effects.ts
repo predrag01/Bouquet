@@ -65,5 +65,5 @@ export class BouquetTypeEffects {
                 return  of({type: 'Load error'});
             })
         ))
-    ))
+    ));
 }

@@ -1,5 +1,7 @@
 import { City } from "src/city/models/city.entity";
 import { Role } from "src/enums/role.enum";
+import { Order } from "src/order/models/order.enity";
+import { ShoppingCart } from "src/shopping-cart/models/shoppingCart.entity";
 import { FloverShop } from "src/store/models/store.entity";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
@@ -40,4 +42,20 @@ export class User{
 
     @ManyToOne(()=> FloverShop, (store: FloverShop) => store.employees, {onDelete: 'SET NULL'})
     employeed: FloverShop;
+
+    @OneToMany(() =>ShoppingCart, (shoppingCart: ShoppingCart) => shoppingCart.buyer)
+    shoppingCarts: ShoppingCart[];
+
+    @OneToMany(() => Order, (order: Order) => order.buyer)
+    orders: Order[];
+
+    @OneToMany(() => Order, (order: Order) => order.deliveryGuy)
+    deliveredOrders: Order[];
+
+    //for delivery guy
+    @Column({ type:'text', nullable: true})
+    JMBG: string;
+
+    @Column({ type:'text', nullable: true})
+    vehicle: string;
 }

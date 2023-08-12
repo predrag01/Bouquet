@@ -42,14 +42,13 @@
                 <mat-divider style="margin-bottom: 20px; margin-right: 30px;"></mat-divider>
                 <div class="bouquet-list" *ngFor="let bouquet of this.bouquets$ | async">
                     <div class="one-item">
-                        <app-bouquet [bouquet]="bouquet" (onClick)="delete(bouquet.id)"></app-bouquet>
-                        <div>
+                        <app-bouquet style="width: 84%;" [bouquet]="bouquet"></app-bouquet>
+                        <div class="button-div">
                             <span class="button" (click)="edit(bouquet.id)"><mat-icon>edit</mat-icon></span>
                             <span style="cursor: pointer;" (click)="delete(bouquet.id)"><mat-icon>delete</mat-icon></span>
                         </div>
                     </div>
                 </div>
-                
             </div>
         </mat-card-content>
     </mat-card>

@@ -10,7 +10,7 @@ export interface BouquetState extends EntityState<Bouquet> {
 const adapter = createEntityAdapter<Bouquet>();
 
 export const initialSate: BouquetState = adapter.getInitialState({
-    selectedBouquet: 0,
+    selectedBouquet: 0
 });
 
 export const bouquetReducer = createReducer(
