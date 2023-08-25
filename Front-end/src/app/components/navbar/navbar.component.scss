@@ -40,3 +40,10 @@
     flex-direction: row;
     align-items: center;
 }
+
+.shoppingCart {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    cursor: pointer;
+}

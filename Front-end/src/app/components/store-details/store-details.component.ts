@@ -12,6 +12,8 @@ import { Bouquet } from 'src/app/models/bouquet';
 import { loadBouquetList } from 'src/app/store/bouquet/bouquet.selector';
 import { deleteBouquet, loadBouquetListByStoreId, selectBouquet } from 'src/app/store/bouquet/bouquet.actions';
 import { EditBouquetComponent } from '../edit-bouquet/edit-bouquet.component';
+import { ShoppingCart, ShoppingCartDto } from 'src/app/models/shopping-cart';
+import { addToCart } from 'src/app/store/shopping-cart/shopping-cart.actions';
 
 @Component({
   selector: 'app-store-details',
@@ -65,4 +67,8 @@ export class StoreDetailsComponent implements OnInit {
       minHeight: '400px'
     });
   };
+
+  order(cart: ShoppingCartDto) {
+    this.store.dispatch(addToCart({ order: cart }));
+  }
 }

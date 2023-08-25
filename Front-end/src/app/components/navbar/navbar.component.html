@@ -5,6 +5,7 @@
     <button mat-menu-item class="items" (click)="navigate('city-list')">City</button>
     <button mat-menu-item class="items" (click)="navigate('bouquet-type-list')">Bouquet type</button>
     </mat-menu>
+    <span class="shoppingCart" (click)="navigate('shopping-cart')"><mat-icon>shopping_cart</mat-icon></span>
     <div class="login-div">
         <span class="logged-text" (click)="navigate('login')" *ngIf="!this.user">Login</span>
         <span class="logged-text" *ngIf="!this.user"> / </span>

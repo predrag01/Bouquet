@@ -1,0 +1,52 @@
+.shopping-cart-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.card {
+    min-width: 900px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.title {
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+}
+
+.row-div {
+    display: flex;
+    flex-direction: row;
+}
+
+.remove {
+    font-size: 20px;
+    margin-right: 5px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.total {
+    display: flex;
+    flex-direction: row;
+    width: 98%;
+    justify-content: end;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.price {
+    font-size: 20px;
+    margin-right: 10px;
+    font-weight: 500;
+}

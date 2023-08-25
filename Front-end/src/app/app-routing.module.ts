@@ -8,6 +8,7 @@ import { BouquetTypeListComponent } from './components/bouquet-type-list/bouquet
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { MyStoresComponent } from './components/my-stores/my-stores.component';
 import { StoreDetailsComponent } from './components/store-details/store-details.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'edit-profile', component: EditProfileComponent},
   {path: 'my-stores', component: MyStoresComponent},
   {path: 'store-details/:id', component: StoreDetailsComponent},
+  {path: 'shopping-cart', component: ShoppingCartComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: '**', component: HomeComponent},
 ];

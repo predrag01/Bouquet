@@ -7,15 +7,15 @@
         <mat-label class="info">{{"Type: " + this.bouquet?.bouquetType?.type}}</mat-label>
         <mat-label class="info">{{this.bouquet?.description}}</mat-label>
         <mat-label class="info" style="font-weight: 600;">{{"Price: " + this.bouquet?.price + "€"}}</mat-label>
-        <div class="order">
-            <form>
-                <mat-form-field class="input" appearance="outline">
-                    <mat-label>Number</mat-label>
-                    <input type="number" min="1" [valueAsNumber]="10" name="cityName" matInput required [formControl]="number"/>
-                    <mat-error>Fill address!</mat-error>
-                </mat-form-field>
-                <button mat-raised-button color="primary" class="button" (click)="orderEmit()">Order</button>
-            </form>
-        </div>
+    </div>
+    <div class="order">
+        <form>
+            <mat-form-field class="input" appearance="outline">
+                <mat-label>Count</mat-label>
+                <input type="number" min="1" [valueAsNumber]="10" name="cityName" matInput required [formControl]="number"/>
+                <mat-error>Fill address!</mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="primary" class="button" (click)="orderEmit()">Order</button>
+        </form>
     </div>
 </div>

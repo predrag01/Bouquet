@@ -1,0 +1,16 @@
+<div class="parent-div">
+    <div class="img-info-div">
+        <img class="img" src="../../../assets/common/noImage.png" />
+        <div class="info-div">
+            <mat-label class="title-info">{{this.shoppingCart?.bouquet?.title}}</mat-label>
+            <mat-label class="info">{{"From: " + this.shoppingCart?.shop?.name}}</mat-label>
+            <mat-label class="info">{{"Phone: " + this.shoppingCart?.shop?.phone}}</mat-label>
+            <mat-label class="info" style="font-weight: 500;">{{"Price: " + this.shoppingCart?.bouquet?.price + "€"}}</mat-label>
+        </div>
+    </div>
+    <div class="count-div">
+        <span class="count-minus" (click)="minus()"><mat-icon>-</mat-icon></span>
+        <span class="count">{{this.shoppingCart?.count}}</span>
+        <span class="count-plus" (click)="plus()"><mat-icon>+</mat-icon></span>
+    </div>
+</div>

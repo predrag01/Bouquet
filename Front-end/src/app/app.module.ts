@@ -56,6 +56,10 @@ import { BouquetComponent } from './components/bouquet/bouquet.component';
 import { bouquetReducer } from './store/bouquet/bouquet.reducer';
 import { BouquetTypeEffects } from './store/bouquet/bouquet.effects';
 import { EditBouquetComponent } from './components/edit-bouquet/edit-bouquet.component';
+import { shoppingCartReducer } from './store/shopping-cart/shopping-cart.reducer';
+import { ShoppingCartEffects } from './store/shopping-cart/shopping-cart.effects';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { ShoppingCartItemComponent } from './components/shopping-cart-item/shopping-cart-item.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +80,8 @@ import { EditBouquetComponent } from './components/edit-bouquet/edit-bouquet.com
     AddBouquetComponent,
     BouquetComponent,
     EditBouquetComponent,
+    ShoppingCartComponent,
+    ShoppingCartItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,6 +93,7 @@ import { EditBouquetComponent } from './components/edit-bouquet/edit-bouquet.com
       types: bouquetTypeReducer,
       shop: shopReducer,
       bouquet: bouquetReducer,
+      shoppingCart: shoppingCartReducer,
     }),
     EffectsModule.forRoot([
       UserEffects,
@@ -94,6 +101,7 @@ import { EditBouquetComponent } from './components/edit-bouquet/edit-bouquet.com
       BouquetTypeEffects,
       FloverShopEffects,
       BouquetEffects,
+      ShoppingCartEffects,
     ]),
 
     HttpClientModule,

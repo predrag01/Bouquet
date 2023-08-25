@@ -1,0 +1,58 @@
+.parent-div {
+    display: flex;
+    flex-direction: row;
+    margin-top: 15px;
+    margin-left: 15px;
+    width: 80%;
+    justify-content: space-between;
+}
+
+.img-info-div {
+    display: flex;
+    flex-direction: row;
+}
+
+.img {
+    height: 110px;
+    width: auto;
+}
+
+.info-div {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.title-info {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.info {
+    font-size: 16px;
+    margin-top: 3px;
+}
+
+.count-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.count-minus {
+    margin-right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.count {
+    font-size: 25px;
+    margin-top: 5px;
+}
+
+.count-plus {
+    margin-left: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
