@@ -65,9 +65,8 @@ export class ShoppingCartEffects {
     makeOrder$ = createEffect(() =>
     this.actions$.pipe(
         ofType(CartActions.makeOrder),
-        mergeMap(({ order, carts }) => this.cartService.makeOrder(order, carts).pipe(
+        mergeMap(({ orders, carts }) => this.cartService.makeOrder(orders, carts).pipe(
             map(() => {
-                console.log(order.dateToDelivery)
                 this.snackbar.open("Order successfuly", "Ok", {duration: 3000});
                 return CartActions.orderSuccess({ carts: carts });
             }),

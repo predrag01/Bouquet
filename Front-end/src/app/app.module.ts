@@ -62,7 +62,8 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { ShoppingCartItemComponent } from './components/shopping-cart-item/shopping-cart-item.component';
 import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core'; 
+import { MatNativeDateModule } from '@angular/material/core';
+import { StoreOrdersComponent } from './components/store-orders/store-orders.component'; 
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     ShoppingCartComponent,
     ShoppingCartItemComponent,
     OrderConfirmationComponent,
+    StoreOrdersComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,6 @@ import { EntityState, createEntityAdapter } from "@ngrx/entity";
 import { createReducer, on } from "@ngrx/store";
 import { ShoppingCart } from "src/app/models/shopping-cart";
 import * as CartActions from './shopping-cart.actions';
-import { Actions } from "@ngrx/effects";
 
 export interface ShoppingCartState extends EntityState<ShoppingCart> { };
 

@@ -51,4 +51,7 @@ export class FloverShop {
 
     @OneToMany(() => ShoppingCart, (shoppingCart: ShoppingCart) => shoppingCart.shop)
     shoppingCarts: ShoppingCart[];
+
+    @OneToMany(() => Order, (order: Order) => order.shop)
+    orders: Order[];
 }

@@ -7,6 +7,7 @@ import { User } from "./user";
 export interface Order {
     id: number;
     bouquet: Bouquet;
+    count: number;
     totalPrice: number;
     message: string;
     city: City;
@@ -16,10 +17,12 @@ export interface Order {
     status: Status;
     buyer: User;
     deliveryGuy: User;
+    shop: FloverShop;
 }
 
 export interface OrderDto {
-    bouquets: Bouquet[];
+    bouquet: Bouquet;
+    count: number;
     totalPrice: number;
     message: string | null;
     city: City;
@@ -28,4 +31,5 @@ export interface OrderDto {
     dateOfOrder: Date;
     status: Status;
     buyer: User;
+    shop: FloverShop;
 }

@@ -36,7 +36,7 @@
                     <mat-card-title style="font-size: 22px;">Bouquet offer</mat-card-title>
                     <div> 
                         <button style="margin-right: 15px;" mat-raised-button color="accent" (click)="addBouquet()">Add bouquet</button>
-                        <button mat-raised-button color="primary">Orders</button>
+                        <button mat-raised-button color="primary" (click)="navigate('store-orders/' + this.shopId)">Orders</button>
                     </div>
                 </div>
                 <mat-divider style="margin-bottom: 20px; margin-right: 30px;"></mat-divider>

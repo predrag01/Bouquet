@@ -71,4 +71,8 @@ export class StoreDetailsComponent implements OnInit {
   order(cart: ShoppingCartDto) {
     this.store.dispatch(addToCart({ order: cart }));
   }
+ 
+  navigate(path: string) {
+    this.router.navigate([ path ]);
+  }
 }

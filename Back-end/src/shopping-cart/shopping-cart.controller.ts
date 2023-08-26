@@ -30,7 +30,7 @@ export class ShoppingCartController {
     };
 
     @Post('/make-order')
-    public order(@Body() param: { order: OrderDto, carts: ShoppingCart[] }) {
-        return this.cartService.makeOrder(param.order, param.carts);
+    public order(@Body() param: { orders: OrderDto[], carts: ShoppingCart[] }) {
+        return this.cartService.makeOrder(param.orders, param.carts);
     };
 }

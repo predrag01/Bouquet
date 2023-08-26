@@ -44,7 +44,7 @@ export const deleteShoppingCartSuccess = createAction(
 
 export const makeOrder = createAction(
     'Make order',
-    props<{order: OrderDto, carts: ShoppingCart[]}>()
+    props<{orders: OrderDto[], carts: ShoppingCart[]}>()
 );
 
 export const orderSuccess = createAction(

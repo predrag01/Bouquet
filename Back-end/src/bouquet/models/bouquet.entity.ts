@@ -30,6 +30,6 @@ export class Bouquet {
     @OneToMany(() => ShoppingCart, ( order: ShoppingCart) => order.bouquet)
     shoppingCarts: ShoppingCart[];
 
-    @ManyToMany(() => Order, (order: Order) => order.bouquets)
+    @OneToMany(() => Order, (order: Order) => order.bouquet)
     orders: Order[];
 }

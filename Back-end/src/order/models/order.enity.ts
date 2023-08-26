@@ -10,9 +10,11 @@ export class Order {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToMany(() => Bouquet, (bouquet: Bouquet) => bouquet.orders)
-    @JoinTable()
-    bouquets: Bouquet[];
+    @ManyToOne(() => Bouquet, ( order: Bouquet) => order, {onDelete: 'CASCADE'})
+    bouquet: Bouquet;
+
+    @Column({nullable: false })
+    count: number;
 
     @Column({nullable: false })
     totalPrice: number;
@@ -40,5 +42,7 @@ export class Order {
 
     @ManyToOne(() => User, (user: User) => user.deliveredOrders, {onDelete: "SET NULL"})
     deliveryGuy: User;
-
+    
+    @ManyToOne(() => FloverShop, (shop: FloverShop) => shop.orders, {onDelete: 'SET NULL'})
+    shop: FloverShop;
 }

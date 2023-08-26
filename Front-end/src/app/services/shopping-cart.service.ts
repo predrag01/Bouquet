@@ -28,8 +28,8 @@ export class ShoppingCartService {
     return this.httpClient.delete<any>(environment.api + "/shopping-cart/" + cartId);
   };
 
-  makeOrder(order: OrderDto, carts: ShoppingCart[]) {
-    const param = { order, carts }
+  makeOrder(orders: OrderDto[], carts: ShoppingCart[]) {
+    const param = { orders, carts }
     return this.httpClient.post<Order>(environment.api + "/shopping-cart/make-order", param);
   };
 }

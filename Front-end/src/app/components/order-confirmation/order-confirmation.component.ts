@@ -41,28 +41,31 @@ export class OrderConfirmationComponent implements OnInit{
   }
 
   payment() {
-    const bouquets: Bouquet[] = [];
     const shoppingCarts: ShoppingCart[] = [];
+    const orders: OrderDto[] = [];
     this.shoppingCarts$.subscribe(cartItems => {
       cartItems.forEach(cartItem => {
         shoppingCarts.push(cartItem);
-        bouquets.push(cartItem.bouquet);
+
+        const order: OrderDto = {
+          bouquet: cartItem.bouquet,
+          count: cartItem.count,
+          totalPrice: this.total,
+          message: this.message.value,
+          city: <City>this.user?.city,
+          address: <string>this.address.value,
+          dateToDelivery: this.dateToDelivery.value,
+          dateOfOrder: new Date(),
+          status: Status.NotAccepted,
+          buyer: <User>this.user,
+          shop: cartItem.shop
+        };
+
+        orders.push(order);
       });
     });
 
-    const order: OrderDto = {
-      bouquets: bouquets,
-      totalPrice: this.total,
-      message: this.message.value,
-      city: <City>this.user?.city,
-      address: <string>this.address.value,
-      dateToDelivery: this.dateToDelivery.value,
-      dateOfOrder: new Date(),
-      status: Status.NotAccepted,
-      buyer: <User>this.user
-    };
-
-    this.store.dispatch(makeOrder({ order: order, carts: shoppingCarts}));
+    this.store.dispatch(makeOrder({ orders: orders, carts: shoppingCarts}));
 
     this.router.navigate(['home']);
   }

@@ -46,11 +46,11 @@ export class ShoppingCartService {
         return await this.cartReposistory.delete(cartId);
     };
 
-    public async makeOrder(orderDto: OrderDto, carts: ShoppingCart[]) {
-        const order = this.orderReposistory.create(orderDto);
+    public async makeOrder(ordersDto: OrderDto[], carts: ShoppingCart[]) {
+        const orders = ordersDto.map(orderDto => this.orderReposistory.create(orderDto));
         
         await this.cartReposistory.remove(carts);
         
-        return await this.orderReposistory.save(order);
+        return await this.orderReposistory.save(orders);
     };
 }
