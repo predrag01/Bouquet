@@ -1,0 +1,110 @@
+.order-confirmation-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.card {
+    min-width: 900px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.title {
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+.content {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    justify-content: space-between;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+}
+
+.info-div {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    width: 98%;
+    justify-content: end;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.info-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.order-item {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+
+.img {
+    width: 60px;
+}
+
+.order-item-info{
+    display: flex;
+    flex-direction: column;
+    margin-left: 7px;
+    margin-top: 5px;
+}
+
+.row-div {
+    display: flex;
+    flex-direction: row;
+}
+
+.label-static {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 1px;
+    margin-right: 5px;
+}
+
+.order-title {
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+.label-info {
+    font-size: 15px;
+}
+
+.total-div {
+    display: flex;
+    flex-direction: row;
+}
+
+.divider {
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}

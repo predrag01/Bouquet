@@ -1,0 +1,60 @@
+<div class="order-confirmation-cont">
+    <mat-card class="example-card mat-elevation-z10 card">
+        <mat-card-header class="title">Order confirmation</mat-card-header>
+        <mat-divider class="divider"></mat-divider>
+        <mat-card-content class="content">
+            <form class="form">
+                <mat-form-field appearance="outline">
+                    <mat-label>Address to delivery</mat-label>
+                    <input type="text" name="address" matInput required [formControl]="address" />
+                    <mat-error *ngIf="address.invalid">Fill address!</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Choose a delivery date</mat-label>
+                    <input matInput [matDatepicker]="picker" [formControl]="dateToDelivery">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Message</mat-label>
+                    <textarea matInput [formControl]="message" matTextareaAutosize [rows]="4"></textarea>
+                </mat-form-field>
+            </form>
+            <div class="info-div">
+                <div>
+                    <div class="row-div">
+                        <mat-label class="label-static">{{"Customer:  "}}</mat-label>
+                        <mat-label class="label-info">{{this.user?.name + " " +  this.user?.lastName}}</mat-label>
+                    </div>
+                    <div class="row-div">
+                        <mat-label class="label-static">{{"Contact:  "}}</mat-label>
+                        <mat-label class="label-info">{{this.user?.phone}}</mat-label>
+                    </div>
+                    <div class="row-div">
+                        <mat-label class="label-static">{{"City:  "}}</mat-label>
+                        <mat-label class="label-info">{{this.user?.city?.city}}</mat-label>
+                    </div>
+                    <mat-divider style="margin: 5px;"></mat-divider>
+                    <mat-label class="order-title">Order</mat-label>
+                    <div style="width: 100%;" *ngFor="let order of shoppingCarts$ | async">
+                        <div class="order-item">
+                            <img class="img" src="../../../assets/common/noImage.png" />
+                            <div class="order-item-info">
+                                <mat-label class="label-static">{{order?.bouquet?.title}}</mat-label>
+                                <mat-label class="label-static">{{order?.count + " x " + order?.bouquet?.price + "€"}}</mat-label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="total-div">
+                    <mat-label class="order-title">Total:</mat-label>
+                    <mat-label class="order-title">{{this.total + "€"}}</mat-label>
+                </div>
+            </div>
+        </mat-card-content>
+        <mat-card-footer class="footer">
+            <button mat-raised-button color="accent" (click)="payment()">Payment</button>
+        </mat-card-footer>
+    </mat-card>
+</div>

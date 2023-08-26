@@ -49,9 +49,6 @@ export class FloverShop {
     @OneToMany(() => Bouquet, (bouquet: Bouquet) => bouquet.store)
     bouquets: Bouquet[];
 
-    @OneToMany(() => Order, (order: Order) => order.shop)
-    orders: Order[];
-
     @OneToMany(() => ShoppingCart, (shoppingCart: ShoppingCart) => shoppingCart.shop)
     shoppingCarts: ShoppingCart[];
 }

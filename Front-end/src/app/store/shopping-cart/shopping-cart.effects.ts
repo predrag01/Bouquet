@@ -5,6 +5,7 @@ import { ShoppingCartService } from "src/app/services/shopping-cart.service";
 import * as CartActions from './shopping-cart.actions';
 import { catchError, map, mergeMap, of } from "rxjs";
 import { ShoppingCart } from "src/app/models/shopping-cart";
+import { Order } from "src/app/models/order";
 
 @Injectable()
 export class ShoppingCartEffects {
@@ -54,6 +55,22 @@ export class ShoppingCartEffects {
         ofType(CartActions.deleteShoppingCart),
         mergeMap(({ cartId }) => this.cartService.deleteShoppingCart(cartId).pipe(
             map(() => CartActions.deleteShoppingCartSuccess({ cartId })),
+            catchError( ({error}) => {
+                this.snackbar.open(error, 'Close', { duration: 3000});
+                return  of({type: 'Load error'});
+            })
+        ))
+    ));
+
+    makeOrder$ = createEffect(() =>
+    this.actions$.pipe(
+        ofType(CartActions.makeOrder),
+        mergeMap(({ order, carts }) => this.cartService.makeOrder(order, carts).pipe(
+            map(() => {
+                console.log(order.dateToDelivery)
+                this.snackbar.open("Order successfuly", "Ok", {duration: 3000});
+                return CartActions.orderSuccess({ carts: carts });
+            }),
             catchError( ({error}) => {
                 this.snackbar.open(error, 'Close', { duration: 3000});
                 return  of({type: 'Load error'});

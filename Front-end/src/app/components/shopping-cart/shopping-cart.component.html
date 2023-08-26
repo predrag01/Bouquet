@@ -7,12 +7,12 @@
                 <app-shopping-cart-item style="width: 100%;" [shoppingCart]="cart"></app-shopping-cart-item>
                 <span class="remove" (click)="remove(cart.id)">X</span>
             </div>
-            <mat-divider></mat-divider>
+            <mat-divider style="margin-top: 15px;"></mat-divider>
         </mat-card-content>
         <mat-card-footer>
             <div class="total">
-                <mat-label class="price">{{"Total " + this.total + "€"}}</mat-label>
-                <button class="button" mat-raised-button color="accent">Procced</button>
+                <mat-label class="price">{{"Total: " + this.total + "€"}}</mat-label>
+                <button class="button" mat-raised-button color="accent" (click)="navigate('order-confirmation')">Proceed</button>
             </div>
         </mat-card-footer>
     </mat-card>

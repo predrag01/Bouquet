@@ -1,7 +1,8 @@
 import { BouquetType } from "src/bouquet-type/models/bouquet-type.entity";
+import { Order } from "src/order/models/order.enity";
 import { ShoppingCart } from "src/shopping-cart/models/shoppingCart.entity";
 import { FloverShop } from "src/store/models/store.entity";
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Bouquet {
@@ -27,5 +28,8 @@ export class Bouquet {
     store: FloverShop;
 
     @OneToMany(() => ShoppingCart, ( order: ShoppingCart) => order.bouquet)
-    shoppingCarts: ShoppingCart[]
+    shoppingCarts: ShoppingCart[];
+
+    @ManyToMany(() => Order, (order: Order) => order.bouquets)
+    orders: Order[];
 }

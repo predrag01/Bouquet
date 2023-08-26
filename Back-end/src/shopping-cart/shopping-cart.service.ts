@@ -6,6 +6,8 @@ import { User } from 'src/user/models/user.entity';
 import { Bouquet } from 'src/bouquet/models/bouquet.entity';
 import { City } from 'src/city/models/city.entity';
 import { ShoppingCartDto } from './models/shoppingCart.dto';
+import { OrderDto } from 'src/order/models/order.dto';
+import { Order } from 'src/order/models/order.enity';
 
 @Injectable()
 export class ShoppingCartService {
@@ -14,7 +16,8 @@ export class ShoppingCartService {
         @InjectRepository(ShoppingCart) private cartReposistory: Repository<ShoppingCart>,
          @InjectRepository(User) private userReposistory: Repository<User>,
          @InjectRepository(Bouquet) private bouquetReposistory: Repository<Bouquet>,
-         @InjectRepository(City) private cityReposistory: Repository<City>
+         @InjectRepository(City) private cityReposistory: Repository<City>,
+         @InjectRepository(Order) private orderReposistory: Repository<Order>
     ) {}
 
     public async addToCart(cartDto: ShoppingCartDto): Promise<ShoppingCart>{
@@ -41,5 +44,13 @@ export class ShoppingCartService {
 
     public async deleteCart(cartId: number) {
         return await this.cartReposistory.delete(cartId);
+    };
+
+    public async makeOrder(orderDto: OrderDto, carts: ShoppingCart[]) {
+        const order = this.orderReposistory.create(orderDto);
+        
+        await this.cartReposistory.remove(carts);
+        
+        return await this.orderReposistory.save(order);
     };
 }

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ShoppingCart, ShoppingCartDto } from '../models/shopping-cart';
 import { environment } from 'src/environments/environment';
+import { Order, OrderDto } from '../models/order';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,10 @@ export class ShoppingCartService {
 
   deleteShoppingCart(cartId: number) {
     return this.httpClient.delete<any>(environment.api + "/shopping-cart/" + cartId);
-  }
+  };
+
+  makeOrder(order: OrderDto, carts: ShoppingCart[]) {
+    const param = { order, carts }
+    return this.httpClient.post<Order>(environment.api + "/shopping-cart/make-order", param);
+  };
 }

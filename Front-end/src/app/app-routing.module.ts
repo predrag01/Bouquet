@@ -9,6 +9,7 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { MyStoresComponent } from './components/my-stores/my-stores.component';
 import { StoreDetailsComponent } from './components/store-details/store-details.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'my-stores', component: MyStoresComponent},
   {path: 'store-details/:id', component: StoreDetailsComponent},
   {path: 'shopping-cart', component: ShoppingCartComponent},
+  {path: 'order-confirmation', component: OrderConfirmationComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: '**', component: HomeComponent},
 ];

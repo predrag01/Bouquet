@@ -1,4 +1,5 @@
 import { createAction, props } from "@ngrx/store";
+import { Order, OrderDto } from "src/app/models/order";
 import { ShoppingCart, ShoppingCartDto } from "src/app/models/shopping-cart";
 
 export const addToCart = createAction(
@@ -39,4 +40,14 @@ export const deleteShoppingCart = createAction(
 export const deleteShoppingCartSuccess = createAction(
     'Delete shopping cart success',
     props<{cartId: number}>()
+);
+
+export const makeOrder = createAction(
+    'Make order',
+    props<{order: OrderDto, carts: ShoppingCart[]}>()
+);
+
+export const orderSuccess = createAction(
+    'Make order success',
+    props<{carts: ShoppingCart[]}>()
 );

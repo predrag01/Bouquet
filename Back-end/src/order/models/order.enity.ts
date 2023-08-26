@@ -3,18 +3,16 @@ import { City } from "src/city/models/city.entity";
 import { Status } from "src/enums/status.enum";
 import { FloverShop } from "src/store/models/store.entity";
 import { User } from "src/user/models/user.entity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Order {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(() => Bouquet, ( order: Bouquet) => order, {onDelete: 'CASCADE'})
-    bouquet: Bouquet;
-
-    @Column({nullable: false })
-    count: number;
+    @ManyToMany(() => Bouquet, (bouquet: Bouquet) => bouquet.orders)
+    @JoinTable()
+    bouquets: Bouquet[];
 
     @Column({nullable: false })
     totalPrice: number;
@@ -42,8 +40,5 @@ export class Order {
 
     @ManyToOne(() => User, (user: User) => user.deliveredOrders, {onDelete: "SET NULL"})
     deliveryGuy: User;
-
-    @ManyToOne(() => FloverShop, (shop: FloverShop) => shop.orders, {onDelete: 'SET NULL'})
-    shop: FloverShop;
 
 }

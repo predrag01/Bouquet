@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@
 import { ShoppingCartService } from './shopping-cart.service';
 import { ShoppingCartDto } from './models/shoppingCart.dto';
 import { ShoppingCart } from './models/shoppingCart.entity';
+import { OrderDto } from 'src/order/models/order.dto';
 
 @Controller('shopping-cart')
 export class ShoppingCartController {
@@ -26,5 +27,10 @@ export class ShoppingCartController {
     @Delete(':cartId')
     public deleteShoppingCart(@Param("cartId", ParseIntPipe) cartId: number){
         return this.cartService.deleteCart(cartId);
+    };
+
+    @Post('/make-order')
+    public order(@Body() param: { order: OrderDto, carts: ShoppingCart[] }) {
+        return this.cartService.makeOrder(param.order, param.carts);
     };
 }

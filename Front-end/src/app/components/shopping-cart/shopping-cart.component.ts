@@ -34,4 +34,8 @@ export class ShoppingCartComponent implements OnInit{
   remove(cartId: number) {
     this.store.dispatch(deleteShoppingCart({cartId: cartId}));
   }
+  
+  navigate(path: string) {
+    this.router.navigate([path]);
+  }
 }

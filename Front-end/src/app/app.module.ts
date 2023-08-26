@@ -60,6 +60,9 @@ import { shoppingCartReducer } from './store/shopping-cart/shopping-cart.reducer
 import { ShoppingCartEffects } from './store/shopping-cart/shopping-cart.effects';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ShoppingCartItemComponent } from './components/shopping-cart-item/shopping-cart-item.component';
+import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core'; 
 
 @NgModule({
   declarations: [
@@ -82,6 +85,7 @@ import { ShoppingCartItemComponent } from './components/shopping-cart-item/shopp
     EditBouquetComponent,
     ShoppingCartComponent,
     ShoppingCartItemComponent,
+    OrderConfirmationComponent,
   ],
   imports: [
     BrowserModule,
@@ -132,6 +136,8 @@ import { ShoppingCartItemComponent } from './components/shopping-cart-item/shopp
     DialogModule,
     MatDialogModule,
     MatListModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },],
   bootstrap: [AppComponent]
