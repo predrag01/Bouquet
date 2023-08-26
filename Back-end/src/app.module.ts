@@ -12,6 +12,7 @@ import { BouquetModule } from './bouquet/bouquet.module';
 import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
 import { ShoppingCartService } from './shopping-cart/shopping-cart.service';
 import { ShoppingCartController } from './shopping-cart/shopping-cart.controller';
+import { OrderModule } from './order/order.module';
 
 @Module({
   imports: [ 
@@ -22,7 +23,8 @@ import { ShoppingCartController } from './shopping-cart/shopping-cart.controller
      StoreModule,
      BouquetTypeModule,
      BouquetModule,
-     ShoppingCartModule ],
+     ShoppingCartModule, 
+    OrderModule],
   controllers: [AppController],
   providers: [AppService],
 })

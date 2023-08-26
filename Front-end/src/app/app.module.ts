@@ -64,6 +64,9 @@ import { OrderConfirmationComponent } from './components/order-confirmation/orde
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { StoreOrdersComponent } from './components/store-orders/store-orders.component'; 
+import { orderReducer } from './store/order/order.reducer';
+import { OrderEffects } from './store/order/order.effects';
+import { OrderComponent } from './components/order/order.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +91,7 @@ import { StoreOrdersComponent } from './components/store-orders/store-orders.com
     ShoppingCartItemComponent,
     OrderConfirmationComponent,
     StoreOrdersComponent,
+    OrderComponent,
   ],
   imports: [
     BrowserModule,
@@ -100,6 +104,7 @@ import { StoreOrdersComponent } from './components/store-orders/store-orders.com
       shop: shopReducer,
       bouquet: bouquetReducer,
       shoppingCart: shoppingCartReducer,
+      order: orderReducer,
     }),
     EffectsModule.forRoot([
       UserEffects,
@@ -108,6 +113,7 @@ import { StoreOrdersComponent } from './components/store-orders/store-orders.com
       FloverShopEffects,
       BouquetEffects,
       ShoppingCartEffects,
+      OrderEffects,
     ]),
 
     HttpClientModule,

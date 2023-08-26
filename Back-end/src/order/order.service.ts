@@ -6,6 +6,7 @@ import { User } from 'src/user/models/user.entity';
 import { Bouquet } from 'src/bouquet/models/bouquet.entity';
 import { City } from 'src/city/models/city.entity';
 import { FloverShop } from 'src/store/models/store.entity';
+import { Status } from 'src/enums/status.enum';
 
 @Injectable()
 export class OrderService {
@@ -17,4 +18,9 @@ export class OrderService {
         @InjectRepository(City) private cityReposistory: Repository<City>,
         @InjectRepository(FloverShop) private shopReposistory: Repository<FloverShop>
     ) {}
+
+    public async getFilteredOrders(shopId: number, filter: Status){
+        
+        return await this.orderReposistory.find({where: { shop: {id: shopId }, status: filter}, relations:{bouquet: true, city: true, buyer:true, shop:true } });
+    };
 }

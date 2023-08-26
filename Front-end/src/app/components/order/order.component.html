@@ -1,0 +1,46 @@
+<div class="parent-div">
+    <img class="img" src="../../../assets/common/noImage.png" />
+    <div class="info-div">
+        <mat-label class="title">{{this.order?.bouquet?.title}}</mat-label>
+        <div class="info-parent-div">
+            <div class="order-info">
+                <div class="row-div">
+                    <mat-label class="info-static">Count:</mat-label>
+                    <mat-label class="info">{{this.order?.count}}</mat-label>
+                </div>
+                <div class="row-div">
+                    <mat-label class="info-static">Total price:</mat-label>
+                    <mat-label class="info">{{this.order?.totalPrice}}</mat-label>
+                </div>
+                <div class="row-div">
+                    <mat-label class="info-static">Deliver to:</mat-label>
+                    <mat-label class="info">{{this.order?.address + ", " + this.order?.city?.city}}</mat-label>
+                </div>
+                <div class="row-div">
+                    <mat-label class="info-static">Date to delivery:</mat-label>
+                    <mat-label class="info">{{(order?.dateOfOrder | date:'shortDate')}}</mat-label>
+                </div>
+                <div class="row-div">
+                    <mat-label class="info-static">Date to delivery:</mat-label>
+                    <mat-label class="info">{{(order?.dateToDelivery | date:'shortDate')}}</mat-label>
+                </div>
+            </div>
+            <div class="order-info">
+                <div class="row-div">
+                    <mat-label class="info-static">Message:</mat-label>
+                    <mat-label class="info">{{this.order?.message}}</mat-label>
+                </div>
+                <div class="row-div">
+                    <mat-label class="info-static">Customer:</mat-label>
+                    <mat-label class="info">{{this.order?.buyer?.name + " " + this.order?.buyer?.lastName}}</mat-label>
+                </div>
+                <div class="row-div">
+                    <mat-label class="info-static">Contact:</mat-label>
+                    <mat-label class="info">{{this.order?.buyer?.phone}}</mat-label>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+</div>

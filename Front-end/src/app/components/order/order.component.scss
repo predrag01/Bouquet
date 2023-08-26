@@ -1,0 +1,55 @@
+.parent-div {
+    display: flex;
+    flex-direction: row;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.img {
+    height: 170px;
+    width: auto;
+}
+
+.info-div {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-top: 10px;
+    width: 65%;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.info {
+    font-size: 16px;
+    margin-bottom: 3px;
+}
+
+.info-static {
+    font-size: 16px;
+    font-weight: 500;
+    margin-right: 5px;
+}
+
+.info-parent-div {
+    display: flex;
+    flex-direction: row;
+}
+
+.order-info {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-left: 7px;
+}
+
+.row-div {
+    display: flex;
+    flex-direction: row;
+}
