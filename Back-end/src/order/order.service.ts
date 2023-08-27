@@ -34,4 +34,31 @@ export class OrderService {
 
         return await this.orderReposistory.update(orderId, order);
     };
+
+    public async getOrderForDelivery() {
+        return await this.orderReposistory.find({ where: { status: Status.ReadyToDelivery }, relations:{bouquet: true, city: true, buyer:true, shop:true }});
+    };
+
+    public async getOrdersFilteredByDeliveryGuy(deliveryGuyId: number, status: Status){
+        return await this.orderReposistory.find({where: { deliveryGuy: { id: deliveryGuyId }, status: status}, relations:{bouquet: true, city: true, buyer:true, shop:true }});
+    };
+
+    public async acceptForDelivery(orderId: number, deliveryGuyId: number){
+        const order: Order = await this.orderReposistory.findOne({ where: { id: orderId }});
+
+        if(!order) {
+            throw new BadRequestException('InvalidOrderId');
+        }
+
+        const user: User = await this.userReposistory.findOne({where: { id: deliveryGuyId }});
+
+        if(!user) {
+            throw new BadRequestException('InvalidDeliveryGuy');
+        }
+
+        order.deliveryGuy=user;
+        order.status=Status.AcceptForDelivery;
+
+        return await this.orderReposistory.update(orderId, order);
+    };
 }

@@ -67,6 +67,7 @@ import { StoreOrdersComponent } from './components/store-orders/store-orders.com
 import { orderReducer } from './store/order/order.reducer';
 import { OrderEffects } from './store/order/order.effects';
 import { OrderComponent } from './components/order/order.component';
+import { DeliveryComponent } from './components/delivery/delivery.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +93,7 @@ import { OrderComponent } from './components/order/order.component';
     OrderConfirmationComponent,
     StoreOrdersComponent,
     OrderComponent,
+    DeliveryComponent,
   ],
   imports: [
     BrowserModule,

@@ -43,15 +43,18 @@ export class StoreOrdersComponent implements OnInit{
       this.store.dispatch(loadFilteredOrders({ shopId: this.shopId, filter: Status.Accepted }));
     }else if(filter === "readyToDelivery"){
       this.subtitle="Ready to delivery";
-      this.store.dispatch(loadFilteredOrders({ shopId: this.shopId, filter: Status.ReadyToDeliver }));
+      this.store.dispatch(loadFilteredOrders({ shopId: this.shopId, filter: Status.ReadyToDelivery }));
     }else {
       this.subtitle="Delivered";
       this.store.dispatch(loadFilteredOrders({ shopId: this.shopId, filter: Status.Delivered }));
     }
   };
 
-  accept(orderId: number){
-    console.log(orderId)
-    this.store.dispatch(changeStatusToOrder({ orderId: orderId, status: Status.Accepted}));
+  changeStatus(orderId: number){
+    if(this.button === "Accept"){
+      this.store.dispatch(changeStatusToOrder({ orderId: orderId, status: Status.Accepted}));
+    }else if(this.button === "Ready to delivery"){
+      this.store.dispatch(changeStatusToOrder({ orderId: orderId, status: Status.ReadyToDelivery}));
+    }
   };
 }

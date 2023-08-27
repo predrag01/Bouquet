@@ -22,22 +22,31 @@ export const changeStatusToOrderSuccess = createAction(
     props<{order: Order}>()
 );
 
-// export const loadReadyToDeliveryOrders = createAction(
-//     'Change status to order orders',
-//     props<{shopId: number}>()
-// );
+export const loadOrdersReadyToDelivery = createAction(
+    'Load orders ready to delivery'
+);
 
-// export const loadReadyToDeliveryOrdersSuccess = createAction(
-//     'Load ready to delivery orders success',
-//     props<{orders: Order[]}>()
-// );
+export const loadOrdersReadyToDeliverySuccess = createAction(
+    'Load orders ready to delivery success',
+    props<{orders: Order[]}>()
+);
 
-// export const loadDeliveredOrders = createAction(
-//     'Load delivered orders',
-//     props<{shopId: number}>()
-// );
+export const loadOrdersFilteredByDeliveryGug = createAction(
+    'Load orders filtered by delivery guy',
+    props<{deliveryGuyId: number, status: Status}>()
+);
 
-// export const loadDeliveredOrdersSuccess = createAction(
-//     'Load delivered orders success',
-//     props<{orders: Order[]}>()
-// );
+export const loadOrdersFilteredByDeliveryGugSuccess = createAction(
+    'Load orders filtered by delivery guy success',
+    props<{orders: Order[]}>()
+);
+
+export const acceptForDelivery = createAction(
+    'Change status on order to accept for delivery',
+    props<{orderId: number, deliveryGuyId: number}>()
+);
+
+export const acceptForDeliverySuccess = createAction(
+    'Change status on order to accept for delivery orders',
+    props<{order: Order}>()
+);

@@ -3,7 +3,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { OrderService } from "src/app/services/order.service";
 import * as OrderActions from './order.actions'
-import { catchError, map, mergeMap, of } from "rxjs";
+import { catchError, map, merge, mergeMap, of } from "rxjs";
 import { Order } from "src/app/models/order";
 
 @Injectable()
@@ -35,5 +35,44 @@ export class OrderEffects {
                 return  of({type: 'Load error'});
             })
         ))
-    ))
+    ));
+
+    loadOrderForDelivery$ = createEffect(() =>
+    this.actions$.pipe(
+        ofType(OrderActions.loadOrdersReadyToDelivery),
+        mergeMap(() => this.orderService.getOrdersForDelivery().pipe(
+            map((orders: Order[]) => OrderActions.loadOrdersReadyToDeliverySuccess({ orders }))
+        )),
+        catchError( ({error}) => {
+            this.snackbar.open(error, 'Close', { duration: 3000});
+            return  of({type: 'Load error'});
+        })
+    ));
+
+    loadOrderFilteredByDeliveryGuy$ = createEffect(() =>
+    this.actions$.pipe(
+        ofType(OrderActions.loadOrdersFilteredByDeliveryGug),
+        mergeMap(({ deliveryGuyId, status }) => this.orderService.getOrdersByDeliveryGuy(deliveryGuyId, status).pipe(
+            map(( orders: Order[]) => OrderActions.loadOrdersFilteredByDeliveryGugSuccess({ orders }))
+        )),
+        catchError( ({error}) => {
+            this.snackbar.open(error, 'Close', { duration: 3000});
+            return  of({type: 'Load error'});
+        })
+    ));
+
+    acceptForDelivery$ = createEffect(() =>
+    this.actions$.pipe(
+        ofType(OrderActions.acceptForDelivery),
+        mergeMap(({ orderId, deliveryGuyId }) => this.orderService.acceptForDelivery(orderId, deliveryGuyId).pipe(
+            map(( order: Order) => {
+               this.snackbar.open("Successfully updated order status", "Ok", { duration: 3000});
+                return OrderActions.acceptForDeliverySuccess({ order: order });
+            }),
+            catchError( ({error}) => {
+                this.snackbar.open(error, 'Close', { duration: 3000});
+                return  of({type: 'Load error'});
+            })
+        ))
+    ));
 }

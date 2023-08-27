@@ -1,5 +1,7 @@
 export enum Status {
     NotAccepted = "notAccepted",
-    ReadyToDeliver = "readyToDeliver",
+    Accepted = "accepted",
+    ReadyToDelivery = "readyToDelivery",
+    AcceptForDelivery= "acceptForDelivery",
     Delivered = "delivered"
 }

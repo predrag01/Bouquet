@@ -14,7 +14,21 @@ export class OrderController {
 
     @Put('/update-status/:orderId')
     public updateStatus(@Param("orderId", ParseIntPipe) orderId: number, @Body('status') status: Status){
-        console.log(status);
         return this.orderService.updateStatus(orderId, status);
+    };
+
+    @Get()
+    public getOrdersForDelivery(){
+        return this.orderService.getOrderForDelivery();
+    };
+
+    @Get('/get-orders-by-delivery-guy/:deliveryGuyId')
+    public getOrdersByDeliveryGuy(@Param("deliveryGuyId", ParseIntPipe) deliveryGuyId: number, @Query('status') status: string){
+        return this.orderService.getOrdersFilteredByDeliveryGuy(deliveryGuyId, status as Status)
+    };
+
+    @Put('/accept-for-delivery/:orderId')
+    public acceptForDelivery(@Param("orderId", ParseIntPipe) orderId: number, @Body('deliveryGuyId') deliveryGuyId: number){
+        return this.orderService.acceptForDelivery(orderId, deliveryGuyId);
     };
 }
