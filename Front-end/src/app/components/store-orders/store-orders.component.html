@@ -14,7 +14,10 @@
             <mat-divider></mat-divider>
         </mat-card-header>
         <mat-card-content class="content" *ngFor="let order of orders$ | async">
-            <app-order [order]="order"></app-order>
+            <div class="content-row">
+                <app-order [order]="order"></app-order>
+                <button mat-raised-button color="accent" (click)="accept(order.id)" *ngIf="this.subtitle === 'Not accepted' || this.subtitle === 'Accepted'">{{this.button}}</button> 
+            </div>
         </mat-card-content>
     </mat-card>
 </div>

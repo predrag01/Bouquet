@@ -20,5 +20,20 @@ export class OrderEffects {
                 return  of({type: 'Load error'});
             })
         ))
+    ));
+
+    changeStatus$ = createEffect(() =>
+    this.actions$.pipe(
+        ofType(OrderActions.changeStatusToOrder),
+        mergeMap(({ orderId, status }) => this.orderService.updateStatus(orderId, status).pipe(
+            map(( order: Order) => {
+               this.snackbar.open("Successfully updated order status", "Ok", { duration: 3000});
+                return OrderActions.changeStatusToOrderSuccess({ order: order });
+            }),
+            catchError( ({error}) => {
+                this.snackbar.open(error, 'Close', { duration: 3000});
+                return  of({type: 'Load error'});
+            })
+        ))
     ))
 }

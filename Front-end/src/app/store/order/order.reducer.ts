@@ -14,5 +14,6 @@ export const orderReducer = createReducer(
     on(OrderActions.loadFilteredOrdersSuccess, (state, { orders }) => {
         const newState = adapter.removeAll(state);
         return adapter.addMany(orders, newState)}),
+    on(OrderActions.changeStatusToOrderSuccess, (status, { order }) => adapter.removeOne(order.id, status)),
     
 )

@@ -14,4 +14,9 @@ export class OrderService {
   getFilteredOrders(shopId: number, filter: Status) {
     return this.httpClient.get<Order[]>(environment.api + "/order/" + shopId, { params: { filter: filter.toString() } });
   };
+
+  updateStatus(orderId: number, status: Status) {
+    console.log(status);
+    return this.httpClient.put<Order>(environment.api + "/order/update-status/" + orderId, { status: status });
+  };
 }

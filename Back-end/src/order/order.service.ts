@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Order } from './models/order.enity';
@@ -20,7 +20,18 @@ export class OrderService {
     ) {}
 
     public async getFilteredOrders(shopId: number, filter: Status){
-        
         return await this.orderReposistory.find({where: { shop: {id: shopId }, status: filter}, relations:{bouquet: true, city: true, buyer:true, shop:true } });
+    };
+
+    public async updateStatus(orderId: number, status: Status) {
+        const order: Order = await this.orderReposistory.findOne({ where: { id: orderId }});
+
+        if(!order) {
+            throw new BadRequestException('InvalidOrderId');
+        }
+
+        order.status=status;
+
+        return await this.orderReposistory.update(orderId, order);
     };
 }

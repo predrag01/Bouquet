@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { AppState } from 'src/app/app.state';
 import { Status } from 'src/app/enums/status';
 import { Order } from 'src/app/models/order';
-import { loadFilteredOrders } from 'src/app/store/order/order.actions';
+import { changeStatusToOrder, loadFilteredOrders } from 'src/app/store/order/order.actions';
 import { loadOrders } from 'src/app/store/order/order.selector';
 
 @Component({
@@ -17,12 +17,14 @@ export class StoreOrdersComponent implements OnInit{
 
   shopId!: number;
   subtitle!: string;
+  button!: string;
   orders$: Observable<Order[]> = of([]);
 
   constructor(private store: Store<AppState>, private route: ActivatedRoute){}
 
   ngOnInit(): void {
     this.subtitle="Not accepted";
+    this.button= "Accept";
     this.route.params.subscribe((params) => {
       this.shopId=params['id'];
       this.store.dispatch(loadFilteredOrders({ shopId: this.shopId, filter: Status.NotAccepted }));
@@ -30,32 +32,14 @@ export class StoreOrdersComponent implements OnInit{
     });
   };
 
-  clicked(filter: string) {
-    this.subtitle=filter;
-  };
-
-  notAccepted(){
-    this.clicked("Not accepted");
-  };
-
-  Accepted(){
-    this.clicked("Accepted");
-  };
-
-  readyToDelivery(){
-    this.clicked("Ready to delivery");
-  };
-
-  Delivered(){
-    this.clicked("Delivered");
-  };
-
   filter(filter: string) {
     if(filter === "notAccepted"){
       this.subtitle="Not accepted";
+      this.button= "Accept";
       this.store.dispatch(loadFilteredOrders({ shopId: this.shopId, filter: Status.NotAccepted }));
     }else if(filter === "accepted"){
       this.subtitle="Accepted";
+      this.button= "Ready to delivery";
       this.store.dispatch(loadFilteredOrders({ shopId: this.shopId, filter: Status.Accepted }));
     }else if(filter === "readyToDelivery"){
       this.subtitle="Ready to delivery";
@@ -64,5 +48,10 @@ export class StoreOrdersComponent implements OnInit{
       this.subtitle="Delivered";
       this.store.dispatch(loadFilteredOrders({ shopId: this.shopId, filter: Status.Delivered }));
     }
-  }
+  };
+
+  accept(orderId: number){
+    console.log(orderId)
+    this.store.dispatch(changeStatusToOrder({ orderId: orderId, status: Status.Accepted}));
+  };
 }
