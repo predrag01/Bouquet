@@ -2,18 +2,19 @@
     <mat-card class="example-card mat-elevation-z10 card">
         <mat-card-header class="header">
             <div class="title-buttons">
-                <mat-card-title class="title">Store orders</mat-card-title>
-                <div>
+                <mat-card-title class="title">Orders</mat-card-title>
+                <button class="button" mat-raised-button color="blue" (click)="registerAs()" *ngIf="!this.show">Register as delivery guy</button>
+                <div *ngIf="this.show">
                     <button class="button" mat-raised-button color="blue" (click)="filter('readyToDelivery')">Ready to delivery</button>
                     <button class="button" mat-raised-button color="blue" (click)="filter('acceptForDelivery')">Accepted</button>
                     <button class="button" mat-raised-button color="blue" (click)="filter('delivered')">Delivered</button>
                 </div>
             </div>
-            <mat-label class="subtitle">{{this.subtitle}}</mat-label>
+            <mat-label class="subtitle" *ngIf="this.show">{{this.subtitle}}</mat-label>
             <mat-divider></mat-divider>
         </mat-card-header>
         <mat-card-content class="content" *ngFor="let order of orders$ | async">
-            <div class="content-row">
+            <div class="content-row" *ngIf="this.show">
                 <app-order [order]="order"></app-order>
                 <button mat-raised-button color="accent" (click)="changeStatus(order.id)" *ngIf="this.subtitle === 'Ready to delivery' || this.subtitle === 'Accepted orders'">{{this.button}}</button> 
             </div>

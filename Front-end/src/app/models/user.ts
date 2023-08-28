@@ -12,6 +12,8 @@ export interface User{
     address: string;
     role: Roles;
     city: City;
+    JMBG: string;
+    vehicle: string;
 };
 
 export interface RegisterUser{

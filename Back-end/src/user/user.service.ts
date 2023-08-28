@@ -39,7 +39,6 @@ export class UserService {
 
 
     public async findOne(email: string) : Promise<User | undefined> {
-        // return this.userRepository.findOneBy({ email: email});
         return this.userRepository.findOne({where: { email: email}, relations: {city: true} });
     }
 

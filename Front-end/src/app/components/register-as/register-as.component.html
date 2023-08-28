@@ -1,0 +1,24 @@
+<div class="content">
+    <mat-card class="example-card mat-elevation-z10 card">
+        <mat-card-header>
+            <mat-card-title class="title">Register as delivery guy</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form class="form">
+                <mat-form-field appearance="outline">
+                    <mat-label>JMBG</mat-label>
+                    <input type="text" name="jmbg" matInput required [formControl]="jmbg"/>
+                    <mat-error>Fill name!</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Veihcle for delivery</mat-label>
+                    <input type="text" name="veihcleForDelivery" matInput required [formControl]="veihcleForDelivery"/>
+                    <mat-error>Fill last name!</mat-error>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+        <mat-card-footer class="footer">
+            <button class="button" mat-raised-button color="primary" (click)="register()">Register</button>
+        </mat-card-footer>
+    </mat-card>
+</div>

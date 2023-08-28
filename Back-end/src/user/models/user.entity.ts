@@ -32,7 +32,7 @@ export class User{
     address: string;
 
     @Column({ type: 'text', nullable: false, default: Role.User })
-    public role: Role;
+    role: Role;
 
     @ManyToOne(() => City, (city: City) => city.users, { onDelete: 'SET NULL'})
     city: City;
