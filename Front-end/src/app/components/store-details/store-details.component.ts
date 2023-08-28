@@ -99,4 +99,16 @@ export class StoreDetailsComponent implements OnInit {
       });
     }
   };
+
+  sortBouquets(sortType: 'lowToHigh' | 'highToLow') {
+    this.bouquets$.subscribe(bouquets => {
+        const sortedBouquets = [...bouquets];
+        if (sortType === 'lowToHigh') {
+            sortedBouquets.sort((a, b) => a.price - b.price);
+        } else if (sortType === 'highToLow') {
+            sortedBouquets.sort((a, b) => b.price - a.price);
+        }
+        this.bouquets$ = of(sortedBouquets);
+    });
+}
 }

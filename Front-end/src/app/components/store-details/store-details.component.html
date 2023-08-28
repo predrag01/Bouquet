@@ -39,12 +39,19 @@
                         <button mat-raised-button color="primary" (click)="navigate('store-orders/' + this.shopId)">Orders</button>
                     </div>
                 </div>
-                <div class="filters">
+                <div>
                     <mat-form-field appearance="outline"> 
                         <mat-label>Bouquet type</mat-label>
                         <mat-select (selectionChange)="onTypeSelectionChange($event)">
                             <mat-option [value]="'all'">All</mat-option>
                             <mat-option *ngFor="let type of this.types$ | async" [value]="type">{{type.type}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="sort">
+                        <mat-label>Sort by Price</mat-label>
+                        <mat-select (selectionChange)="sortBouquets($event.value)">
+                            <mat-option [value]="'lowToHigh'">Low to High</mat-option>
+                            <mat-option [value]="'highToLow'">High to Low</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
