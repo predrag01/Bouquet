@@ -17,7 +17,7 @@
                     </mat-form-field>
                     <mat-form-field appearance="outline"> 
                         <mat-label>Bouquet type</mat-label>
-                        <mat-select (selectionChange)="onCitySelectionChange($event)">
+                        <mat-select (selectionChange)="onTypeSelectionChange($event)">
                         <mat-option *ngFor="let type of this.types$ | async" [value]="type">{{type.type}}</mat-option>
                         </mat-select>
                         <mat-error>Choose bouquet type!</mat-error>

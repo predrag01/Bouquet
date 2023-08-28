@@ -14,6 +14,9 @@ import { deleteBouquet, loadBouquetListByStoreId, selectBouquet } from 'src/app/
 import { EditBouquetComponent } from '../edit-bouquet/edit-bouquet.component';
 import { ShoppingCart, ShoppingCartDto } from 'src/app/models/shopping-cart';
 import { addToCart } from 'src/app/store/shopping-cart/shopping-cart.actions';
+import { BouquetType } from 'src/app/models/bouquet-type';
+import { loadTypes } from 'src/app/store/bouquet-type/bouquet-type.actions';
+import { loadTypeList } from 'src/app/store/bouquet-type/bouquet-type.selector';
 
 @Component({
   selector: 'app-store-details',
@@ -26,7 +29,8 @@ export class StoreDetailsComponent implements OnInit {
   shop: FloverShop | null =null;
   email=new FormControl('', [Validators.required]);
   bouquets$: Observable<Bouquet[]>= of([]);
-
+  types$: Observable<BouquetType[]> = of([]);
+  selectedType: BouquetType | null=null;
 
   constructor(private route: ActivatedRoute, private router: Router, private store: Store<AppState>, private dialog: MatDialog) {}
   
@@ -35,9 +39,15 @@ export class StoreDetailsComponent implements OnInit {
       this.shopId=params['id'];
       this.store.dispatch(loadBouquetListByStoreId({ shopId: this.shopId }))
     });
+
     this.store.dispatch(loadOneStore({ id: this.shopId }));
+
     this.store.subscribe((state) => this.shop=state.shop.oneShop);
+    
     this.bouquets$= this.store.select(loadBouquetList);
+
+    this.store.dispatch(loadTypes());
+    this.types$=this.store.select(loadTypeList);
   };
 
   addEmployee() {
@@ -70,9 +80,23 @@ export class StoreDetailsComponent implements OnInit {
 
   order(cart: ShoppingCartDto) {
     this.store.dispatch(addToCart({ order: cart }));
-  }
+  };
  
   navigate(path: string) {
     this.router.navigate([ path ]);
-  }
+  };
+
+  onTypeSelectionChange(event: any) {
+    if (event.value === 'all') {
+      this.selectedType = null;
+      this.store.select(loadBouquetList).subscribe(bouquets => {
+        this.bouquets$ = of(bouquets);
+      });
+    } else {
+      this.selectedType = event.value;
+      this.store.select(loadBouquetList).subscribe(bouquets => {
+        this.bouquets$ = of(bouquets.filter(bouquet => bouquet.bouquetType.id === this.selectedType?.id));
+      });
+    }
+  };
 }

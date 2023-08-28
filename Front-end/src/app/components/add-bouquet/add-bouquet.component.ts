@@ -43,7 +43,7 @@ export class AddBouquetComponent implements OnInit{
     this.dialog.close();
   };
 
-  onCitySelectionChange(event: any) {
+  onTypeSelectionChange(event: any) {
     this.selectedType= event.value;
   };
 
