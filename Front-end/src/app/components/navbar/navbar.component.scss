@@ -18,6 +18,7 @@
     position: sticky;
     top: 0px;
     z-index: 1000;
+    // background-color: rgba(236, 32, 32, 0.822);
 }
 
 .login-register {
@@ -44,6 +45,6 @@
 .shoppingCart {
     display: flex;
     align-items: center;
-    margin-left: 10px;
+    margin-right: 20px;
     cursor: pointer;
 }

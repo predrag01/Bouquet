@@ -1,5 +1,6 @@
 import { Roles } from "../enums/role";
 import { City } from "./city";
+import { FloverShop } from "./store";
 
 export interface User{
     id: number;
@@ -14,6 +15,7 @@ export interface User{
     city: City;
     JMBG: string;
     vehicle: string;
+    employeed: FloverShop;
 };
 
 export interface RegisterUser{

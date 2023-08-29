@@ -1,1 +1,12 @@
-<p>home works!</p>
+<div class="parent">
+    <div>
+        <!-- <div class="home-image">
+            <img class="home" src="../../../assets/common/home1.jpg" />
+        </div> -->
+    </div>
+    <div class="stores">
+        <div class="store-item" *ngFor="let store of this.stores$ | async">
+            <app-home-item [floverShop]="store" (onClick)="floverShopDetails($event)"></app-home-item>
+        </div>
+    </div>
+</div>

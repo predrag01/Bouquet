@@ -26,4 +26,5 @@ export const shopReducer = createReducer(
     on(Actions.loadOneStoreSuccess, (state, { shop })=> ({...state, oneShop: shop})),
     on(Actions.addEmployeeSuccess, (state , { shop }) => ({...state, oneShop: shop})),
     on(Actions.removeEmployeeSuccess, (state , { shop }) => ({...state, oneShop: shop})),
+    on(Actions.loadFloverShopForHomeSuccess, (state, { floverStores }) => adapter.addMany(floverStores, state)),
 );

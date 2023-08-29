@@ -1,4 +1,5 @@
 import { createAction, props } from "@ngrx/store";
+import { City } from "src/app/models/city";
 import { FloverShop, FloverShopDto } from "src/app/models/store";
 
 export const createShop = createAction(
@@ -77,4 +78,14 @@ export const removeEmployee = createAction(
 export const removeEmployeeSuccess = createAction(
     'Add employee success',
     props<{shop: FloverShop}>()
+);
+
+export const loadFloverShopForHome = createAction(
+    'Load flover shop for home page',
+    props<{cityId: number}>()
+);
+
+export const loadFloverShopForHomeSuccess = createAction(
+    'Load flover shop for home page success',
+    props<{floverStores: FloverShop[]}>()
 );

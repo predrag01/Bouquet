@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { FloverShop, FloverShopDto } from '../models/store';
+import { City } from '../models/city';
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +39,9 @@ export class FloverShopService {
   removeEmployee(userId: number, shopId: number) {
     const data = { userId: userId };
     return this.httpClient.put<FloverShop>(environment.api + "/store/removeEmployee/" + shopId, data);
+  };
+
+  loadFloverStoresForHome(cityId: number){
+    return this.httpClient.get<FloverShop[]>(environment.api + "/store/home/" + cityId);
   };
 }

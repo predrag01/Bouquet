@@ -24,7 +24,6 @@ export class OrderService {
   };
 
   getOrdersByDeliveryGuy(deliveryGuyId: number, status: Status){
-    console.log(deliveryGuyId + " " + status)
     return this.httpClient.get<Order[]>(environment.api + "/order/get-orders-by-delivery-guy/" + deliveryGuyId, { params: { status: status.toString() } });
   };
 

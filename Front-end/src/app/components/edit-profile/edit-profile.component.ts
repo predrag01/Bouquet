@@ -27,6 +27,8 @@ export class EditProfileComponent implements OnInit{
   password =new FormControl('', [Validators.required]);
   phone =new FormControl('', [Validators.required]);
   address =new FormControl('', [Validators.required]);
+  jmbg =new FormControl('', [Validators.required]);
+  vehicle =new FormControl('', [Validators.required]);
 
   hidePassword: boolean= true;
 
@@ -44,6 +46,8 @@ export class EditProfileComponent implements OnInit{
         this.phone.setValue(this.user.phone);
         this.address.setValue(this.user.address);
         this.selectedCity=this.user.city;
+        this.jmbg.setValue(this.user.JMBG);
+        this.vehicle.setValue(this.user.vehicle);
       }
     });
     this.store.dispatch(loadCities());
@@ -65,7 +69,9 @@ export class EditProfileComponent implements OnInit{
         (this.email.value !== this.user?.email) ||
         (this.phone.value !== this.user?.phone) ||
         (this.address.value !== this.user?.address) ||
-        (this.selectedCity !== this.user?.city)) {
+        (this.selectedCity !== this.user?.city)||
+        (this.jmbg.value !== this.user?.JMBG)||
+        (this.vehicle.value !== this.user?.vehicle)) {
           const updatedUser = {
             ...this.user,
             username: this.username.value,
@@ -74,7 +80,9 @@ export class EditProfileComponent implements OnInit{
             email: this.email.value,
             phone: this.phone.value,
             address: this.address.value,
-            city: this.selectedCity
+            vehicle: this.vehicle.value,
+            JMBG: this.jmbg.value,
+            city: this.selectedCity,
           };
 
           this.store.dispatch(updateProfile({ user: <User>updatedUser }));

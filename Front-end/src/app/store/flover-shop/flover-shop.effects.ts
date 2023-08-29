@@ -4,6 +4,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { FloverShopService } from "src/app/services/flover-shop.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { catchError, map, mergeMap, of } from "rxjs";
+import { FloverShop } from "src/app/models/store";
 
 @Injectable()
 export class FloverShopEffects {
@@ -108,4 +109,16 @@ export class FloverShopEffects {
             })
         ))
     ));
+
+    loadStoresForHome$ = createEffect(() =>
+    this.actions$.pipe(
+        ofType(ShopActions.loadFloverShopForHome),
+        mergeMap(({ cityId }) => this.shopService.loadFloverStoresForHome(cityId).pipe(
+            map(( floverStores: FloverShop[]) => ShopActions.loadFloverShopForHomeSuccess({ floverStores })),
+            catchError( ({error}) => {
+                this.snackBar.open(error, 'Close', { duration: 3000});
+                return  of({type: 'Load error'});
+            })
+        ))
+    ))
 }

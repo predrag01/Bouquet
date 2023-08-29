@@ -39,7 +39,7 @@ export class UserService {
 
 
     public async findOne(email: string) : Promise<User | undefined> {
-        return this.userRepository.findOne({where: { email: email}, relations: {city: true} });
+        return this.userRepository.findOne({where: { email: email}, relations: {city: true, employeed: true} });
     }
 
     public async findUser(id: number){

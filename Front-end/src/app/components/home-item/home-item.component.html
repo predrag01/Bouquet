@@ -1,0 +1,21 @@
+<mat-card (click)="floverShopEmit()">
+    <mat-card-content class="card-content">
+        <div class="div-img">
+            <img class="img" src="../../../assets/common/noImage.png" />
+        </div>
+        <mat-label class="title">{{this.floverShop?.name}}</mat-label>
+        <mat-label style="margin-left: 5px;">{{this.floverShop?.address + ", " + this.floverShop?.city?.city}}</mat-label>
+        <div>
+            <mat-label class="static-label">{{"Monday - Friday:"}}</mat-label>
+            <mat-label>{{this.floverShop?.monFri}}</mat-label>
+        </div>
+        <div>
+            <mat-label class="static-label">{{"Saturday:"}}</mat-label>
+            <mat-label>{{this.floverShop?.saturday}}</mat-label>
+        </div>
+        <div>
+            <mat-label class="static-label">{{"Sunday:"}}</mat-label>
+            <mat-label>{{this.floverShop?.sunday}}</mat-label>
+        </div>
+    </mat-card-content>
+</mat-card>

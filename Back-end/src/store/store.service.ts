@@ -35,7 +35,7 @@ export class StoreService {
     };
 
     public async getMyStores(id: number) {
-        return await this.shopReposistory.find({where: { owner: {id: id}}, relations: {city: true}});
+        return await this.shopReposistory.find({where: { owner: {id: id}}, relations: {city: true, owner: true}});
     };
 
     public async deleteStore(id: number) {
@@ -86,4 +86,7 @@ export class StoreService {
        return await this.shopReposistory.findOne({where: {id: shopId}, relations: {employees: true, city: true, bouquets: true, owner:true}});
     };
 
+    public async loadStoresForHome(cityId: number){
+        return await this.shopReposistory.find({where: { city: { id: cityId }}, relations: { city: true}});
+    };
 }

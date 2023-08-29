@@ -69,6 +69,7 @@ import { OrderEffects } from './store/order/order.effects';
 import { OrderComponent } from './components/order/order.component';
 import { DeliveryComponent } from './components/delivery/delivery.component';
 import { RegisterAsComponent } from './components/register-as/register-as.component';
+import { HomeItemComponent } from './components/home-item/home-item.component';
 
 @NgModule({
   declarations: [
@@ -96,6 +97,7 @@ import { RegisterAsComponent } from './components/register-as/register-as.compon
     OrderComponent,
     DeliveryComponent,
     RegisterAsComponent,
+    HomeItemComponent,
   ],
   imports: [
     BrowserModule,

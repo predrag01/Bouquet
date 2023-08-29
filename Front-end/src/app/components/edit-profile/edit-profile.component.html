@@ -38,17 +38,17 @@
                         </button>
                         <mat-error>Fill password!</mat-error>
                     </mat-form-field> -->
-                </div>
-                <div class="div">
                     <mat-form-field appearance="outline">
                         <mat-label>Phone</mat-label>
                         <input type="text" name="phone" matInput required [formControl]="phone"/>
                         <mat-error>Fill phone!</mat-error>
                     </mat-form-field>
+                </div>
+                <div class="div">
                     <mat-form-field appearance="outline"> 
                         <mat-label *ngIf="this.selectedCity">{{this.selectedCity.city}}</mat-label>
                         <mat-select (selectionChange)="onCitySelectionChange($event)">
-                          <mat-option *ngFor="let city of cities$ |async" [value]="city">{{city.city}}</mat-option>
+                            <mat-option *ngFor="let city of cities$ |async" [value]="city">{{city.city}}</mat-option>
                         </mat-select>
                         <mat-error>Choose city!</mat-error>
                     </mat-form-field>
@@ -56,6 +56,14 @@
                         <mat-label>Address</mat-label>
                         <input type="text" name="Address" matInput required [formControl]="address"/>
                         <mat-error>Fill address!</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>JMBG</mat-label>
+                        <input type="text" name="jmbg" matInput [formControl]="jmbg"/>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Vehicle for delivery</mat-label>
+                        <input type="text" name="vehicle" matInput [formControl]="vehicle"/>
                     </mat-form-field>
                 </div>
             </form>

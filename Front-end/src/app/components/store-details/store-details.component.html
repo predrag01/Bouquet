@@ -14,7 +14,7 @@
                         <mat-label class="details">{{"Sunday:  " + this.shop?.sunday}}</mat-label>
                     </div>
                 </div>
-                <div class="employee-div">
+                <div class="employee-div" *ngIf="this.employer">
                     <mat-card-title style="margin-left: 10px;">Add employee</mat-card-title>
                     <div class="search">
                         <mat-form-field appearance="outline">
@@ -34,7 +34,7 @@
             <div class="bouquet-offer">
                 <div class="title-buttons">
                     <mat-card-title style="font-size: 22px;">Bouquet offer</mat-card-title>
-                    <div> 
+                    <div *ngIf="this.employee || this.employer"> 
                         <button style="margin-right: 15px;" mat-raised-button color="accent" (click)="addBouquet()">Add bouquet</button>
                         <button mat-raised-button color="primary" (click)="navigate('store-orders/' + this.shopId)">Orders</button>
                     </div>
@@ -59,7 +59,7 @@
                 <div class="bouquet-list" *ngFor="let bouquet of this.bouquets$ | async">
                     <div class="one-item">
                         <app-bouquet style="width: 84%;" [bouquet]="bouquet" (onClick)="order($event)"></app-bouquet>
-                        <div class="button-div">
+                        <div class="button-div" *ngIf="this.employee || this.employer">
                             <span class="button" (click)="edit(bouquet.id)"><mat-icon>edit</mat-icon></span>
                             <span style="cursor: pointer;" (click)="delete(bouquet.id)"><mat-icon>delete</mat-icon></span>
                         </div>

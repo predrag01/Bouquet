@@ -1,0 +1,29 @@
+.card-content {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.div-img {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.img {
+    width: 180px;
+    height: auto;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 3px;
+}
+
+.static-label {
+    font-size: 15px;
+    font-weight: 500;
+    margin-right: 5px;
+    margin-left: 5px;
+}

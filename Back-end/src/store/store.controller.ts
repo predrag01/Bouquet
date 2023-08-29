@@ -42,4 +42,9 @@ export class StoreController {
     public removeEmployee(@Param("id", ParseIntPipe) id: number, @Body("userId") userId: number) {
         return this.storeService.removeEmployee(userId, id);
     };
+
+    @Get('/home/:cityId')
+    public getStoresForHome(@Param("cityId", ParseIntPipe) cityId: number){
+        return this.storeService.loadStoresForHome(cityId);
+    };
 }

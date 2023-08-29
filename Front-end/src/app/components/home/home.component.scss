@@ -1,0 +1,34 @@
+.parent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.stores {
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+    margin-top: 40px;
+    margin-bottom: 140px;
+}
+
+.store-item {
+    margin-left: 30px;
+}
+
+.home-image {
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+    position: relative;
+}
+
+.home {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+}

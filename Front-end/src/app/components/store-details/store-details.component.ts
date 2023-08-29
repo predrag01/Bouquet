@@ -17,6 +17,8 @@ import { addToCart } from 'src/app/store/shopping-cart/shopping-cart.actions';
 import { BouquetType } from 'src/app/models/bouquet-type';
 import { loadTypes } from 'src/app/store/bouquet-type/bouquet-type.actions';
 import { loadTypeList } from 'src/app/store/bouquet-type/bouquet-type.selector';
+import { User } from 'src/app/models/user';
+import { Roles } from 'src/app/enums/role';
 
 @Component({
   selector: 'app-store-details',
@@ -31,6 +33,9 @@ export class StoreDetailsComponent implements OnInit {
   bouquets$: Observable<Bouquet[]>= of([]);
   types$: Observable<BouquetType[]> = of([]);
   selectedType: BouquetType | null=null;
+  employer: Boolean = false;
+  employee: Boolean = false;
+  user: User | null =null;
 
   constructor(private route: ActivatedRoute, private router: Router, private store: Store<AppState>, private dialog: MatDialog) {}
   
@@ -38,11 +43,23 @@ export class StoreDetailsComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.shopId=params['id'];
       this.store.dispatch(loadBouquetListByStoreId({ shopId: this.shopId }))
+      
+      this.store.dispatch(loadOneStore({ id: this.shopId }));
+    });
+    
+    this.store.subscribe((state) => {
+      this.shop=state.shop.oneShop;
+      this.user = state.user.user;
+      console.log("shop " + this.user?.employeed?.id)
+      console.log("shop " + this.shop?.id)
+      if(this.user?.role === Roles.Employer && this.user.id === this.shop?.owner.id)
+      {
+          this.employer=true;
+      }else if( this.user?.employeed.id === this.shop?.id){
+        this.employee=true;
+      }
     });
 
-    this.store.dispatch(loadOneStore({ id: this.shopId }));
-
-    this.store.subscribe((state) => this.shop=state.shop.oneShop);
     
     this.bouquets$= this.store.select(loadBouquetList);
 
