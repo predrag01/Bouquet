@@ -6,9 +6,9 @@
     <mat-card-content>
         <form class="form">
             <mat-form-field appearance="outline">
-                <mat-label>City</mat-label>
-                <input type="text" name="cityName" matInput required [formControl]="typeName"/>
-                <mat-error>Fill address!</mat-error>
+                <mat-label>Bouquet type</mat-label>
+                <input type="text" name="bouquetType" matInput required [formControl]="bouquetType"/>
+                <mat-error>Fill bouquet type!</mat-error>
             </mat-form-field>
             <button mat-raised-button color="primary" (click)="add()" class="button">{{this.type ? "Update" : "Add"}}</button>
         </form>

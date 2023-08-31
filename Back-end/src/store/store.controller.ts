@@ -1,29 +1,40 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Request } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Request, UseGuards } from '@nestjs/common';
 import { StoreService } from './store.service';
 import { FloverShopDto } from './models/store.dto';
 import { FloverShop } from './models/store.entity';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { RolesGuard } from 'src/auth/roles.guard';
+import { Roles } from 'src/auth/roles.decorator';
+import { Role } from 'src/enums/role.enum';
 
 @Controller('store')
 export class StoreController {
 
     constructor(private storeService: StoreService) {}
 
+    @UseGuards(JwtAuthGuard)
     @Post()
     public create(@Body() shop: FloverShopDto) {
         return this.storeService.create(shop);
     };
 
+    @UseGuards(JwtAuthGuard, RolesGuard)
     @Get(':id')
+    @Roles(Role.Admin, Role.Employer)
     public getMyStores(@Param("id", ParseIntPipe) id: number) {
         return this.storeService.getMyStores(id);
     };
 
+    @UseGuards(JwtAuthGuard, RolesGuard)
     @Delete(':id')
+    @Roles(Role.Admin, Role.Employer)
     public deleteStore(@Param("id", ParseIntPipe) id: number) {
         return this.storeService.deleteStore(id);
     };
 
+    @UseGuards(JwtAuthGuard, RolesGuard)
     @Put()
+    @Roles(Role.Admin, Role.Employer)
     public update(@Body() shop: FloverShop) {
         return this.storeService.updateStore(shop);
     };
@@ -33,12 +44,16 @@ export class StoreController {
         return this.storeService.getStore(id);
     };
 
+    @UseGuards(JwtAuthGuard, RolesGuard)
     @Put('/addEmployee/:id')
+    @Roles(Role.Admin, Role.Employer)
     public addEmployee(@Param("id", ParseIntPipe) id: number, @Body("email") email: string) {
         return this.storeService.addEmployee(email, id);
     };
 
+    @UseGuards(JwtAuthGuard, RolesGuard)
     @Put('/removeEmployee/:id')
+    @Roles(Role.Admin, Role.Employer)
     public removeEmployee(@Param("id", ParseIntPipe) id: number, @Body("userId") userId: number) {
         return this.storeService.removeEmployee(userId, id);
     };

@@ -4,6 +4,7 @@ import { AuthService } from 'src/auth/auth.service';
 import { UserDto } from './models/user.dto';
 import { LocalAuthGuard } from 'src/auth/local-auth.guard';
 import { User } from './models/user.entity';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('user')
 export class UserController {
@@ -25,6 +26,7 @@ export class UserController {
         return await this.userService.findUser(id);
     };
 
+    @UseGuards(JwtAuthGuard)
     @Put()
     public updateUser(@Body() user: User) {
         return this.userService.updateUser(user);

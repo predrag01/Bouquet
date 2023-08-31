@@ -14,7 +14,7 @@ import { selectType } from 'src/app/store/bouquet-type/bouquet-type.selector';
 })
 export class AddBouquetTypeComponent implements OnInit {
 
-  typeName = new FormControl('', [Validators.required]);
+  bouquetType = new FormControl('', [Validators.required]);
   type : BouquetType | null= null;
   
   constructor(private dialog: MatDialogRef<AddBouquetTypeComponent>, private store: Store<AppState>) {}
@@ -23,7 +23,7 @@ export class AddBouquetTypeComponent implements OnInit {
     this.store.select(selectType).subscribe((type) => {
       if(type) {
         this.type=type;
-        this.typeName.setValue(this.type.type);
+        this.bouquetType.setValue(this.type.type);
       }
     });
   };
@@ -35,16 +35,16 @@ export class AddBouquetTypeComponent implements OnInit {
 
   add() {
     if(this.type !== null) {
-      if(this.typeName && this.typeName.value?.length) {
+      if(this.bouquetType && this.bouquetType.value?.length) {
         const updatedtype: BouquetType = {
           id: this.type.id,
-          type: this.typeName.value,
+          type: this.bouquetType.value,
         };
         this.store.dispatch(updateType({ bouquetType: updatedtype }));
       }
     } else {
-      if(this.typeName && this.typeName.value?.length) {
-        this.store.dispatch(addtype({ bouquetType: this.typeName.value }));
+      if(this.bouquetType && this.bouquetType.value?.length) {
+        this.store.dispatch(addtype({ bouquetType: this.bouquetType.value }));
       }
     }
     this.close()
