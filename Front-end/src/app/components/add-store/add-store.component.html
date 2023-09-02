@@ -16,20 +16,26 @@
         </div>
       </form>
     </mat-step>
-    <!-- <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
-      <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>Choose store image</ng-template>
-        <img class="img" mat-card-avatar src="../../../../../assets/common/noImage.png"/>
-        <mat-form-field>
-          <mat-label>Address</mat-label>
-          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                 required>
-        </mat-form-field>
+    <mat-step [editable]="isEditable">
+      <form class="form-div">
+        <ng-template matStepLabel>Store image</ng-template>
+        <div cdkDropList cdkDropListOrientation="horizontal" *ngIf="this.imagePreview">
+          <div class="drag-div" cdkDrag>
+            <button mat-mini-fab value="{{ this.imagePreview }}" color="accent" class="remove-btn" (click)="removeImg(btnRemove.id)">
+              <mat-icon>close</mat-icon>
+            </button>
+            <img #btnRemove [id]="1" [src]="this.imagePreview" class="img-img" />
+          </div>
+        </div>
+        <button mat-stroked-button color="primary" type="button" (click)="fileInput.click()">
+          <span>Add image</span>
+          <input #fileInput type="file" accept="image/*" multiple required (change)="handleSelectedFile($event)" style="display: none"/>
+        </button>
         <div class="nextButton">
           <button mat-button matStepperNext>Next</button>
         </div>
       </form>
-    </mat-step> -->
+    </mat-step>
     <mat-step [stepControl]="storeInfoFormGroup" [editable]="isEditable">
         <form [formGroup]="storeInfoFormGroup" class="form">
           <ng-template matStepLabel>Fill out store informations</ng-template>
@@ -94,6 +100,7 @@
       <mat-card-title class="title">Overview</mat-card-title>
       <h3><strong>{{this.storeNameFormGroup.controls['storeNameCtrl'].value}}</strong></h3>  
       <div class="contentDiv">
+        <img class="img" src="{{this.imagePreview ? this.imagePreview : '../../../assets/common/noImage.png'}}"/>
         <div class="content">
           <mat-label class="contentItem"><mat-icon>address</mat-icon>{{this.storeInfoFormGroup.controls['addresCtrl'].value + ", " + this.selectedCity?.city}}</mat-label>
           <mat-label class="contentItem"><mat-icon>email</mat-icon>{{this.storeInfoFormGroup.controls['emailCtrl'].value}}</mat-label>

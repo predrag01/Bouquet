@@ -2,7 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FloverShop } from './models/store.entity';
 import { Repository } from 'typeorm';
-import { FloverShopDto } from './models/store.dto';
+import { FloverShopDto, FloverShopUpdateDto } from './models/store.dto';
 import { User } from 'src/user/models/user.entity';
 import { City } from 'src/city/models/city.entity';
 import { Bouquet } from 'src/bouquet/models/bouquet.entity';
@@ -16,8 +16,10 @@ export class StoreService {
         @InjectRepository(User) private userReposistory: Repository<User>
     ) {}
 
-    public async create( shopDto: FloverShopDto): Promise<FloverShop> {
+    public async create( shopDto: FloverShopDto, picture: Express.Multer.File): Promise<FloverShop> {
         const shop = this.shopReposistory.create(shopDto);
+
+        shop.picture=picture.filename;
 
         const city: City | null = await this.cityReposistory.findOneBy({ id: shopDto.cityId });
         if(!city) {
@@ -42,14 +44,32 @@ export class StoreService {
         return await this.shopReposistory.delete(id);
     };
 
-    public async updateStore(shop: FloverShop) {
-        const check: FloverShop= await this.shopReposistory.findOne({where: {id: shop.id}});
-
-        if(!check) {
+    public async updateStore(shop: FloverShopUpdateDto, picture: Express.Multer.File) {
+        const updatedShop: FloverShop= await this.shopReposistory.findOne({where: {id: shop.id}});
+        if(!updatedShop) {
             throw new BadRequestException('InvalidFloverShop');
         }
 
-        return await this.shopReposistory.update(shop.id, shop);
+        const city: City= await this.cityReposistory.findOne({where: {id: shop.cityId}});
+        if(!city) {
+            throw new BadRequestException('InvalidCity');
+        }
+        updatedShop.city= city;
+
+        if(picture){
+            updatedShop.picture= picture.filename;
+        }
+
+        updatedShop.name= shop.name;
+        updatedShop.address= shop.address;
+        updatedShop.email= shop.email;
+        updatedShop.phone= shop.phone;
+        updatedShop.pib= shop.pib;
+        updatedShop.monFri= shop.monFri;
+        updatedShop.saturday= shop.saturday;
+        updatedShop.sunday= shop.sunday;
+
+        return await this.shopReposistory.update(shop.id, updatedShop);
     };
 
     public async getStore(id: number): Promise<FloverShop | undefined> {

@@ -39,7 +39,7 @@
                     <mat-label class="order-title">Order</mat-label>
                     <div style="width: 100%;" *ngFor="let order of shoppingCarts$ | async">
                         <div class="order-item">
-                            <img class="img" src="../../../assets/common/noImage.png" />
+                            <img class="img" [src]="order?.bouquet?.image ? imgPath + '/' + order?.bouquet?.image : '../../../assets/common/noImage.png'" />
                             <div class="order-item-info">
                                 <mat-label class="label-static">{{order?.bouquet?.title}}</mat-label>
                                 <mat-label class="label-static">{{order?.count + " x " + order?.bouquet?.price + "€"}}</mat-label>

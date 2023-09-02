@@ -10,13 +10,17 @@ import { StoreModule } from './store/store.module';
 import { BouquetTypeModule } from './bouquet-type/bouquet-type.module';
 import { BouquetModule } from './bouquet/bouquet.module';
 import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
-import { ShoppingCartService } from './shopping-cart/shopping-cart.service';
-import { ShoppingCartController } from './shopping-cart/shopping-cart.controller';
 import { OrderModule } from './order/order.module';
+import { ROOT_PATH } from 'config';
+import { ServeStaticModule } from '@nestjs/serve-static';
 
 @Module({
   imports: [ 
     TypeOrmModule.forRoot(typeOrmConfig),
+    ServeStaticModule.forRoot({
+      rootPath: ROOT_PATH,
+      renderPath: '/'
+    }),
      CityModule,
      AuthModule,
      UserModule,

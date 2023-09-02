@@ -4,7 +4,7 @@ import { FloverShop, FloverShopDto } from "src/app/models/store";
 
 export const createShop = createAction(
     'Create flover shop',
-    props<{formData: FloverShopDto}>()
+    props<{formData: FormData}>()
 );
 export const createShopSuccess = createAction(
     'Create flover shop success',
@@ -42,7 +42,7 @@ export const deselectStore = createAction(
 
 export const updateShop = createAction(
     'Update flover shop',
-    props<{ shop: FloverShop}>()
+    props<{ shop: FormData}>()
 );
 
 export const updateShopSuccess = createAction(

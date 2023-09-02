@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -10,6 +11,7 @@ import { loadCities } from 'src/app/store/city/city.actions';
 import { loadCityList } from 'src/app/store/city/city.selector';
 import { deselectStore, updateShop } from 'src/app/store/flover-shop/flover-shop.actions';
 import { selectStore } from 'src/app/store/flover-shop/flover-shop.selector';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-edit-store',
@@ -23,6 +25,11 @@ export class EditStoreComponent implements OnInit {
   shop: FloverShop | null =null;
   cities$: Observable<City[]>= of([]);
   selectedCity: City | null = null;
+  imgPath: string = environment.api;
+
+  imagePreview: string | null = null;
+  selectedImage: File | null = null;
+  selectedFileName: string | null = null;
 
   name =new FormControl('', [Validators.required]);
   address =new FormControl('', [Validators.required]);
@@ -47,6 +54,11 @@ export class EditStoreComponent implements OnInit {
           this.monFri.setValue(this.shop.monFri);
           this.saturday.setValue(this.shop.saturday);
           this.sunday.setValue(this.shop.sunday);
+          if(this.shop.picture){
+            this.imagePreview= this.shop.picture;
+          }else {
+            this.imagePreview= 'noImage.png';
+          }
         }
       }
     });
@@ -74,26 +86,45 @@ export class EditStoreComponent implements OnInit {
         (this.selectedCity !== this.shop?.city)||
         (this.monFri.value !== this.shop?.monFri) ||
         (this.saturday.value !== this.shop?.saturday) ||
-        (this.sunday.value !== this.shop?.sunday)) {
-          const updatedShop = {
-            ...this.shop,
-            name: this.name.value,
-            city: this.selectedCity,
-            address: this.address.value,
-            email: this.email.value,
-            phone: this.phone.value,
-            pib: this.pib.value,
-            monFri: this.monFri.value,
-            saturday: this.saturday.value,
-            sunday: this.sunday.value
-          };
+        (this.sunday.value !== this.shop?.sunday) ||
+        this.selectedImage) {
+          const formData = new FormData();
 
-          this.store.dispatch(updateShop({ shop: <FloverShop>updatedShop }));
+          formData.append('id', String(this.shop?.id));
+          formData.append('name', this.name.value!);
+          formData.append('cityId', String(this.selectedCity?.id));
+          formData.append('address', this.address.value!);
+          formData.append('email', this.email.value!);
+          formData.append('phone', this.phone.value!);
+          if(this.selectedImage){
+            formData.append('picture', this.selectedImage!);
+          }
+          formData.append('pib', this.pib.value!);
+          formData.append('monFri', this.monFri.value!);
+          formData.append('saturday', this.saturday.value!);
+          formData.append('sunday', this.sunday.value!);
+
+          this.store.dispatch(updateShop({ shop: formData }));
           this.close();
      }
   };
 
   onCitySelectionChange(event: any) {
     this.selectedCity=event.value;
+  };
+
+  handleSelectedFile(event: any) {
+    this.selectedImage = event.target.files[0];
+    this.imagePreview = null;
+
+    if (this.selectedImage) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imagePreview = e.target.result;
+      };
+      reader.readAsDataURL(this.selectedImage);
+    }
+
+    this.selectedFileName= <string>this.selectedImage?.name;
   };
 }

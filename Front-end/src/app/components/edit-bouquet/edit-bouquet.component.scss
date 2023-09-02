@@ -32,9 +32,11 @@
 
 .img {
     width: 150px;
-    height: 150px;
+    height: auto;
     cursor: pointer;
-    margin-right: 40px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
 }
 
 .div {
@@ -49,4 +51,9 @@
     justify-content: end;
     margin-bottom: 8px;
     margin-right: 5px;
+}
+
+.img-div {
+    display: flex;
+    flex-direction: column;
 }

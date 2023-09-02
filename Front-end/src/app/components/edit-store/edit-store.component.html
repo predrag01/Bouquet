@@ -7,7 +7,11 @@
         <mat-card-content>
             <form class="form">
                 <div class="div-img div">
-                    <img class="img" mat-card-avatar src="../../../../../assets/common/noImage.png"/>
+                    <img [src]="this.selectedImage ? this.imagePreview : imgPath + '/' + this.imagePreview" class="img"/>        
+                    <button mat-stroked-button color="primary" type="button" (click)="fileInput.click()" style="margin-bottom: 15px;">
+                        <span>{{this.shop?.picture ? 'Update image' : 'Upload image'}}</span>
+                        <input #fileInput type="file" accept="image/*" multiple required (change)="handleSelectedFile($event)" style="display: none"/>
+                    </button>
                     <mat-form-field appearance="outline">
                         <mat-label>Flover shop name</mat-label>
                         <input type="text" name="name" matInput required [formControl]="name" />

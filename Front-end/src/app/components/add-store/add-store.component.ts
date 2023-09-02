@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -43,6 +44,10 @@ export class AddStoreComponent implements OnInit{
 
   user: User | null = null;
 
+  imagePreview: string | null = null;
+  selectedImage: File | null = null;
+  selectedFileName: string | null = null;
+
   ngOnInit(): void {
     this.store.dispatch(loadCities());
     this.cities$=this.store.select(loadCityList);
@@ -58,21 +63,42 @@ export class AddStoreComponent implements OnInit{
   };
 
   createStore() {
-    const param: FloverShopDto = {
-      name: this.storeNameFormGroup.controls['storeNameCtrl'].value!,
-      address: this.storeInfoFormGroup.controls['addresCtrl'].value!,
-      email: this.storeInfoFormGroup.controls['emailCtrl'].value!,
-      phone: this.storeInfoFormGroup.controls['phoneCtrl'].value!,
-      picture: "",
-      pib: this.storeInfoFormGroup.controls['pibCtrl'].value!,
-      monFri: this.storeWorkingTimeFormGroup.controls['mondFriCtrl'].value!,
-      saturday: this.storeWorkingTimeFormGroup.controls['saturdayCtrl'].value!,
-      sunday: this.storeWorkingTimeFormGroup.controls['saturdayCtrl'].value!,
-      cityId: <number>this.selectedCity?.id,
-      ownerId: <number>this.user?.id
-    };
+    const formData = new FormData();
 
-    this.store.dispatch(createShop({ formData: param }));
+    formData.append('name', this.storeNameFormGroup.controls['storeNameCtrl'].value!);
+    formData.append('address', this.storeInfoFormGroup.controls['addresCtrl'].value!);
+    formData.append('email', this.storeInfoFormGroup.controls['emailCtrl'].value!);
+    formData.append('phone', this.storeInfoFormGroup.controls['phoneCtrl'].value!);
+    formData.append('picture', this.selectedImage!);
+    formData.append('pib', this.storeInfoFormGroup.controls['pibCtrl'].value!);
+    formData.append('monFri', this.storeWorkingTimeFormGroup.controls['mondFriCtrl'].value!);
+    formData.append('saturday', this.storeWorkingTimeFormGroup.controls['saturdayCtrl'].value!);
+    formData.append('sunday', this.storeWorkingTimeFormGroup.controls['saturdayCtrl'].value!);
+    formData.append('cityId', String(this.selectedCity?.id));
+    formData.append('ownerId', String(this.user?.id));
+
+    this.store.dispatch(createShop({ formData: formData }));
     this.close();
   };
+
+  handleSelectedFile(event: any) {
+    this.selectedImage = event.target.files[0];
+    this.imagePreview = null;
+
+    if (this.selectedImage) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imagePreview = e.target.result;
+      };
+      reader.readAsDataURL(this.selectedImage);
+    }
+
+    this.selectedFileName= <string>this.selectedImage?.name;
+  };
+
+  removeImg(value: string) {
+    this.imagePreview= null;
+    this.selectedFileName= null;
+  };
+
 }

@@ -4,7 +4,7 @@ import { BouquetType } from 'src/bouquet-type/models/bouquet-type.entity';
 import { FloverShop } from 'src/store/models/store.entity';
 import { Bouquet } from './models/bouquet.entity';
 import { Repository } from 'typeorm';
-import { BouquetDto } from './models/bouquet.dto';
+import { BouquetDto, BouquetUpdateDto } from './models/bouquet.dto';
 
 @Injectable()
 export class BouquetService {
@@ -12,11 +12,14 @@ export class BouquetService {
     constructor(
         @InjectRepository(FloverShop) private shopReposistory: Repository<FloverShop>,
         @InjectRepository(BouquetType) private typeReposistory: Repository<BouquetType>,
-        @InjectRepository(Bouquet) private bouquetReposistory: Repository<Bouquet>
+        @InjectRepository(Bouquet) private bouquetReposistory: Repository<Bouquet>,
+        @InjectRepository(BouquetType) private bouquettypeReposistory: Repository<BouquetType>
     ) {}
 
-    public async create(bouquetDto: BouquetDto) {
+    public async create(bouquetDto: BouquetDto, image: Express.Multer.File) {
         const bouquet = this.bouquetReposistory.create(bouquetDto);
+
+        bouquet.image= image.filename;
 
         const type: BouquetType | null = await this.typeReposistory.findOne({ where: {id: bouquetDto.typeId}});
         if(!type) {
@@ -41,14 +44,27 @@ export class BouquetService {
         return await this.bouquetReposistory.delete(id);
     };
 
-    public async updateBouquet(bouquet: Bouquet) {
+    public async updateBouquet(bouquet: BouquetUpdateDto, image: Express.Multer.File) {
         const update: Bouquet | null = await this.bouquetReposistory.findOne({ where: {id: bouquet.id}});
-
         if(!update) {
             throw new BadRequestException('InvalidBouquet');
         }
 
-        return await this.bouquetReposistory.update(bouquet.id, bouquet);
+        const type: BouquetType= await this.bouquettypeReposistory.findOne({ where: {id: bouquet.typeId}})
+        if(!type) {
+            throw new BadRequestException('InvalidbouquetType');
+        }
+        update.bouquetType= type;
+
+        update.title= bouquet.title;
+        update.description= bouquet.description;
+        update.price= bouquet.price;
+
+        if(image){
+            update.image= image.filename;
+        }
+
+        return await this.bouquetReposistory.update(bouquet.id, update);
     };
 
     public async getOne(id: number) {

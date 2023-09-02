@@ -19,6 +19,7 @@ import { loadTypes } from 'src/app/store/bouquet-type/bouquet-type.actions';
 import { loadTypeList } from 'src/app/store/bouquet-type/bouquet-type.selector';
 import { User } from 'src/app/models/user';
 import { Roles } from 'src/app/enums/role';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-store-details',
@@ -36,6 +37,8 @@ export class StoreDetailsComponent implements OnInit {
   employer: Boolean = false;
   employee: Boolean = false;
   user: User | null =null;
+  
+  imgPath: string = environment.api;
 
   constructor(private route: ActivatedRoute, private router: Router, private store: Store<AppState>, private dialog: MatDialog) {}
   

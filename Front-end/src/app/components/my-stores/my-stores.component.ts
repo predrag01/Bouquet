@@ -10,6 +10,7 @@ import { FloverShop } from 'src/app/models/store';
 import { Observable, of } from 'rxjs';
 import { EditStoreComponent } from '../edit-store/edit-store.component';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-my-stores',
@@ -22,6 +23,7 @@ export class MyStoresComponent implements OnInit{
 
   user: User | null= null;
   stores$: Observable<FloverShop[]> = of([]);
+  imgPath: string = environment.api;
 
   ngOnInit(): void {
     this.store.subscribe((state) => this.user=state.user.user);

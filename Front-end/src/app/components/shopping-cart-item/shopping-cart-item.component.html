@@ -1,6 +1,6 @@
 <div class="parent-div">
     <div class="img-info-div">
-        <img class="img" src="../../../assets/common/noImage.png" />
+        <img class="img" [src]="this.shoppingCart?.bouquet?.image ? imgPath + '/' + this.shoppingCart?.bouquet?.image : '../../../assets/common/noImage.png'" />
         <div class="info-div">
             <mat-label class="title-info">{{this.shoppingCart?.bouquet?.title}}</mat-label>
             <mat-label class="info">{{"From: " + this.shoppingCart?.shop?.name}}</mat-label>

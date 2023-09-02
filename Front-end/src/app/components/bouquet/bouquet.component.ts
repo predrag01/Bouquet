@@ -6,6 +6,7 @@ import { Bouquet } from 'src/app/models/bouquet';
 import { ShoppingCartDto } from 'src/app/models/shopping-cart';
 import { FloverShop } from 'src/app/models/store';
 import { User } from 'src/app/models/user';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-bouquet',
@@ -20,6 +21,7 @@ export class BouquetComponent implements OnInit{
   number = new FormControl('', [Validators.required]);
   user: User | null = null;
   shop: FloverShop | null = null;
+  imgPath: string = environment.api;
   
   constructor( private store: Store<AppState>) {}
 

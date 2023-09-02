@@ -11,7 +11,7 @@ export class FloverShopService {
 
   constructor(private httpClient: HttpClient) { }
 
-  create(formData: FloverShopDto) {
+  create(formData: FormData) {
     return this.httpClient.post<FloverShop>(environment.api + "/store", formData);
   };
 
@@ -23,8 +23,9 @@ export class FloverShopService {
     return this.httpClient.delete<any>(environment.api + "/store/" + id);
   };
 
-  updateShop(shop: FloverShop) {
-    return this.httpClient.put<FloverShop>(environment.api + "/store", {...shop});
+  updateShop(shop: FormData) {
+    console.log(shop);
+    return this.httpClient.put<FloverShop>(environment.api + "/store", shop);
   };
 
   loadOneShop(id: number) {

@@ -1,5 +1,5 @@
 <div class="parent-div">
-    <img class="img" src="../../../assets/common/noImage.png" />
+    <img class="img" [src]="this.bouquet?.image ? imgPath + '/' + this.bouquet?.image : '../../../assets/common/noImage.png'"/>
     <div class="info-div">
         <div class="title-div">
             <mat-label >{{this.bouquet?.title}}</mat-label>

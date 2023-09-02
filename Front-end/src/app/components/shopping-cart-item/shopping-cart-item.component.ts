@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.state';
 import { ShoppingCart } from 'src/app/models/shopping-cart';
 import { updateCount } from 'src/app/store/shopping-cart/shopping-cart.actions';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-shopping-cart-item',
@@ -12,6 +13,7 @@ import { updateCount } from 'src/app/store/shopping-cart/shopping-cart.actions';
 export class ShoppingCartItemComponent implements OnInit{
 
   @Input() shoppingCart: ShoppingCart | null = null;
+  imgPath: string = environment.api;
   
   constructor(private store: Store<AppState>) {}
 

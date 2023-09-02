@@ -56,7 +56,7 @@ export class BouquetTypeEffects {
     this.actions$.pipe(
         ofType(BouquetActions.updateBouquet),
         mergeMap(({ bouquet }) => this.bouquetService.updateBouquet(bouquet).pipe(
-            map(() => {
+            map((bouquet: Bouquet) => {
                 this.snackbar.open("Successfuly updated bouquet", 'Ok', { duration: 3000})
                 return BouquetActions.updateBouquetSuccess({ bouquet: bouquet });
             }),

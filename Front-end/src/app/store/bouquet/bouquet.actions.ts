@@ -3,7 +3,7 @@ import { Bouquet, BouquetDto } from "src/app/models/bouquet";
 
 export const addBouquet = createAction(
     'Add bouquet',
-    props<{ bouquet: BouquetDto }>()
+    props<{ bouquet: FormData }>()
 );
 export const addBouquetSuccess = createAction(
     'Add bouquet success',
@@ -40,7 +40,7 @@ export const deselectBouquet = createAction(
 
 export const updateBouquet = createAction(
     'Update bouquet',
-    props<{bouquet: Bouquet}>()
+    props<{bouquet: FormData}>()
 );
 export const updateBouquetSuccess = createAction(
     'Update bouquet success',

@@ -57,7 +57,7 @@ export class FloverShopEffects {
     this.actions$.pipe(
         ofType(ShopActions.updateShop),
         mergeMap(({ shop }) => this.shopService.updateShop(shop).pipe(
-            map(() => {
+            map((shop: FloverShop) => {
                 this.snackBar.open("Store successfully updated", "Ok", { duration: 3000 })
                 return ShopActions.updateShopSuccess({ shop: shop });
             }),

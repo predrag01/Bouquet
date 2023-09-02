@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './models/user.entity';
 import { Repository } from 'typeorm';
 import { UserDto } from './models/user.dto';
-import { SALT_ROUNDS } from 'jwt-config';
+import { SALT_ROUNDS } from 'config';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()

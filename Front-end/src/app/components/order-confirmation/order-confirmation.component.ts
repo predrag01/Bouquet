@@ -12,6 +12,7 @@ import { ShoppingCart } from 'src/app/models/shopping-cart';
 import { User } from 'src/app/models/user';
 import { loadMyCart, makeOrder } from 'src/app/store/shopping-cart/shopping-cart.actions';
 import { loadShoppingCart } from 'src/app/store/shopping-cart/shopping-cart.selector';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-order-confirmation',
@@ -27,6 +28,7 @@ export class OrderConfirmationComponent implements OnInit{
   user: User | null = null;
   shoppingCarts$: Observable<ShoppingCart[]> = of([]);
   total: number = 0;
+  imgPath: string = environment.api;
 
   constructor(private router: Router, private store: Store<AppState>){}
   

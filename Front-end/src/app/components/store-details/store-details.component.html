@@ -3,7 +3,7 @@
         <mat-card-content class="content">
             <div class="shop">
                 <div class="info-div">
-                    <img class="img" src="../../../assets/common/noImage.png" />
+                    <img class="img" [src]="shop?.picture ? imgPath + '/' + shop?.picture : '../../../assets/common/noImage.png'" />
                     <div class="shop-info">
                         <mat-card-title>{{this.shop?.name}}</mat-card-title>
                         <mat-label class="details">{{this.shop?.address + ", " + this.shop?.city?.city}}</mat-label>

@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Order } from 'src/app/models/order';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-order',
@@ -11,6 +12,7 @@ import { Order } from 'src/app/models/order';
 export class OrderComponent implements OnInit{
 
   @Input() order: Order | null= null;
+  imgPath: string = environment.api;
 
   constructor() {}
 

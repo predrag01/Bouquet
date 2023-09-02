@@ -10,7 +10,7 @@ export class BouquetService {
 
   constructor(private httpClient: HttpClient) { }
 
-  addBouquet(bouquet: BouquetDto) {
+  addBouquet(bouquet: FormData) {
     return this.httpClient.post<Bouquet>(environment.api + "/bouquet", bouquet);
   };
 
@@ -22,7 +22,7 @@ export class BouquetService {
     return this.httpClient.delete<any>(environment.api + "/bouquet/" + bouquetId);
   };
 
-  updateBouquet(bouquet: Bouquet) {
+  updateBouquet(bouquet: FormData) {
     return this.httpClient.put<Bouquet>(environment.api + "/bouquet", bouquet);
   };
 }

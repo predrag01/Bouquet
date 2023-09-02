@@ -3,7 +3,7 @@ import { AuthService } from './auth.service';
 import { UserModule } from 'src/user/user.module';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
-import { JWT_EXPIRATION, JWT_SECRET } from 'jwt-config';
+import { JWT_EXPIRATION, JWT_SECRET } from 'config';
 import { LocalStrategy } from './local.strategy';
 import { JwtStrategy } from './jwt-strategy';
 

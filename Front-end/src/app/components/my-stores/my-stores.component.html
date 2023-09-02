@@ -6,7 +6,7 @@
         </mat-card-header>
         <mat-card-content *ngFor="let shop of this.stores$ | async" class="content">
             <div class="content-item">
-                <img class="img" (click)="navigate('store-details/' + shop.id)" src="../../../assets/common/noImage.png" />
+                <img class="img" (click)="navigate('store-details/' + shop.id)" [src]="shop.picture ? imgPath + '/' + shop.picture : '../../../assets/common/noImage.png'"/>
                 <div class="content-item-info">
                     <div class="title-div">
                         <mat-card-title class="store-name" (click)="navigate('store-details/' + shop.id)">{{shop.name}}</mat-card-title>

@@ -33,6 +33,10 @@ export class AddBouquetComponent implements OnInit{
 
   shop: FloverShop | null = null;
 
+  imagePreview: string | null = null;
+  selectedImage: File | null = null;
+  selectedFileName: string | null = null;
+
   ngOnInit(): void {
     this.store.dispatch(loadTypes());
     this.types$=this.store.select(loadTypeList);
@@ -57,8 +61,36 @@ export class AddBouquetComponent implements OnInit{
       storeId: <number>this.shop?.id
     };
 
-    this.store.dispatch(addBouquet({ bouquet: bouquet }));
+    const formData = new FormData();
+
+    formData.append('title', this.infoFormGroup.controls['titleCtrl'].value!);
+    formData.append('image', this.selectedImage!);
+    formData.append('description', this.infoFormGroup.controls['descriptionCtrl'].value!);
+    formData.append('price', this.infoFormGroup.controls['priceCtrl'].value!);
+    formData.append('typeId', String(this.selectedType?.id));
+    formData.append('storeId', String(this.shop?.id));
+
+    this.store.dispatch(addBouquet({ bouquet: formData }));
     this.close();
   };
 
+  handleSelectedFile(event: any) {
+    this.selectedImage = event.target.files[0];
+    this.imagePreview = null;
+
+    if (this.selectedImage) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imagePreview = e.target.result;
+      };
+      reader.readAsDataURL(this.selectedImage);
+    }
+
+    this.selectedFileName= <string>this.selectedImage?.name;
+  };
+
+  removeImg(value: string) {
+    this.imagePreview= null;
+    this.selectedFileName= null;
+  };
 }

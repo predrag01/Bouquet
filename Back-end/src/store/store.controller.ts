@@ -1,11 +1,14 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Request, UploadedFile, UploadedFiles, UseGuards, UseInterceptors } from '@nestjs/common';
 import { StoreService } from './store.service';
-import { FloverShopDto } from './models/store.dto';
+import { FloverShopDto, FloverShopUpdateDto } from './models/store.dto';
 import { FloverShop } from './models/store.entity';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { RolesGuard } from 'src/auth/roles.guard';
 import { Roles } from 'src/auth/roles.decorator';
 import { Role } from 'src/enums/role.enum';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { FILE_CONF } from 'config';
+
 
 @Controller('store')
 export class StoreController {
@@ -14,8 +17,9 @@ export class StoreController {
 
     @UseGuards(JwtAuthGuard)
     @Post()
-    public create(@Body() shop: FloverShopDto) {
-        return this.storeService.create(shop);
+    @UseInterceptors(FileInterceptor('picture', FILE_CONF))
+    public create(@Body() shop: FloverShopDto, @UploadedFile() picture: Express.Multer.File) {
+        return this.storeService.create(shop, picture);
     };
 
     @UseGuards(JwtAuthGuard, RolesGuard)
@@ -35,8 +39,10 @@ export class StoreController {
     @UseGuards(JwtAuthGuard, RolesGuard)
     @Put()
     @Roles(Role.Admin, Role.Employer)
-    public update(@Body() shop: FloverShop) {
-        return this.storeService.updateStore(shop);
+    @UseInterceptors(FileInterceptor('picture', FILE_CONF))
+    public update(@Body() shop: FloverShopUpdateDto, @UploadedFile() picture: Express.Multer.File) {
+        console.log(shop.id);
+        return this.storeService.updateStore(shop, picture);
     };
 
     @Get('/getStore/:id')
