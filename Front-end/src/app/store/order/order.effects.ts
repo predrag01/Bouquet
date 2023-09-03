@@ -26,9 +26,9 @@ export class OrderEffects {
     this.actions$.pipe(
         ofType(OrderActions.changeStatusToOrder),
         mergeMap(({ orderId, status }) => this.orderService.updateStatus(orderId, status).pipe(
-            map(( order: Order) => {
+            map(() => {
                this.snackbar.open("Successfully updated order status", "Ok", { duration: 3000});
-                return OrderActions.changeStatusToOrderSuccess({ order: order });
+                return OrderActions.changeStatusToOrderSuccess({ order: orderId });
             }),
             catchError( ({error}) => {
                 this.snackbar.open(error, 'Close', { duration: 3000});
@@ -40,7 +40,7 @@ export class OrderEffects {
     loadOrderForDelivery$ = createEffect(() =>
     this.actions$.pipe(
         ofType(OrderActions.loadOrdersReadyToDelivery),
-        mergeMap(() => this.orderService.getOrdersForDelivery().pipe(
+        mergeMap(({ cityId }) => this.orderService.getOrdersForDelivery(cityId).pipe(
             map((orders: Order[]) => OrderActions.loadOrdersReadyToDeliverySuccess({ orders }))
         )),
         catchError( ({error}) => {
@@ -65,9 +65,9 @@ export class OrderEffects {
     this.actions$.pipe(
         ofType(OrderActions.acceptForDelivery),
         mergeMap(({ orderId, deliveryGuyId }) => this.orderService.acceptForDelivery(orderId, deliveryGuyId).pipe(
-            map(( order: Order) => {
+            map(( ) => {
                this.snackbar.open("Successfully updated order status", "Ok", { duration: 3000});
-                return OrderActions.acceptForDeliverySuccess({ order: order });
+                return OrderActions.acceptForDeliverySuccess({ orderId });
             }),
             catchError( ({error}) => {
                 this.snackbar.open(error, 'Close', { duration: 3000});

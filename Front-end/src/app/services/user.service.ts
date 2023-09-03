@@ -24,4 +24,8 @@ export class UserService {
   update(user: FormData) {
     return this.httpClient.put<User>(environment.api + "/user", user);
   };
+
+  registerAs(user: User){
+    return this.httpClient.put<User>(environment.api + "/user/register-as", user);
+  };
 }

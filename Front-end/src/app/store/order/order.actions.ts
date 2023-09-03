@@ -19,11 +19,12 @@ export const changeStatusToOrder = createAction(
 
 export const changeStatusToOrderSuccess = createAction(
     'Change status to order orders',
-    props<{order: Order}>()
+    props<{order: number}>()
 );
 
 export const loadOrdersReadyToDelivery = createAction(
-    'Load orders ready to delivery'
+    'Load orders ready to delivery',
+    props<{cityId: number}>()
 );
 
 export const loadOrdersReadyToDeliverySuccess = createAction(
@@ -48,5 +49,5 @@ export const acceptForDelivery = createAction(
 
 export const acceptForDeliverySuccess = createAction(
     'Change status on order to accept for delivery orders',
-    props<{order: Order}>()
+    props<{orderId: number}>()
 );

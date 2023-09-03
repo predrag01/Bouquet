@@ -35,8 +35,8 @@ export class OrderService {
         return await this.orderReposistory.update(orderId, order);
     };
 
-    public async getOrderForDelivery() {
-        return await this.orderReposistory.find({ where: { status: Status.ReadyToDelivery }, relations:{bouquet: true, city: true, buyer:true, shop:true }});
+    public async getOrderForDelivery(cityId: number) {
+        return await this.orderReposistory.find({ where: { status: Status.ReadyToDelivery, city: {id: cityId} }, relations:{bouquet: true, city: true, buyer:true, shop:true }});
     };
 
     public async getOrdersFilteredByDeliveryGuy(deliveryGuyId: number, status: Status){

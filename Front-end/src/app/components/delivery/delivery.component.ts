@@ -27,13 +27,17 @@ export class DeliveryComponent implements OnInit{
   constructor(private store: Store<AppState>, private dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.store.subscribe((state) => this.user= state.user.user);
+    this.store.subscribe((state) => {
+      this.user= state.user.user;
+      if(this.user?.role === Roles.DeliveryGuy){
+        this.show=true;
+      }
+    });
     this.subtitle="Ready to delivery";
     this.button= "Accept";
-    this.store.dispatch(loadOrdersReadyToDelivery());
-    this.orders$= this.store.select(loadOrders);
-    if(this.user?.role===Roles.DeliveryGuy) {
-      this.show = true;
+    if(this.user?.role === Roles.DeliveryGuy){
+      this.store.dispatch(loadOrdersReadyToDelivery({ cityId: this.user.city.id }));
+      this.orders$= this.store.select(loadOrders);
     }
   };
 
@@ -41,7 +45,7 @@ export class DeliveryComponent implements OnInit{
     if(filter === "readyToDelivery"){
       this.subtitle="Ready to delivery";
       this.button= "Accept";
-      this.store.dispatch(loadOrdersReadyToDelivery());
+      this.store.dispatch(loadOrdersReadyToDelivery({ cityId: <number>this.user?.city.id }));
     }else if(filter === "acceptForDelivery"){
       this.subtitle="Accepted orders";
       this.button= "Delivered";

@@ -30,13 +30,15 @@ export class MyStoresComponent implements OnInit{
 
   ngOnInit(): void {
     this.store.subscribe((state) => this.user=state.user.user);
-    if(this.user?.role === Roles.Employer){
-      this.store.dispatch(loadMyStoreList({ id: <number>this.user?.id}));
+    this.store.dispatch(loadMyStoreList({ id: <number>this.user?.id}));
       this.stores$= this.store.select(loadMyStores);
-    }else {
-      this.store.dispatch(loadEmployeeStore({ id: <number>this.user?.id}));
-      this.store$= this.store.select(loadEmployedStore);
-    }
+    // if(this.user?.role === Roles.Employer){
+    //   this.store.dispatch(loadMyStoreList({ id: <number>this.user?.id}));
+    //   this.stores$= this.store.select(loadMyStores);
+    // }else {
+    //   this.store.dispatch(loadEmployeeStore({ id: <number>this.user?.id}));
+    //   this.store$= this.store.select(loadEmployedStore);
+    // }
     if(this.user?.role === Roles.Employee){
       this.employee=true;
     }

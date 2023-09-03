@@ -19,8 +19,8 @@ export class OrderService {
     return this.httpClient.put<Order>(environment.api + "/order/update-status/" + orderId, { status: status });
   };
 
-  getOrdersForDelivery(){
-    return this.httpClient.get<Order[]>(environment.api + "/order");
+  getOrdersForDelivery(cityId: number){
+    return this.httpClient.get<Order[]>(environment.api + "/order/get-orders-for-delivery/" + cityId);
   };
 
   getOrdersByDeliveryGuy(deliveryGuyId: number, status: Status){

@@ -26,10 +26,10 @@ export class OrderController {
     };
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @Get()
+    @Get('/get-orders-for-delivery/:cityId')
     @Roles(Role.Admin, Role.Employee, Role.Employer, Role.DeliveryGuy)
-    public getOrdersForDelivery(){
-        return this.orderService.getOrderForDelivery();
+    public getOrdersForDelivery(@Param("cityId", ParseIntPipe) cityId: number){
+        return this.orderService.getOrderForDelivery(cityId);
     };
 
     @UseGuards(JwtAuthGuard, RolesGuard)

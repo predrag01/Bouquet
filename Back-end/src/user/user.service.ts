@@ -91,5 +91,9 @@ export class UserService {
 
     public async deleteUser(id: number){
         return await this.userRepository.delete(id);
+    };
+
+    public async registerAsDelivery(user: User) {
+        return await this.userRepository.update(user.id, user);
     }
 }

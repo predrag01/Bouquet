@@ -7,6 +7,9 @@ import { User } from './models/user.entity';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { FILE_CONF } from 'config';
+import { Role } from 'src/enums/role.enum';
+import { Roles } from 'src/auth/roles.decorator';
+import { RolesGuard } from 'src/auth/roles.guard';
 
 @Controller('user')
 export class UserController {
@@ -39,4 +42,11 @@ export class UserController {
     public deleteUser(@Param("id", ParseIntPipe) id: number){
         return this.userService.deleteUser(id);
     }
+
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @Put('/register-as')
+    @Roles(Role.User)
+    public RegisterAs(@Body() user: User) {
+        return this.userService.registerAsDelivery(user);
+    };
 }

@@ -34,4 +34,8 @@ export const initialState: UserState = adapter.getInitialState({
       ...state,
       user:user,
     })),
+    on(UserActions.registerAsDeliverySuccess, (state, { user }) => ({
+      ...state,
+      user: user
+    }))
   );

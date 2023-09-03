@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.state';
 import { Roles } from 'src/app/enums/role';
 import { User } from 'src/app/models/user';
-import { updateProfile } from 'src/app/store/user/user.actions';
+import { registerAsDelivery, updateProfile } from 'src/app/store/user/user.actions';
 
 @Component({
   selector: 'app-register-as',
@@ -32,7 +32,7 @@ export class RegisterAsComponent implements OnInit{
       role: Roles.DeliveryGuy,
     };
 
-    //this.store.dispatch(updateProfile({ user: <User>newUser }));
+    this.store.dispatch(registerAsDelivery({ user: <User>newUser }));
 
     this.dialog.close();
   };

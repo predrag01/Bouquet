@@ -32,3 +32,13 @@ export const updateProfileSuccess = createAction(
     'Update profile succes',
     props<{user: User}>()
 );
+
+export const registerAsDelivery = createAction(
+    'Register as delivery',
+    props<{user: User}>()
+);
+
+export const registerAsDeliverySuccess = createAction(
+    'Register as delivery success',
+    props<{user: User}>()
+);

@@ -14,12 +14,12 @@ export const orderReducer = createReducer(
     on(OrderActions.loadFilteredOrdersSuccess, (state, { orders }) => {
         const newState = adapter.removeAll(state);
         return adapter.addMany(orders, newState)}),
-    on(OrderActions.changeStatusToOrderSuccess, (state, { order }) => adapter.removeOne(order.id, state)),
+    on(OrderActions.changeStatusToOrderSuccess, (state, { order }) => adapter.removeOne(order, state)),
     on(OrderActions.loadOrdersReadyToDeliverySuccess, (state, { orders }) => {
         const newState = adapter.removeAll(state);
         return adapter.addMany(orders, newState)}),
     on(OrderActions.loadOrdersFilteredByDeliveryGugSuccess, (state, { orders }) => {
         const newState = adapter.removeAll(state);
         return adapter.addMany(orders, newState)}),
-    on(OrderActions.acceptForDeliverySuccess, (state, { order }) => adapter.removeOne(order.id, state)),
+    on(OrderActions.acceptForDeliverySuccess, (state, { orderId }) => adapter.removeOne(orderId, state)),
 )

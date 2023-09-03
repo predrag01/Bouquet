@@ -72,8 +72,25 @@ export class UserEffects {
         mergeMap(({ user }) => this.userService.update(user).pipe(
             map((updatedUser: User) => {
             this.snackBar.open("Profile successfully updated", "Ok", {duration: 3000});
+            setUser(null);
             setUser(updatedUser);
             return UserActions.updateProfileSuccess({ user: updatedUser });
+            }),
+            catchError( ({error}) => {
+                this.snackBar.open(error.message, 'Close', { duration: 3000});
+                return  of({type: 'Load error'});
+            })
+        ))
+    ));
+
+    registerAs$= createEffect(() =>
+    this.actions$.pipe(
+        ofType(UserActions.registerAsDelivery),
+        mergeMap(({ user }) => this.userService.registerAs(user).pipe(
+            map(() => {
+                setUser(null);
+                setUser(user);
+                return UserActions.registerAsDeliverySuccess({ user });
             }),
             catchError( ({error}) => {
                 this.snackBar.open(error.message, 'Close', { duration: 3000});
