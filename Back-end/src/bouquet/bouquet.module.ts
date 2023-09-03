@@ -4,10 +4,10 @@ import { BouquetController } from './bouquet.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BouquetType } from 'src/bouquet-type/models/bouquet-type.entity';
 import { Bouquet } from './models/bouquet.entity';
-import { FloverShop } from 'src/store/models/store.entity';
+import { FlowerShop } from 'src/store/models/store.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([FloverShop, Bouquet, BouquetType])],
+  imports: [TypeOrmModule.forFeature([FlowerShop, Bouquet, BouquetType])],
   controllers: [BouquetController],
   providers: [BouquetService]
 })

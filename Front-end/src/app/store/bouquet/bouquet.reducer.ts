@@ -16,7 +16,10 @@ export const initialSate: BouquetState = adapter.getInitialState({
 export const bouquetReducer = createReducer(
     initialSate,
     on(BouquetActions.addBouquetSuccess, (state, { bouquet }) => adapter.addOne(bouquet, state)),
-    on(BouquetActions.loadBouquetListByStoreIdSuccess, (state , { bouquets }) => adapter.addMany(bouquets, state)),
+    on(BouquetActions.loadBouquetListByStoreIdSuccess, (state , { bouquets }) => {
+        const newState= adapter.removeAll(state);
+        return adapter.addMany(bouquets, newState)
+    }),
     on(BouquetActions.deleteBouquetSuccess, (state, { bouquetId }) => adapter.removeOne(bouquetId, state)),
     on(BouquetActions.selectBouquet, ( state, { bouquetId }) => ({ ...state, selectedBouquet: bouquetId})),
     on(BouquetActions.deselectBouquet, ( state ) => ({...state, selectedBouquet:0})),

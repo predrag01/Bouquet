@@ -2,13 +2,16 @@ import { City } from "src/city/models/city.entity";
 import { Role } from "src/enums/role.enum";
 import { Order } from "src/order/models/order.enity";
 import { ShoppingCart } from "src/shopping-cart/models/shoppingCart.entity";
-import { FloverShop } from "src/store/models/store.entity";
+import { FlowerShop } from "src/store/models/store.entity";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class User{
     @PrimaryGeneratedColumn()
     id: number;
+
+    @Column({ type:'text', nullable: true})
+    profilePicture: string;
     
     @Column({ type:'text', nullable: false})
     username: string;
@@ -37,11 +40,11 @@ export class User{
     @ManyToOne(() => City, (city: City) => city.users, { onDelete: 'SET NULL'})
     city: City;
 
-    @OneToMany(() => FloverShop, (store: FloverShop) => store.owner)
-    stores: FloverShop[]
+    @OneToMany(() => FlowerShop, (store: FlowerShop) => store.owner)
+    stores: FlowerShop[]
 
-    @ManyToOne(()=> FloverShop, (store: FloverShop) => store.employees, {onDelete: 'SET NULL'})
-    employeed: FloverShop;
+    @ManyToOne(()=> FlowerShop, (store: FlowerShop) => store.employees, {onDelete: 'SET NULL'})
+    employeed: FlowerShop;
 
     @OneToMany(() =>ShoppingCart, (shoppingCart: ShoppingCart) => shoppingCart.buyer)
     shoppingCarts: ShoppingCart[];

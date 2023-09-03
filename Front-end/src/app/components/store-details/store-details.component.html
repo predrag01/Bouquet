@@ -21,7 +21,7 @@
                             <input type="text" name="email" matInput placeholder="email@gmail.com" [formControl]="email" />
                             <mat-error>Fill username!</mat-error>
                         </mat-form-field>
-                        <button class="button" mat-raised-button color="primary" (click)="addEmployee()"><mat-icon class="icon">add</mat-icon></button>
+                        <button class="button" mat-raised-button color="primary" (click)="addEmployee()">Add</button>
                     </div>
                     <div *ngFor="let employee of shop?.employees">
                         <div class="employee-list-item">

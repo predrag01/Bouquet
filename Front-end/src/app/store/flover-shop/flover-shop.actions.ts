@@ -89,3 +89,22 @@ export const loadFloverShopForHomeSuccess = createAction(
     'Load flover shop for home page success',
     props<{floverStores: FloverShop[]}>()
 );
+
+export const loadAllStores = createAction(
+    'Load all flower shop',
+);
+
+export const loadAllStoresSuccess = createAction(
+    'Load all flower shop success',
+    props<{stores: FloverShop[]}>()
+);
+
+export const loadEmployeeStore = createAction(
+    'Load employee store',
+    props<{id: number}>()
+);
+
+export const loadEmployeeStoreSuccess = createAction(
+    'Load employee store success',
+    props<{store: FloverShop}>()
+);

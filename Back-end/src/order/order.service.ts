@@ -5,7 +5,7 @@ import { Order } from './models/order.enity';
 import { User } from 'src/user/models/user.entity';
 import { Bouquet } from 'src/bouquet/models/bouquet.entity';
 import { City } from 'src/city/models/city.entity';
-import { FloverShop } from 'src/store/models/store.entity';
+import { FlowerShop } from 'src/store/models/store.entity';
 import { Status } from 'src/enums/status.enum';
 
 @Injectable()
@@ -16,7 +16,7 @@ export class OrderService {
         @InjectRepository(User) private userReposistory: Repository<User>,
         @InjectRepository(Bouquet) private bouquetReposistory: Repository<Bouquet>,
         @InjectRepository(City) private cityReposistory: Repository<City>,
-        @InjectRepository(FloverShop) private shopReposistory: Repository<FloverShop>
+        @InjectRepository(FlowerShop) private shopReposistory: Repository<FlowerShop>
     ) {}
 
     public async getFilteredOrders(shopId: number, filter: Status){

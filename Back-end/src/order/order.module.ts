@@ -6,10 +6,10 @@ import { Order } from './models/order.enity';
 import { User } from 'src/user/models/user.entity';
 import { Bouquet } from 'src/bouquet/models/bouquet.entity';
 import { City } from 'src/city/models/city.entity';
-import { FloverShop } from 'src/store/models/store.entity';
+import { FlowerShop } from 'src/store/models/store.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ Order, User, Bouquet, City, FloverShop])],
+  imports: [TypeOrmModule.forFeature([ Order, User, Bouquet, City, FlowerShop])],
   providers: [OrderService],
   controllers: [OrderController]
 })

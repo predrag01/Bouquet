@@ -6,18 +6,18 @@
     <button mat-menu-item class="items" (click)="navigate('bouquet-type-list')">Bouquet type</button>
     </mat-menu>
     <div class="login-div">
-        <span class="shoppingCart" (click)="navigate('shopping-cart')"><mat-icon>shopping_cart</mat-icon></span>
+        <span class="shoppingCart" (click)="navigate('shopping-cart')" *ngIf="this.user"><mat-icon>shopping_cart</mat-icon></span>
         <span class="logged-text" (click)="navigate('login')" *ngIf="!this.user">Login</span>
         <span class="logged-text" *ngIf="!this.user"> / </span>
         <span class="logged-text" (click)="navigate('register')" *ngIf="!this.user">Register</span>
         <div class="informations" *ngIf="this.user" mat-button [matMenuTriggerFor]="userMenu">
-            <img class="img-navbar" mat-card-avatar src="../../../../../assets/common/defaultUser.png"/>
+            <img class="img-navbar" mat-card-avatar [src]="this.user.profilePicture ? this.imgPath + '/' +this.user.profilePicture : '../../../../../assets/common/defaultUser.png'" />
             <span class="logged-text" > @{{this.user.username}} </span>
         </div>
-        <mat-menu #userMenu="matMenu" yPosition="above">
+        <mat-menu #userMenu="matMenu" yPosition="above" >
             <button mat-menu-item (click)="navigate('edit-profile')">Account</button>
-            <button mat-menu-item (click)="navigate('my-stores')">My stores</button>
-            <button mat-menu-item (click)="navigate('delivery')">Delivery</button>
+            <button mat-menu-item (click)="navigate('my-stores')" *ngIf="!this.deliveryGuy">My stores</button>
+            <button mat-menu-item (click)="navigate('delivery')" *ngIf="!this.employer && !this.employee">Delivery</button>
             <button mat-menu-item (click)="logout()">Log out</button>
         </mat-menu>
     </div>

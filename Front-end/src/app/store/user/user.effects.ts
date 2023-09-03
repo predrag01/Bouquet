@@ -5,7 +5,7 @@ import { UserService } from "src/app/services/user.service";
 import * as UserActions from './user.actions'
 import { Router } from "@angular/router";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { LoginUser } from "src/app/models/user";
+import { LoginUser, User } from "src/app/models/user";
 import { setToken, setUser } from "src/app/auth/user-context";
 
 @Injectable()
@@ -43,8 +43,6 @@ export class UserEffects {
                     setToken(user.accessToken);
                     setUser(user.user);
                     this.router.navigate(['home'], {replaceUrl: true});
-
-                    // console.log("effects: "+user.user.username);
                     return UserActions.loginUserSuccess({ user });
                 }),
                 catchError(({error}) => {
@@ -61,10 +59,8 @@ export class UserEffects {
         this.actions$.pipe(
             ofType(UserActions.logout),
             mergeMap(() => {
-                
                 setToken(null);
                 setUser(null);
-                console.log("odjavio se");
                 this.router.navigate(['home'], {replaceUrl: true});
                 return of({type: 'loggedout'});
             })
@@ -74,11 +70,10 @@ export class UserEffects {
     this.actions$.pipe(
         ofType(UserActions.updateProfile),
         mergeMap(({ user }) => this.userService.update(user).pipe(
-            map(() => {
-            setUser(null),
-            setUser(user),
+            map((updatedUser: User) => {
             this.snackBar.open("Profile successfully updated", "Ok", {duration: 3000});
-            return UserActions.updateProfileSuccess({ user });
+            setUser(updatedUser);
+            return UserActions.updateProfileSuccess({ user: updatedUser });
             }),
             catchError( ({error}) => {
                 this.snackBar.open(error.message, 'Close', { duration: 3000});

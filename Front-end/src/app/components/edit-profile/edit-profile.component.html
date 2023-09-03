@@ -7,7 +7,11 @@
             <mat-divider></mat-divider>
             <form class="form">
                 <div class="div-img div">
-                    <img class="img" mat-card-avatar src="../../../../../assets/common/defaultUser.png"/>
+                    <img [src]="this.selectedImage ? this.imagePreview : imgPath + '/' + this.imagePreview" class="img"/>
+                    <button mat-stroked-button color="primary" type="button" (click)="fileInput.click()" style="margin-bottom: 15px;">
+                        <span>{{this.user?.profilePicture ? 'Update image' : 'Upload image'}}</span>
+                        <input #fileInput type="file" accept="image/*" multiple required (change)="handleSelectedFile($event)" style="display: none"/>
+                    </button>
                     <mat-form-field appearance="outline">
                         <mat-label>Username</mat-label>
                         <input type="text" name="username" matInput required [formControl]="username" />
@@ -30,14 +34,6 @@
                         <input type="text" name="email" matInput required [formControl]="email"/>
                         <mat-error>Fill email!</mat-error>
                     </mat-form-field>
-                    <!-- <mat-form-field appearance="outline">
-                        <mat-label>Password</mat-label>
-                        <input matInput [type]="hidePassword ? 'password' : 'text'" [formControl]="password" required/>
-                        <button mat-icon-button matSuffix (click)="togglePassword()">
-                          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
-                        </button>
-                        <mat-error>Fill password!</mat-error>
-                    </mat-form-field> -->
                     <mat-form-field appearance="outline">
                         <mat-label>Phone</mat-label>
                         <input type="text" name="phone" matInput required [formControl]="phone"/>
@@ -57,11 +53,11 @@
                         <input type="text" name="Address" matInput required [formControl]="address"/>
                         <mat-error>Fill address!</mat-error>
                     </mat-form-field>
-                    <mat-form-field appearance="outline">
+                    <mat-form-field appearance="outline" *ngIf="this.deliveryGuy">
                         <mat-label>JMBG</mat-label>
                         <input type="text" name="jmbg" matInput [formControl]="jmbg"/>
                     </mat-form-field>
-                    <mat-form-field appearance="outline">
+                    <mat-form-field appearance="outline" *ngIf="this.deliveryGuy">
                         <mat-label>Vehicle for delivery</mat-label>
                         <input type="text" name="vehicle" matInput [formControl]="vehicle"/>
                     </mat-form-field>

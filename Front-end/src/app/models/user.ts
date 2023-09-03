@@ -4,6 +4,7 @@ import { FloverShop } from "./store";
 
 export interface User{
     id: number;
+    profilePicture: string;
     username: string;
     name: string;
     lastName: string;

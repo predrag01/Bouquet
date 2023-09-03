@@ -1,25 +1,35 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BouquetType } from 'src/bouquet-type/models/bouquet-type.entity';
-import { FloverShop } from 'src/store/models/store.entity';
+import { FlowerShop } from 'src/store/models/store.entity';
 import { Bouquet } from './models/bouquet.entity';
 import { Repository } from 'typeorm';
 import { BouquetDto, BouquetUpdateDto } from './models/bouquet.dto';
+import { UPLOAD_DESTINATION } from 'config';
 
 @Injectable()
 export class BouquetService {
 
     constructor(
-        @InjectRepository(FloverShop) private shopReposistory: Repository<FloverShop>,
+        @InjectRepository(FlowerShop) private shopReposistory: Repository<FlowerShop>,
         @InjectRepository(BouquetType) private typeReposistory: Repository<BouquetType>,
         @InjectRepository(Bouquet) private bouquetReposistory: Repository<Bouquet>,
         @InjectRepository(BouquetType) private bouquettypeReposistory: Repository<BouquetType>
     ) {}
 
-    public async create(bouquetDto: BouquetDto, image: Express.Multer.File) {
+    public async create(bouquetDto: BouquetDto, img: Express.Multer.File) {
         const bouquet = this.bouquetReposistory.create(bouquetDto);
+        
+        if(img){
+            const { image } = bouquet;
+            const fs = require('fs');
 
-        bouquet.image= image.filename;
+            if (image) {
+                fs.unlinkSync(`${UPLOAD_DESTINATION}/${image}`);
+            }
+
+            bouquet.image= img.filename;
+        }
 
         const type: BouquetType | null = await this.typeReposistory.findOne({ where: {id: bouquetDto.typeId}});
         if(!type) {
@@ -27,7 +37,7 @@ export class BouquetService {
         }
         bouquet.bouquetType= type;
 
-        const shop: FloverShop | null = await this.shopReposistory.findOne({ where: {id: bouquetDto.storeId}});
+        const shop: FlowerShop | null = await this.shopReposistory.findOne({ where: {id: bouquetDto.storeId}});
         if(!shop) {
             throw new BadRequestException("InvalidStore");
         }
@@ -64,7 +74,11 @@ export class BouquetService {
             update.image= image.filename;
         }
 
-        return await this.bouquetReposistory.update(bouquet.id, update);
+        if(!(await this.bouquetReposistory.update(bouquet.id, update))){
+            return { success: false };
+        }
+
+        return update;
     };
 
     public async getOne(id: number) {

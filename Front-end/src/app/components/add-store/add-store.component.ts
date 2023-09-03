@@ -73,7 +73,7 @@ export class AddStoreComponent implements OnInit{
     formData.append('pib', this.storeInfoFormGroup.controls['pibCtrl'].value!);
     formData.append('monFri', this.storeWorkingTimeFormGroup.controls['mondFriCtrl'].value!);
     formData.append('saturday', this.storeWorkingTimeFormGroup.controls['saturdayCtrl'].value!);
-    formData.append('sunday', this.storeWorkingTimeFormGroup.controls['saturdayCtrl'].value!);
+    formData.append('sunday', this.storeWorkingTimeFormGroup.controls['sundayCtrl'].value!);
     formData.append('cityId', String(this.selectedCity?.id));
     formData.append('ownerId', String(this.user?.id));
 

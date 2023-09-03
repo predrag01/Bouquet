@@ -40,8 +40,11 @@
 
 .img {
     width: 150px;
-    height: auto;
+    height: 150px;
     cursor: pointer;
+    margin-bottom: 15px;
+    object-fit: cover;
+    border-radius: 75px;
 }
 
 .button {

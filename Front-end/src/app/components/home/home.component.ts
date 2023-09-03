@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { AppState } from 'src/app/app.state';
 import { FloverShop } from 'src/app/models/store';
 import { User } from 'src/app/models/user';
-import { loadFloverShopForHome } from 'src/app/store/flover-shop/flover-shop.actions';
+import { loadAllStores, loadFloverShopForHome } from 'src/app/store/flover-shop/flover-shop.actions';
 import { loadAllShopByCity } from 'src/app/store/flover-shop/flover-shop.selector';
 
 @Component({
@@ -22,7 +22,11 @@ export class HomeComponent implements OnInit{
 
   ngOnInit(): void {
     this.store.subscribe((state) => this.user=state.user.user);
-    this.store.dispatch(loadFloverShopForHome({ cityId: <number>this.user?.city.id }));
+    if(this.user){
+      this.store.dispatch(loadFloverShopForHome({ cityId: <number>this.user?.city.id }));
+    }else {
+      this.store.dispatch(loadAllStores());
+    }
     this.stores$= this.store.select(loadAllShopByCity);
   };
 

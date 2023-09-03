@@ -32,7 +32,7 @@ export class RegisterAsComponent implements OnInit{
       role: Roles.DeliveryGuy,
     };
 
-    this.store.dispatch(updateProfile({ user: <User>newUser }));
+    //this.store.dispatch(updateProfile({ user: <User>newUser }));
 
     this.dialog.close();
   };

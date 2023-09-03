@@ -1,5 +1,5 @@
 import { Bouquet } from "src/bouquet/models/bouquet.entity";
-import { FloverShop } from "src/store/models/store.entity";
+import { FlowerShop } from "src/store/models/store.entity";
 import { User } from "src/user/models/user.entity";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
@@ -17,6 +17,6 @@ export class ShoppingCart {
     @ManyToOne(() => User, (owner: User) => owner.shoppingCarts, {onDelete: 'CASCADE'})
     buyer: User;
 
-    @ManyToOne(() => FloverShop, (shop: FloverShop) => shop.shoppingCarts, {onDelete: 'CASCADE'})
-    shop: FloverShop;
+    @ManyToOne(() => FlowerShop, (shop: FlowerShop) => shop.shoppingCarts, {onDelete: 'CASCADE'})
+    shop: FlowerShop;
 }

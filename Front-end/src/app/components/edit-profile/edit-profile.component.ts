@@ -3,11 +3,13 @@ import { FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { AppState } from 'src/app/app.state';
+import { Roles } from 'src/app/enums/role';
 import { City } from 'src/app/models/city';
 import { User } from 'src/app/models/user';
 import { loadCities } from 'src/app/store/city/city.actions';
 import { loadCityList } from 'src/app/store/city/city.selector';
 import { updateProfile } from 'src/app/store/user/user.actions';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-edit-profile',
@@ -19,6 +21,12 @@ export class EditProfileComponent implements OnInit{
   user: User | null= null;
   cities$: Observable<City[]>= of([]);
   selectedCity: City | null = null;
+  deliveryGuy: Boolean= false;
+
+  imgPath: string = environment.api;
+  imagePreview: string | null = null;
+  selectedImage: File | null = null;
+  selectedFileName: string | null = null;
 
   username =new FormControl('', [Validators.required]);
   name =new FormControl('', [Validators.required]);
@@ -52,6 +60,18 @@ export class EditProfileComponent implements OnInit{
     });
     this.store.dispatch(loadCities());
     this.cities$= this.store.select(loadCityList);
+
+    if(this.user?.role === Roles.DeliveryGuy){
+      this.deliveryGuy= true;
+    } else{
+      this.deliveryGuy= false;
+    }
+
+    if(this.user?.profilePicture){
+      this.imagePreview= this.user.profilePicture;
+    }else {
+      this.imagePreview= 'defaultUser.png';
+    }
   };
 
   togglePassword() {
@@ -71,7 +91,8 @@ export class EditProfileComponent implements OnInit{
         (this.address.value !== this.user?.address) ||
         (this.selectedCity !== this.user?.city)||
         (this.jmbg.value !== this.user?.JMBG)||
-        (this.vehicle.value !== this.user?.vehicle)) {
+        (this.vehicle.value !== this.user?.vehicle) ||
+        this.selectedImage) {
           const updatedUser = {
             ...this.user,
             username: this.username.value,
@@ -84,9 +105,40 @@ export class EditProfileComponent implements OnInit{
             JMBG: this.jmbg.value,
             city: this.selectedCity,
           };
+          const formData = new FormData();
 
-          this.store.dispatch(updateProfile({ user: <User>updatedUser }));
+          formData.append('id', String(this.user?.id));
+          if(this.selectedImage){
+            formData.append('profilePicture', this.selectedImage!);
+          }
+          formData.append('username', this.username.value!);
+          formData.append('name', this.name.value!);
+          formData.append('lastName', this.lastName.value!);
+          formData.append('email', this.email.value!);
+          formData.append('phone', this.phone.value!);
+          formData.append('address', this.address.value!);
+          formData.append('cityId', String(this.selectedCity?.id));  
+          if(this.user?.role === Roles.DeliveryGuy){
+            formData.append('JMBG', this.jmbg.value!);
+            formData.append('vehicle', this.vehicle.value!);
+          }
+
+          this.store.dispatch(updateProfile({ user: formData }));
     }
   };
 
+  handleSelectedFile(event: any) {
+    this.selectedImage = event.target.files[0];
+    this.imagePreview = null;
+
+    if (this.selectedImage) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imagePreview = e.target.result;
+      };
+      reader.readAsDataURL(this.selectedImage);
+    }
+
+    this.selectedFileName= <string>this.selectedImage?.name;
+  };
 }

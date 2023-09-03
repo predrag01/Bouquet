@@ -45,4 +45,12 @@ export class FloverShopService {
   loadFloverStoresForHome(cityId: number){
     return this.httpClient.get<FloverShop[]>(environment.api + "/store/home/" + cityId);
   };
+
+  loadAll(){
+    return this.httpClient.get<FloverShop[]>(environment.api + "/store");
+  };
+
+  loadEmployeeStore(id: number){
+    return this.httpClient.get<FloverShop>(environment.api + "/store/employee-store/" + id);
+  }
 }

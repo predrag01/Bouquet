@@ -21,7 +21,7 @@ export class UserService {
     });
   };
 
-  update(user: User) {
+  update(user: FormData) {
     return this.httpClient.put<User>(environment.api + "/user", user);
   };
 }

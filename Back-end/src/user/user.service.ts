@@ -2,15 +2,17 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './models/user.entity';
 import { Repository } from 'typeorm';
-import { UserDto } from './models/user.dto';
-import { SALT_ROUNDS } from 'config';
+import { UserDto, UserUpdateDto } from './models/user.dto';
+import { SALT_ROUNDS, UPLOAD_DESTINATION } from 'config';
 import * as bcrypt from 'bcrypt';
+import { City } from 'src/city/models/city.entity';
 
 @Injectable()
 export class UserService {
 
     constructor(
-        @InjectRepository(User) private userRepository: Repository<User>) {}
+        @InjectRepository(User) private userRepository: Repository<User>,
+        @InjectRepository(City) private cityRepository: Repository<City>) {}
 
     public async register(userDto: UserDto): Promise<User | undefined>{
         if(!userDto.email || !userDto.password) {
@@ -34,7 +36,7 @@ export class UserService {
         user.address=userDto.address;
         user.city=userDto.city;
 
-        return this.userRepository.save(user);
+        return await this.userRepository.save(user);
     }
 
 
@@ -46,13 +48,48 @@ export class UserService {
         return this.userRepository.findOne({where: {id: id}, relations: {city:true} });
     }
 
-    public async updateUser(user: User) {
-        const pom = await this.findUser(user.id);
-
+    public async updateUser(user: UserUpdateDto, picture: Express.Multer.File) {
+        const pom: User = await this.userRepository.findOne({where: {id: user.id}, relations: {city:true, employeed: true} });
         if(!pom) {
             throw new BadRequestException('InvalidUser');
         }
 
-        return await this.userRepository.update(user.id, user);
+        pom.username= user.username;
+        pom.name= user.name;
+        pom.lastName= user.lastName;
+        pom.email= user.email;
+        pom.phone= user.phone;
+        pom.address= user.address;
+        pom.role= user.role;
+
+        const city: City = await this.cityRepository.findOne({ where: {id: user.cityId}});
+        if(!city) {
+            throw new BadRequestException('InvalidCity');
+        }
+
+        pom.city= city;
+        pom.JMBG= user.JMBG;
+        pom.vehicle= user.vehicle;
+
+        if(picture){
+            const { profilePicture } = pom;
+            const fs = require('fs');
+
+            if (profilePicture) {
+                fs.unlinkSync(`${UPLOAD_DESTINATION}/${profilePicture}`);
+            }
+
+            pom.profilePicture= picture.filename;
+        }
+
+        if(!(await this.userRepository.update(user.id, pom))){
+            return { success: false };
+        }
+
+        return pom;
+    };
+
+    public async deleteUser(id: number){
+        return await this.userRepository.delete(id);
     }
 }

@@ -1,4 +1,4 @@
-export interface FloverShopDto {
+export interface FlowerShopDto {
     name: string;
     address: string;
     email: string;
@@ -12,7 +12,7 @@ export interface FloverShopDto {
     ownerId: number;
 }
 
-export interface FloverShopUpdateDto {
+export interface FlowerShopUpdateDto {
     id: number;
     name: string;
     address: string;

@@ -1,7 +1,7 @@
 import { Bouquet } from "src/bouquet/models/bouquet.entity";
 import { City } from "src/city/models/city.entity";
 import { Status } from "src/enums/status.enum";
-import { FloverShop } from "src/store/models/store.entity";
+import { FlowerShop } from "src/store/models/store.entity";
 import { User } from "src/user/models/user.entity";
 import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
@@ -43,6 +43,6 @@ export class Order {
     @ManyToOne(() => User, (user: User) => user.deliveredOrders, {onDelete: "SET NULL"})
     deliveryGuy: User;
     
-    @ManyToOne(() => FloverShop, (shop: FloverShop) => shop.orders, {onDelete: 'SET NULL'})
-    shop: FloverShop;
+    @ManyToOne(() => FlowerShop, (shop: FlowerShop) => shop.orders, {onDelete: 'SET NULL'})
+    shop: FlowerShop;
 }

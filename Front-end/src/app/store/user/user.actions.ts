@@ -25,7 +25,7 @@ export const logout = createAction('Log out');
 
 export const updateProfile = createAction(
     'Update profile',
-    props<{user: User}>()
+    props<{user: FormData}>()
 );
 
 export const updateProfileSuccess = createAction(

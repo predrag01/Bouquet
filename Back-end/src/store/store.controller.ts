@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Request, UploadedFile, UploadedFiles, UseGuards, UseInterceptors } from '@nestjs/common';
 import { StoreService } from './store.service';
-import { FloverShopDto, FloverShopUpdateDto } from './models/store.dto';
-import { FloverShop } from './models/store.entity';
+import { FlowerShopDto, FlowerShopUpdateDto } from './models/store.dto';
+import { FlowerShop } from './models/store.entity';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { RolesGuard } from 'src/auth/roles.guard';
 import { Roles } from 'src/auth/roles.decorator';
@@ -18,7 +18,7 @@ export class StoreController {
     @UseGuards(JwtAuthGuard)
     @Post()
     @UseInterceptors(FileInterceptor('picture', FILE_CONF))
-    public create(@Body() shop: FloverShopDto, @UploadedFile() picture: Express.Multer.File) {
+    public create(@Body() shop: FlowerShopDto, @UploadedFile() picture: Express.Multer.File) {
         return this.storeService.create(shop, picture);
     };
 
@@ -40,7 +40,7 @@ export class StoreController {
     @Put()
     @Roles(Role.Admin, Role.Employer)
     @UseInterceptors(FileInterceptor('picture', FILE_CONF))
-    public update(@Body() shop: FloverShopUpdateDto, @UploadedFile() picture: Express.Multer.File) {
+    public update(@Body() shop: FlowerShopUpdateDto, @UploadedFile() picture: Express.Multer.File) {
         console.log(shop.id);
         return this.storeService.updateStore(shop, picture);
     };
@@ -67,5 +67,15 @@ export class StoreController {
     @Get('/home/:cityId')
     public getStoresForHome(@Param("cityId", ParseIntPipe) cityId: number){
         return this.storeService.loadStoresForHome(cityId);
+    };
+
+    @Get()
+    public getAll(){
+        return this.storeService.getAll();
+    };
+
+    @Get('/employee-store/:id')
+    public getStoreByEmployee(@Param("id", ParseIntPipe) id: number){
+        return this.storeService.getFlowerStoreByEmployee(id);
     };
 }

@@ -6,7 +6,7 @@ import { User } from "src/user/models/user.entity";
 import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class FloverShop {
+export class FlowerShop {
     @PrimaryGeneratedColumn()
     id: number;
 

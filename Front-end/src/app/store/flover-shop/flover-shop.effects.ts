@@ -3,7 +3,7 @@ import * as ShopActions from './flover-shop.actions'
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { FloverShopService } from "src/app/services/flover-shop.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { catchError, map, mergeMap, of } from "rxjs";
+import { catchError, map, merge, mergeMap, of } from "rxjs";
 import { FloverShop } from "src/app/models/store";
 
 @Injectable()
@@ -120,5 +120,31 @@ export class FloverShopEffects {
                 return  of({type: 'Load error'});
             })
         ))
-    ))
+    ));
+
+    loadAllFlowerShop$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(ShopActions.loadAllStores),
+            mergeMap(() => this.shopService.loadAll().pipe(
+                map(( floverStores: FloverShop[]) => ShopActions.loadAllStoresSuccess({ stores: floverStores }))
+            )),
+            catchError( ({error}) => {
+                this.snackBar.open(error, 'Close', { duration: 3000});
+                return  of({type: 'Load error'});
+            })
+        )
+    );
+
+    loadEmployeeFlowerShop$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(ShopActions.loadEmployeeStore),
+            mergeMap(({ id }) => this.shopService.loadEmployeeStore(id).pipe(
+                map(( floverStore: FloverShop) => ShopActions.loadEmployeeStoreSuccess({ store: floverStore }))
+            )),
+            catchError( ({error}) => {
+                this.snackBar.open(error, 'Close', { duration: 3000});
+                return  of({type: 'Load error'});
+            })
+        )
+    );
 }

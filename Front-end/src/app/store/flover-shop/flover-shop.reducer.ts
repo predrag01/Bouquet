@@ -6,13 +6,15 @@ import * as Actions from './flover-shop.actions'
 export interface FloverShopState extends EntityState<FloverShop> {
      selectedStore: number
      oneShop: FloverShop | null
+     EmployedStore: FloverShop | null
 };
 
 const adapter = createEntityAdapter<FloverShop>();
 
 export const initialState: FloverShopState = adapter.getInitialState({
     selectedStore: 0,
-    oneShop: null
+    oneShop: null,
+    EmployedStore: null
 });
 
 export const shopReducer = createReducer(
@@ -26,5 +28,13 @@ export const shopReducer = createReducer(
     on(Actions.loadOneStoreSuccess, (state, { shop })=> ({...state, oneShop: shop})),
     on(Actions.addEmployeeSuccess, (state , { shop }) => ({...state, oneShop: shop})),
     on(Actions.removeEmployeeSuccess, (state , { shop }) => ({...state, oneShop: shop})),
-    on(Actions.loadFloverShopForHomeSuccess, (state, { floverStores }) => adapter.addMany(floverStores, state)),
+    on(Actions.loadFloverShopForHomeSuccess, (state, { floverStores }) => {
+        const newState= adapter.removeAll(state);
+        return adapter.addMany(floverStores, newState);
+    }),
+    on(Actions.loadAllStoresSuccess, (state, { stores }) => {
+        const newState= adapter.removeAll(state);
+        return adapter.addMany(stores, newState);
+    }),
+    on(Actions.loadEmployeeStoreSuccess, (state, {store}) => ({...state, EmployedStore: store})),
 );

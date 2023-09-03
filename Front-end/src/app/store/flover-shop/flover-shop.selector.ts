@@ -23,6 +23,11 @@ export const loadMyStores = createSelector(
     .map(shop => <FloverShop>shop)
 );
 
+export const loadEmployedStore = createSelector(
+    selectShopFeature,
+    (shop) => shop.EmployedStore
+);
+
 export const selectStoreId = createSelector(
     selectShopFeature,
     (shops) => shops.selectedStore

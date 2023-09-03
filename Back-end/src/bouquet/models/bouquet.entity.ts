@@ -1,7 +1,7 @@
 import { BouquetType } from "src/bouquet-type/models/bouquet-type.entity";
 import { Order } from "src/order/models/order.enity";
 import { ShoppingCart } from "src/shopping-cart/models/shoppingCart.entity";
-import { FloverShop } from "src/store/models/store.entity";
+import { FlowerShop } from "src/store/models/store.entity";
 import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
@@ -24,8 +24,8 @@ export class Bouquet {
     @ManyToOne(()=> BouquetType, (type:BouquetType) => type.bouquets, {onDelete: 'SET NULL'})
     bouquetType: BouquetType;
 
-    @ManyToOne(() => FloverShop, (store: FloverShop) => store.bouquets, {onDelete: 'CASCADE'})
-    store: FloverShop;
+    @ManyToOne(() => FlowerShop, (store: FlowerShop) => store.bouquets, {onDelete: 'CASCADE'})
+    store: FlowerShop;
 
     @OneToMany(() => ShoppingCart, ( order: ShoppingCart) => order.bouquet)
     shoppingCarts: ShoppingCart[];
