@@ -14,3 +14,8 @@ Bouquet - web aplikacija za prodaju i dostavu cveca
 - Porucivanje
 
 # Tehnologije
+- Angular, NgRx
+- NestJS
+- PassportJS
+- PostgreSQL
+  
