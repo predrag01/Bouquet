@@ -10,7 +10,7 @@ Bouquet - web aplikacija za prodaju i dostavu cveca
 - Pregled, filtriranje ponude cvecare
 - Pracenje u stanje porudzbina
 - Pregled svih porudzbina spremnih za dostavu
-- Promena stanja porudzbine (nova pordzina, spremna za dostavu, dostavljeno...)
+- Promena stanja porudzbine (nova porudzbina, spremna za dostavu, dostavljeno...)
 - Porucivanje
 
 # Tehnologije
