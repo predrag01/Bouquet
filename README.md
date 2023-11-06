@@ -32,4 +32,5 @@ Bouquet - web aplikacija za prodaju i dostavu cveca
 ![image](https://github.com/predrag01/Bouquet/assets/130685007/e9762de7-7739-4e0c-8dc3-0c5e45b204c3)
 ![image](https://github.com/predrag01/Bouquet/assets/130685007/f0802f9f-6e74-40a9-849a-353d8c7d70bb)
 ![image](https://github.com/predrag01/Bouquet/assets/130685007/34080489-4311-4327-930f-defa29c2e15d)
+![image](https://github.com/predrag01/Bouquet/assets/130685007/0022fa02-8eba-4992-8d9e-0b33d0b92968)
 
